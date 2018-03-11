@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.string :description
       t.string :locations
       t.int :duration
+      t.images :photos
       t.string :datetime
       t.string :plus
 
