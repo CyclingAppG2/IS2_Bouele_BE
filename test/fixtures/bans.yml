@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  log: MyString
+  reason: MyString
+  starttime: MyString
+  endtime: MyString
+
+two:
+  log: MyString
+  reason: MyString
+  starttime: MyString
+  endtime: MyString

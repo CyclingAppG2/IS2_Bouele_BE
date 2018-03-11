@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  NIT: MyString
+  mainaddress: MyString
+  branches: MyString
+  logo: 
+  firm: MyString
+  score: 
+
+two:
+  category: MyString
+  NIT: MyString
+  mainaddress: MyString
+  branches: MyString
+  logo: 
+  firm: MyString
+  score: 
