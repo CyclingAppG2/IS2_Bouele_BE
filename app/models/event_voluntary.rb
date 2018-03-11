@@ -1,0 +1,2 @@
+class EventVoluntary < ApplicationRecord
+end

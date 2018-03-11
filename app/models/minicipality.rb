@@ -1,0 +1,2 @@
+class Minicipality < ApplicationRecord
+end

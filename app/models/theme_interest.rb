@@ -1,0 +1,2 @@
+class ThemeInterest < ApplicationRecord
+end
