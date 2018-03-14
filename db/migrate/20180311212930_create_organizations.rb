@@ -6,7 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration[5.1]
       t.string :mainaddress
       t.string :branches
       t.string :firm
-      t.int :score
+      t.integer :score
 
       t.timestamps
     end
