@@ -1,2 +1,0 @@
-class ThemeIntere < ApplicationRecord
-end

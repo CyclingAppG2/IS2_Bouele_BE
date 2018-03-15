@@ -3,7 +3,7 @@ class CreateVoluntaries < ActiveRecord::Migration[5.1]
     create_table :voluntaries do |t|
       t.string :themesinterest
       t.integer :score
-      t.string :birthday
+      t.Date :birthday
       t.string :gender
       t.integer :cellphone
       t.string :city
