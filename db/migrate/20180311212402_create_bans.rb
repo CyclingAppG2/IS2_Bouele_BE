@@ -3,8 +3,8 @@ class CreateBans < ActiveRecord::Migration[5.1]
     create_table :bans do |t|
       t.string :log
       t.string :reason
-      t.DateTime :starttime
-      t.DateTime :endtime
+      t.datetime :starttime
+      t.datetime :endtime
       t.integer :user_id
       t.integer :admin_id
 

@@ -5,7 +5,7 @@ class CreateAttachments < ActiveRecord::Migration[5.1]
       t.string :comments
       t.integer :event_id
       t.integer :forum_thread_id
-      t.inteher :forum_post_id
+      t.integer :forum_post_id
 
       t.timestamps
     end
