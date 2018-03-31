@@ -21,6 +21,7 @@ gem 'puma', '~> 3.7'
 
 gem 'faker'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
