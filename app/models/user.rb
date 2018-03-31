@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  name                   :string           default(""), not null
+#  username               :string           default(""), not null
 #  type                   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -19,15 +21,18 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  authentication_token   :string(30)
 #
 # Indexes
 #
+#  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ApplicationRecord
+    acts_as_token_authenticatable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -37,8 +42,8 @@ class User < ApplicationRecord
 	has_many :admins, through: :bans
 	has_many :forum_threads
 	has_many :forum_posts	
-    # validates :email, presence: true, length: {minimum: 3}, uniqueness: true
-    # validates :name, presence: true
-    # validates :username, presence: true, length: {minimum: 3}, uniqueness: true
+    validates :email, presence: true, length: {minimum: 3}, uniqueness: true
+    validates :name, presence: true
+    validates :username, presence: true, length: {minimum: 3}, uniqueness: true
 
 end
