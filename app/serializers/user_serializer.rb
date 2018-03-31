@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  name                   :string           default(""), not null
+#  username               :string           default(""), not null
 #  type                   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -19,16 +21,18 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  authentication_token   :string(30)
 #
 # Indexes
 #
+#  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :type #, :email, :password, :name, :username
+  attributes :id, :type, :email, :password, :name, :username, :type
 
   has_many :bans
   has_many :admins
