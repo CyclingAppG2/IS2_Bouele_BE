@@ -15,9 +15,10 @@
 #  index_forum_posts_on_user_id          (user_id)
 #
 
-class ForumPost < ApplicationRecord
-	belongs_to :forum_thread
-	belongs_to :user
-	has_many :attachments
-    validates :text, presence: true, length: {minimum: 20}
+class ForumPostSerializer < ActiveModel::Serializer
+  attributes :id,  :text, :user_id, :forum_thread_id
+
+  belongs_to :forum_thread
+  belongs_to :user
+  has_many :attachments
 end
