@@ -5,7 +5,8 @@
 #  id                     :integer          not null, primary key
 #  name                   :string           default(""), not null
 #  username               :string           default(""), not null
-#  type                   :string
+#  user_data_id           :integer
+#  user_data_type         :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -25,10 +26,11 @@
 #
 # Indexes
 #
-#  index_users_on_authentication_token  (authentication_token) UNIQUE
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_authentication_token             (authentication_token) UNIQUE
+#  index_users_on_confirmation_token               (confirmation_token) UNIQUE
+#  index_users_on_email                            (email) UNIQUE
+#  index_users_on_reset_password_token             (reset_password_token) UNIQUE
+#  index_users_on_user_data_type_and_user_data_id  (user_data_type,user_data_id)
 #
 
 class User < ApplicationRecord
@@ -41,7 +43,8 @@ class User < ApplicationRecord
 	has_many :bans
 	has_many :admins, through: :bans
 	has_many :forum_threads
-	has_many :forum_posts	
+	has_many :forum_posts
+	belongs_to :user_data, polymorphic: true	
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true

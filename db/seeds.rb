@@ -1168,16 +1168,27 @@
 ####Usuarios 20
 
 20.times do
+    o = Organization.new(
+        NIT: Faker::Color.hex_color,
+        mainaddress: Faker::Zelda.game,
+        firm: Faker::Hacker.say_something_smart,
+        score: 5
+        )
+    o.save!
+
     u = User.new(
         email: Faker::Internet.free_email,
         password: "123456789",
         name: Faker::HarryPotter.character,
         username: Faker::Internet.user_name,
-        password_confirmation: "123456789"
+        password_confirmation: "123456789",
+        user_data_id: o.id,
+        user_data_type: "Organization"
         )
     u.skip_confirmation!
     u.save!
 end
+
 
 Admin.create(email: "caralopezrom@unal.edu.co",
                 password: "123456789",
