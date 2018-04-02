@@ -19,4 +19,5 @@ class VoluntarySerializer < ActiveModel::Serializer
   has_many :theme_interests
   has_many :event_voluntaries
   has_many :events
+  has_one :user_polymorphism
 end

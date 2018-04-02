@@ -17,7 +17,7 @@ class Organization < ApplicationRecord
     has_one :organization_category
 	has_many :minicipalities
 	has_many :events
-	has_one :user, as: :user_data
+	has_one :user_polymorphism, as: :user_data
     validates :NIT, presence: true, length: {minimum: 5}
     validates :mainaddress, presence: true, length: {minimum: 5}
     validates :firm, presence: true, length: {minimum: 5}

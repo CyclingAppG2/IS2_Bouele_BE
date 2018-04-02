@@ -5,8 +5,7 @@
 #  id                     :integer          not null, primary key
 #  name                   :string           default(""), not null
 #  username               :string           default(""), not null
-#  user_data_id           :integer
-#  user_data_type         :string
+#  type                   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -26,11 +25,10 @@
 #
 # Indexes
 #
-#  index_users_on_authentication_token             (authentication_token) UNIQUE
-#  index_users_on_confirmation_token               (confirmation_token) UNIQUE
-#  index_users_on_email                            (email) UNIQUE
-#  index_users_on_reset_password_token             (reset_password_token) UNIQUE
-#  index_users_on_user_data_type_and_user_data_id  (user_data_type,user_data_id)
+#  index_users_on_authentication_token  (authentication_token) UNIQUE
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 require 'test_helper'
