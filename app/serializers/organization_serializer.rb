@@ -19,4 +19,5 @@ class OrganizationSerializer < ActiveModel::Serializer
   has_one :organization_category
   has_many :minicipalities
   has_many :events
+  has_one :user_polymorphism
 end

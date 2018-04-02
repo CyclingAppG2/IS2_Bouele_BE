@@ -20,5 +20,5 @@ class Voluntary < ApplicationRecord
 	has_many :theme_interests
 	has_many :event_voluntaries
 	has_many :events, through: :event_voluntaries
-	has_one :user, as: :user_data
+	has_one :user_polymorphism, as: :user_data
 end

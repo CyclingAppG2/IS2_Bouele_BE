@@ -1,0 +1,17 @@
+<%= form_with(model: user_polymorphism, local: true) do |form| %>
+  <% if user_polymorphism.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_polymorphism.errors.count, "error") %> prohibited this user_polymorphism from being saved:</h2>
+
+      <ul>
+      <% user_polymorphism.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
