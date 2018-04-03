@@ -124,8 +124,10 @@
 # 
 
 Rails.application.routes.draw do
+  get 'v1/session'
+
   devise_for :admins
-  devise_for :users
+
   get 'home/index'
 
   resources :attachments
@@ -142,12 +144,18 @@ Rails.application.routes.draw do
   resources :organizations
   resources :reasons
   resources :bans
-  resources :voluntaries
-  resources :users
-  resources :admins
+
   resources :forum_posts
   resources :forum_threads
   resources :subforums
+  
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
+
+  namespace :v1 do
+    resources :sessions, only: [:create, :destroy]
+  end
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1175,7 +1175,7 @@
         username: Faker::Internet.user_name,
         password_confirmation: "123456789"
         )
-    u.skip_confirmation!
+    #u.skip_confirmation!
     u.save!
 end
 
