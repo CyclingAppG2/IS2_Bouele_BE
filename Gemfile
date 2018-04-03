@@ -26,7 +26,8 @@ gem 'will_paginate', '~> 3.1.0'
 # Gema para imagenes y archivos
 gem 'carrierwave'
 
-
+gem 'devise_token_auth'
+gem 'omniauth'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
