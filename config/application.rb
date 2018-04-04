@@ -30,11 +30,17 @@ module Bouele
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.i18n.default_locale = 'es'
+    I18n.l Time.now
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+  end
+  def default_url_options
+    { locale: I18n.locale }
   end
 end

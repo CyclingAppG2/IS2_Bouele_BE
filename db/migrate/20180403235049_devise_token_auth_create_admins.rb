@@ -24,10 +24,10 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[5.1]
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      t.string   :confirmation_token
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email # Only if using reconfirmable
+      # t.string   :confirmation_token
+      # t.datetime :confirmed_at
+      # t.datetime :confirmation_sent_at
+      # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
@@ -35,10 +35,11 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[5.1]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name
-      t.string :nickname
+      t.string :name, null: false, default: "", unique: true
+      t.string :username, null: false, default: "", unique: true
       t.string :image
-      t.string :email
+      t.string :email, null: false, default: "", unique: true
+      t.integer :hoursperweek 
 
       ## Tokens
       t.text :tokens
@@ -49,7 +50,7 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[5.1]
     add_index :admins, :email,                unique: true
     add_index :admins, [:uid, :provider],     unique: true
     add_index :admins, :reset_password_token, unique: true
-    add_index :admins, :confirmation_token,   unique: true
+    # add_index :admins, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,       unique: true
   end
 end
