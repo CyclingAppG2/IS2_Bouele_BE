@@ -1,4 +1,4 @@
-# == Route Map
+
 #
 #                  Prefix Verb   URI Pattern                            Controller#Action
 #             attachments GET    /attachments(.:format)                 attachments#index
@@ -145,9 +145,12 @@ Rails.application.routes.draw do
   resources :reasons
   resources :bans
   resources :voluntaries
-
+  resources :user_polymorphisms
+  get 'home/index'
   resources :forum_posts
   resources :forum_threads
   resources :subforums
+
+  root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
