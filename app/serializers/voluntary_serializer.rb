@@ -2,19 +2,19 @@
 #
 # Table name: voluntaries
 #
-#  id             :integer          not null, primary key
-#  themesinterest :string
-#  score          :integer
-#  birthday       :date
-#  gender         :string
-#  cellphone      :integer
-#  city           :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :integer          not null, primary key
+#  themesinterest  :string
+#  voluntary_score :integer
+#  birthday        :date
+#  gender          :string
+#  cellphone       :integer
+#  city            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class VoluntarySerializer < ActiveModel::Serializer
-  attributes :id, :themesinterest, :score, :birthday, :gender, :cellphone, :city
+  attributes :id, :themesinterest, :voluntary_score, :birthday, :gender, :cellphone, :city
 
   has_many :theme_interests
   has_many :event_voluntaries

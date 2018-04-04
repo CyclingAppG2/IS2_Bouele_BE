@@ -26,7 +26,13 @@ class Event < ApplicationRecord
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
     validates :description, presence: true, length: {minimum: 100}, uniqueness: true
     validates :duration, presence: true
-    validates :datetime, presence: true
+    #validates :datetime, presence: true
     
-
+    def findAllPastEvents(organization_id)
+      @events = []
+      Event.find_each do |e|
+	@events << e
+      end
+      return @events
+    end
 end

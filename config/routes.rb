@@ -124,7 +124,6 @@
 # 
 
 Rails.application.routes.draw do
-  resources :user_polymorphisms
   devise_for :admins
   devise_for :users
   get 'home/index'
@@ -148,6 +147,7 @@ Rails.application.routes.draw do
   resources :admins
   resources :forum_posts
   resources :forum_threads
+  resources :user_polymorphisms
   resources :subforums
 
   root to: "home#index"

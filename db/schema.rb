@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20180402012129) do
     t.string "mainaddress"
     t.string "branches"
     t.string "firm"
-    t.integer "score"
+    t.integer "organization_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -227,7 +227,7 @@ ActiveRecord::Schema.define(version: 20180402012129) do
 
   create_table "voluntaries", force: :cascade do |t|
     t.string "themesinterest"
-    t.integer "score"
+    t.integer "voluntary_score"
     t.date "birthday"
     t.string "gender"
     t.integer "cellphone"
