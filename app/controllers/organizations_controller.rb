@@ -25,7 +25,7 @@ class OrganizationsController < ApplicationController
   end
 
   def removePluFromEvent
-    params[:plu].destroy
+    Plu.find(id: params[:plu].id).destroy
   end
     
   def removeLocationFromEvent
@@ -33,7 +33,7 @@ class OrganizationsController < ApplicationController
   end
 
   def removePlusFromPastEvents
-    @events = Organization.findAllPastEvents(params[:organization].id)
+    @events = Event.findAllPastEventsFromOrganization(params[:organization].id)
     @events.each do |e|
       e.plus.each do |p|
         plus.destroy
@@ -46,6 +46,14 @@ class OrganizationsController < ApplicationController
     @event.name = new_name
   end
     
+  def cancelEvent
+    @event = params[:plu]
+    #@event_voluntaries = EventVoluntary.where(event_id: @event.id).to_a
+    #@event_voluntaries do |e|
+    #  e.destroy
+    #end
+    Event.find(id: @event.id).destroy
+  end
 
   # GET /organizations
   def index
