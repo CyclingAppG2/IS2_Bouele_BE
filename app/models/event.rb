@@ -41,7 +41,7 @@ class Event < ApplicationRecord
       @numer_of_voluntaries = 0
       @event = Event.find(params[:event].id)
       @event_voluntaries = EventVoluntary.where(event_id: @event.id).to_a
-      @event_voluntaries do |e|
+      @event_voluntaries.each do |e|
         @score+= e.scoreorganization
         @number_of_voluntaries += 1
       end

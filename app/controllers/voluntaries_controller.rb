@@ -12,7 +12,6 @@ class VoluntariesController < ApplicationController
     @voluntary = params[:voluntary]
     @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
     @event_voluntary.destroy
-    #TODO Either add a verification to only leave events that have not yet started or remove this line to hide it from Laura 
   end
 
   def rateEvent
