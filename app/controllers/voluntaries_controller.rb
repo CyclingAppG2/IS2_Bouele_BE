@@ -1,6 +1,36 @@
 class VoluntariesController < ApplicationController
   before_action :set_voluntary, only: [:show, :update, :destroy]
 
+  def joinEvent
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    EventVoluntary.create(voluntary_id: @voluntary.id, event_id: @event.id)
+  end
+
+  def leaveEvent
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
+    @event_voluntary.destroy
+    #TODO Either add a verification to only leave events that have not yet started or remove this line to hide it from Laura 
+  end
+
+  def rateEvent
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    @score = params[:score]
+    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
+    @event_voluntary.scoreorganization = @score
+  end
+
+  def commentAboutEvent
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    @comment = params[:comment]
+    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
+    @event_voluntary.commentsvoluntary = @comment
+  end
+
   # GET /voluntaries
   def index
     @voluntaries = Voluntary.all

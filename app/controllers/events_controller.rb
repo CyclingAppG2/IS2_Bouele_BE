@@ -1,6 +1,22 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
 
+  def rateVoluntary
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    @score = params[:score]
+    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
+    @event_voluntary.scorevoluntary = @score
+  end
+
+  def commentAboutEvent
+    @event = params[:event]
+    @voluntary = params[:voluntary]
+    @comment = params[:comment]
+    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
+    @event_voluntary.commentsorganization = @comment
+  end
+
   # GET /events
   def index
     @events = Event.all

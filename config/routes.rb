@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :forum_posts
   resources :forum_threads
+  resources :user_polymorphisms
   resources :subforums
 
   root to: "home#index"

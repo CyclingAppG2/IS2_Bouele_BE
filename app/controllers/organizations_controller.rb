@@ -1,6 +1,60 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :update, :destroy]
 
+  def createEvent
+    @event = Event.new(params[:event])
+    respond_to  do |format|
+          @event.save!
+    end
+  end
+
+  def addPluToEvent
+    @plu = Plu.new(params[:plu])
+    eventId = params[:event].id
+    @plu.event_id = eventId
+    @plu.save!
+    event
+  end
+
+  def addLocationToEvent
+    @location = Location.new(params[:plu])
+    eventId = params[:event].id
+    @location.event_id = eventId
+    @location.save!
+    event
+  end
+
+  def removePluFromEvent
+    Plu.find(id: params[:plu].id).destroy
+  end
+    
+  def removeLocationFromEvent
+    params[:location].destroy
+  end
+
+  def removePlusFromPastEvents
+    @events = Event.findAllPastEventsFromOrganization(params[:organization].id)
+    @events.each do |e|
+      e.plus.each do |p|
+        plus.destroy
+      end
+    end
+  end
+
+  def changeEventName(old_name, new_name)
+    @event = Event.find_by name: old_name
+    @event.name = new_name
+  end
+    
+  def cancelEvent
+    @event = params[:plu]
+    #@event_voluntaries = EventVoluntary.where(event_id: @event.id).to_a
+    #@event_voluntaries do |e|
+    #  e.destroy
+    #end
+    Event.find(id: @event.id).destroy
+  end
+
   # GET /organizations
   def index
     @organizations = Organization.all
@@ -46,6 +100,6 @@ class OrganizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def organization_params
-      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :score)
+      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :organization_score)
     end
 end

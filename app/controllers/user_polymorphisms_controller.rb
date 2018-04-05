@@ -4,10 +4,13 @@ class UserPolymorphismsController < ApplicationController
   # GET /user_polymorphisms
   def index
     @user_polymorphisms = UserPolymorphism.all
+  
+    render json: @user_polymorphisms
   end
 
   # GET /user_polymorphisms/1
   def show
+    render json: @user_polymorphisms
   end
 
   # GET /user_polymorphisms/new
@@ -24,9 +27,9 @@ class UserPolymorphismsController < ApplicationController
     @user_polymorphism = UserPolymorphism.new(user_polymorphism_params)
 
     if @user_polymorphism.save
-      redirect_to @user_polymorphism, notice: 'User polymorphism was successfully created.'
+      render json: @user_polymorphism
     else
-      render :new
+      render json: @user_polymorphism.errors, status: :unprocessable_entity
     end
   end
 

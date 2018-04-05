@@ -2,15 +2,15 @@
 #
 # Table name: organizations
 #
-#  id          :integer          not null, primary key
-#  category    :string
-#  NIT         :string
-#  mainaddress :string
-#  branches    :string
-#  firm        :string
-#  score       :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                 :integer          not null, primary key
+#  category           :string
+#  NIT                :string
+#  mainaddress        :string
+#  branches           :string
+#  firm               :string
+#  organization_score :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 class Organization < ApplicationRecord
@@ -21,5 +21,6 @@ class Organization < ApplicationRecord
     validates :NIT, presence: true, length: {minimum: 5}
     validates :mainaddress, presence: true, length: {minimum: 5}
     validates :firm, presence: true, length: {minimum: 5}
-    validates :score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+    validates :organization_score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+    
 end
