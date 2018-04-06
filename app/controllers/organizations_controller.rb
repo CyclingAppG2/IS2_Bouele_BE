@@ -2,57 +2,24 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :update, :destroy]
 
   def createEvent
-    @event = Event.new(params[:event])
-    respond_to  do |format|
-          @event.save!
-    end
+    @event = Event.new(organization_id: params[:event][:organization_id],
+	name: params[:event][:name],
+	description: params[:event][:description],
+	duration: params[:event][:duration],)
+ #    Event.new(organization_id: 2,
+#	name: "Testings",
+#	description: Faker::Lovecraft.fhtagn(11),
+#	duration: 5,)
+    @event.save!
   end
 
-  def addPluToEvent
-    @plu = Plu.new(params[:plu])
-    eventId = params[:event].id
-    @plu.event_id = eventId
-    @plu.save!
-    event
-  end
-
-  def addLocationToEvent
-    @location = Location.new(params[:plu])
-    eventId = params[:event].id
-    @location.event_id = eventId
-    @location.save!
-    event
-  end
-
-  def removePluFromEvent
-    Plu.find(id: params[:plu].id).destroy
-  end
-    
-  def removeLocationFromEvent
-    params[:location].destroy
-  end
-
-  def removePlusFromPastEvents
-    @events = Event.findAllPastEventsFromOrganization(params[:organization].id)
-    @events.each do |e|
-      e.plus.each do |p|
-        plus.destroy
-      end
-    end
-  end
-
-  def changeEventName(old_name, new_name)
-    @event = Event.find_by name: old_name
-    @event.name = new_name
+  def changeEventName
+    @event = Event.find(params[:event][:id])
+    @event.name = params[:event][:new_name]
   end
     
   def cancelEvent
-    @event = params[:plu]
-    #@event_voluntaries = EventVoluntary.where(event_id: @event.id).to_a
-    #@event_voluntaries do |e|
-    #  e.destroy
-    #end
-    Event.find(id: @event.id).destroy
+    Event.find(params[:event][:id]).destroy
   end
 
   # GET /organizations
@@ -102,4 +69,6 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :organization_score)
     end
+
+
 end
