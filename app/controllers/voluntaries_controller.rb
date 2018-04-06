@@ -2,33 +2,9 @@ class VoluntariesController < ApplicationController
   before_action :set_voluntary, only: [:show, :update, :destroy]
 
   def joinEvent
-    @event = params[:event]
-    @voluntary = params[:voluntary]
-    EventVoluntary.create(voluntary_id: @voluntary.id, event_id: @event.id)
+    EventVoluntary.create(voluntary_id: params[:voluntary][:id], event_id: params[:event][:id])
   end
 
-  def leaveEvent
-    @event = params[:event]
-    @voluntary = params[:voluntary]
-    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
-    @event_voluntary.destroy
-  end
-
-  def rateEvent
-    @event = params[:event]
-    @voluntary = params[:voluntary]
-    @score = params[:score]
-    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
-    @event_voluntary.scoreorganization = @score
-  end
-
-  def commentAboutEvent
-    @event = params[:event]
-    @voluntary = params[:voluntary]
-    @comment = params[:comment]
-    @event_voluntary = EventVoluntary.find(voluntary_id: @voluntary.id, event_id: @event.id)
-    @event_voluntary.commentsvoluntary = @comment
-  end
 
   # GET /voluntaries
   def index

@@ -128,6 +128,12 @@ Rails.application.routes.draw do
   devise_for :users
   get 'home/index'
 
+  match 'organization/new_event' => 'organizations#createEvent', via: :post
+  match 'organization/change_event_name' => 'organizations#changeEventName', via: :patch
+  match 'organization/cancel_event' => 'organizations#cancelEvent', via: :delete
+
+  match 'voluntary/join_event' => 'voluntaries#joinEvent', via: :post
+
   resources :attachments
   resources :contacts
   resources :locations
