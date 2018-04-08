@@ -33,6 +33,8 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'devise_token_auth'
+gem 'omniauth'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
