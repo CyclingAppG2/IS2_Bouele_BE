@@ -16,6 +16,7 @@ class OrganizationsController < ApplicationController
   def changeEventName
     @event = Event.find(params[:event][:id])
     @event.name = params[:event][:new_name]
+    @event.save
   end
     
   def cancelEvent
