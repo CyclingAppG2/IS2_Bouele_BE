@@ -1182,7 +1182,6 @@
         username: Faker::Internet.user_name,
         password_confirmation: "123456789"
         )
-    u.skip_confirmation!
     u.save!
 
     up = UserPolymorphism.new(
@@ -1208,7 +1207,6 @@
         username: Faker::Internet.user_name,
         password_confirmation: "123456789"
         )
-    u.skip_confirmation!
     u.save!
 
     up = UserPolymorphism.new(
