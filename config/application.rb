@@ -30,6 +30,11 @@ module Bouele
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.to_prepare do
+      DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+      DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+    end
+
     config.i18n.default_locale = 'es'
     I18n.l Time.now
 
@@ -42,8 +47,10 @@ module Bouele
         :methods => [:get, :post, :options, :delete, :put]
       end
     end
+    
   end
   def default_url_options
     { locale: I18n.locale }
   end
+  
 end
