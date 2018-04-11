@@ -1,6 +1,11 @@
 class VoluntariesController < ApplicationController
   before_action :set_voluntary, only: [:show, :update, :destroy]
 
+  def joinEvent
+    EventVoluntary.create(voluntary_id: params[:voluntary][:id], event_id: params[:event][:id])
+  end
+
+
   # GET /voluntaries
   def index
     @voluntaries = Voluntary.all

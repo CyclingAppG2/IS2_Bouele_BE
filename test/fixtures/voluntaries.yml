@@ -2,15 +2,15 @@
 #
 # Table name: voluntaries
 #
-#  id             :integer          not null, primary key
-#  themesinterest :string
-#  score          :integer
-#  birthday       :date
-#  gender         :string
-#  cellphone      :integer
-#  city           :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :integer          not null, primary key
+#  themesinterest  :string
+#  voluntary_score :integer
+#  birthday        :date
+#  gender          :string
+#  cellphone       :integer
+#  city            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

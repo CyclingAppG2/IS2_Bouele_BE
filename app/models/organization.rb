@@ -1,42 +1,26 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: organizations
 #
-#  id                     :integer          not null, primary key
-#  name                   :string           default(""), not null
-#  username               :string           default(""), not null
-#  type                   :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  authentication_token   :string(30)
-#
-# Indexes
-#
-#  index_users_on_authentication_token  (authentication_token) UNIQUE
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  id                 :integer          not null, primary key
+#  category           :string
+#  NIT                :string
+#  mainaddress        :string
+#  branches           :string
+#  firm               :string
+#  organization_score :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
-class Organization < User
+class Organization < ApplicationRecord
     has_one :organization_category
 	has_many :minicipalities
 	has_many :events
+	has_one :user_polymorphism, as: :user_data
     validates :NIT, presence: true, length: {minimum: 5}
     validates :mainaddress, presence: true, length: {minimum: 5}
     validates :firm, presence: true, length: {minimum: 5}
-    validates :score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+    validates :organization_score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+    
 end

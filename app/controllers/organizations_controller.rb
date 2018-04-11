@@ -1,6 +1,28 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :update, :destroy]
 
+  def createEvent
+    @event = Event.new(organization_id: params[:event][:organization_id],
+	name: params[:event][:name],
+	description: params[:event][:description],
+	duration: params[:event][:duration],)
+ #    Event.new(organization_id: 2,
+#	name: "Testings",
+#	description: Faker::Lovecraft.fhtagn(11),
+#	duration: 5,)
+    @event.save!
+  end
+
+  def changeEventName
+    @event = Event.find(params[:event][:id])
+    @event.name = params[:event][:new_name]
+    @event.save
+  end
+    
+  def cancelEvent
+    Event.find(params[:event][:id]).destroy
+  end
+
   # GET /organizations
   def index
     @organizations = Organization.all
@@ -46,6 +68,8 @@ class OrganizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def organization_params
-      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :score)
+      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :organization_score)
     end
+
+
 end
