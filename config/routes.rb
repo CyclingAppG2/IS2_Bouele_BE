@@ -172,6 +172,8 @@
 # 
 
 Rails.application.routes.draw do
+  resources :contact_data
+  resources :type_contacts
   mount_devise_token_auth_for 'User', at: 'auth_user'
 
   mount_devise_token_auth_for 'Admin', at: 'auth_admin'
