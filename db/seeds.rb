@@ -1237,4 +1237,6 @@ Admin.create(email: "adavilam@unal.edu.co ",
     username: "adavilam",
     name: "Angel David Avila ")
 
-
+TypeContact.create(name: "Queja")
+TypeContact.create(name: "Peticion")
+TypeContact.create(name: "Reclamo")

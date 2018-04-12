@@ -18,5 +18,10 @@
 #
 
 class ContactDatum < ApplicationRecord
-  belongs_to :type_contact
+  belongs_to :type_contact, foreign_key: "type_contact_id", class_name: "TypeContract"
+  validates :email, presence: true, length: {minimum: 5}
+  validates :body, presence: true, length: {minimum: 20}
+  validates :name, presence: true, length: {minimum: 5}
+  validates :city, presence: true, length: {minimum: 5}
+  alidates :phone, presence: true, numericality: { only_integer: true, greater_than: 0 }
 end

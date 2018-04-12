@@ -8,5 +8,6 @@
 #  updated_at :datetime         not null
 #
 
-class TypeContact < ApplicationRecord
+class TypeContact < 
+    validates :name , presence: true, length: {minimum: 5}
 end

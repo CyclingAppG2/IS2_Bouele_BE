@@ -1,10 +1,11 @@
 class ContactDataController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:create ]
   before_action :set_contact_datum, only: [:show, :update, :destroy]
 
   # GET /contact_data
   def index
     @contact_data = ContactDatum.all
-
+    
     render json: @contact_data
   end
 

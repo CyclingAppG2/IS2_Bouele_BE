@@ -1,4 +1,5 @@
 class TypeContactsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_type_contact, only: [:show, :update, :destroy]
 
   # GET /type_contacts
