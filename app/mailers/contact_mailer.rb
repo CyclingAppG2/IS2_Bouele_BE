@@ -5,9 +5,11 @@ class ContactMailer < ApplicationMailer
   #
   #   en.contact_mailer.contact.subject
   #
-  def contact
-    @greeting = "Hi"
+  default from: "bouele.app@gmail.com"
 
-    mail to: "to@example.org"
+  def contact(contactDatum)
+    @contactDatum = contactDatum
+
+    mail(to: @contactDatum.email, subject: 'Email de contacto' )
   end
 end

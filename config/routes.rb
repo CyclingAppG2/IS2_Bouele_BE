@@ -1,6 +1,18 @@
 # == Route Map
 #
 #                         Prefix Verb     URI Pattern                               Controller#Action
+#                   contact_data GET      /contact_data(.:format)                   contact_data#index
+#                                POST     /contact_data(.:format)                   contact_data#create
+#                  contact_datum GET      /contact_data/:id(.:format)               contact_data#show
+#                                PATCH    /contact_data/:id(.:format)               contact_data#update
+#                                PUT      /contact_data/:id(.:format)               contact_data#update
+#                                DELETE   /contact_data/:id(.:format)               contact_data#destroy
+#                  type_contacts GET      /type_contacts(.:format)                  type_contacts#index
+#                                POST     /type_contacts(.:format)                  type_contacts#create
+#                   type_contact GET      /type_contacts/:id(.:format)              type_contacts#show
+#                                PATCH    /type_contacts/:id(.:format)              type_contacts#update
+#                                PUT      /type_contacts/:id(.:format)              type_contacts#update
+#                                DELETE   /type_contacts/:id(.:format)              type_contacts#destroy
 #               new_user_session GET      /auth_user/sign_in(.:format)              devise_token_auth/sessions#new
 #                   user_session POST     /auth_user/sign_in(.:format)              devise_token_auth/sessions#create
 #           destroy_user_session DELETE   /auth_user/sign_out(.:format)             devise_token_auth/sessions#destroy

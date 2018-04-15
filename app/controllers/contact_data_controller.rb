@@ -19,6 +19,7 @@ class ContactDataController < ApplicationController
     @contact_datum = ContactDatum.new(contact_datum_params)
 
     if @contact_datum.save
+      ContactMailer.contact(@contact_datum).deliver
       render json: @contact_datum, status: :created, location: @contact_datum
     else
       render json: @contact_datum.errors, status: :unprocessable_entity

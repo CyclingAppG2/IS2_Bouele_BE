@@ -1,3 +1,7 @@
-Contact#contact
-
-<%= @greeting %>, find me in app/views/contact_mailer/contact.text.erb
+ <h1>Hola <%= @contactDatum.name %></h1>
+    <p>
+      Tu email de contacto fue enviado el dia <%=@contactDatum.created_at%>,
+    </p>
+    <p>
+      Con este mensaje <%=@contactDatum.body%>,
+    </p>
