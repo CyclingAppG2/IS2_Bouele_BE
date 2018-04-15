@@ -20,7 +20,7 @@ module Bouele
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-
+   
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -29,10 +29,13 @@ module Bouele
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
     config.to_prepare do
       DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
       DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+      
     end
 
     config.i18n.default_locale = 'es'
@@ -47,6 +50,8 @@ module Bouele
         :methods => [:get, :post, :options, :delete, :put]
       end
     end
+
+    
     
   end
   def default_url_options
