@@ -1,0 +1,46 @@
+{
+	"id": "87feaa3b-b455-eb70-907f-1f3d4f71a1b6",
+	"name": "Pagina de contacto",
+	"description": "",
+	"order": [
+		"8393c655-8021-515b-42bc-ab0cb79e7148"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1523758506309,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "8393c655-8021-515b-42bc-ab0cb79e7148",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/contact_data",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "87feaa3b-b455-eb70-907f-1f3d4f71a1b6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:3000/contact_data",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1523758508835,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"contact_datum\": {\n    \"email\": \"caralopezrom@gmail.com\",\n    \"name\": \"Carlos Arturo Lopez\",\n    \"city\": \"Bogota\",\n    \"phone\": \"1234567890\",\n    \"type_contact_id\": 1,\n    \"body\": \"Esta es una prueba para la pagina de contacto, deberia funcionar el meiler\"\n  }\n}"
+		}
+	]
+}

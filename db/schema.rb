@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403235049) do
+ActiveRecord::Schema.define(version: 20180412201825) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -62,6 +62,18 @@ ActiveRecord::Schema.define(version: 20180403235049) do
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_bans_on_admin_id"
     t.index ["user_id"], name: "index_bans_on_user_id"
+  end
+
+  create_table "contact_data", force: :cascade do |t|
+    t.string "email"
+    t.text "body"
+    t.string "name"
+    t.string "city"
+    t.bigint "phone"
+    t.integer "type_contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type_contact_id"], name: "index_contact_data_on_type_contact_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -192,6 +204,12 @@ ActiveRecord::Schema.define(version: 20180403235049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["voluntary_id"], name: "index_theme_interests_on_voluntary_id"
+  end
+
+  create_table "type_contacts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_polymorphisms", force: :cascade do |t|

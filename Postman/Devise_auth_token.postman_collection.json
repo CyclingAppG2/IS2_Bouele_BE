@@ -1,0 +1,455 @@
+{
+	"id": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+	"name": "Devise_auth_token",
+	"description": "",
+	"order": [
+		"e139f2cb-f826-9d5d-c8d8-8c5bcfefcc91",
+		"e1be9234-7c1f-d9db-d747-e12e042a32b1",
+		"95f215b2-7e7e-8d6c-ba8d-c3940cddd181",
+		"7052fae9-21af-f2eb-9582-7b205f8211dd",
+		"6261f4cf-c2f3-8eb1-0fa8-11eb56ccc635",
+		"0535a191-fb4e-6159-e68e-2caff339bc75",
+		"8ff48a63-a95c-c2db-8a02-eee7d1ba386b"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1522870716414,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "0535a191-fb4e-6159-e68e-2caff339bc75",
+			"headers": "//Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "http://0.0.0.0:3000/auth_admin",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "caralopezrom@unal.edu.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Carlos",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "caralopezrom",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "confirm_password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523388184737,
+			"name": "http://0.0.0.0:3000/auth_admin",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "6261f4cf-c2f3-8eb1-0fa8-11eb56ccc635",
+			"headers": "//Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "http://localhost:3000/auth_user",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "calopezro@unal.edu.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Carlos",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "caralopezrom",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "confirm_password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523461770198,
+			"name": "http://0.0.0.0:3000/auth_user",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "7052fae9-21af-f2eb-9582-7b205f8211dd",
+			"headers": "//Content-Type: application/json\nuid: caralopezrom@unal.edu.co\naccess-token: nDScF8BjZjJ0ka11ZqFmvQ\nclient: PMhFsFxw1ldv0k795JpFVw\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "uid",
+					"value": "caralopezrom@unal.edu.co",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "access-token",
+					"value": "nDScF8BjZjJ0ka11ZqFmvQ",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "PMhFsFxw1ldv0k795JpFVw",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://0.0.0.0:3000/auth_admin/sign_out",
+			"queryParams": [
+				{
+					"key": "uid",
+					"value": "caralopezrom@gmail.com",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "access-token",
+					"value": "KkdiTC_Xw7jPmtoqItpAJA",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "client ",
+					"value": "lXTHhTftPoLtsQUnb1iZHg",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [
+				{
+					"key": "uid",
+					"value": "caralopezrom@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "client",
+					"value": "MUR4HBOL3NOW9Uy1c2wHog",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "access-token",
+					"value": "F6VVwkyXxhlNdvewU3nxUw",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523388255708,
+			"name": "http://0.0.0.0:3000/auth_admin/sign_out",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "8ff48a63-a95c-c2db-8a02-eee7d1ba386b",
+			"headers": "access-token: QDevvup7ZCOZtb3FglV0-Q\nuid: calopezro@unal.edu.co\nclient: d0JwTl8RHwXQ1-NR1s38xA\nexpiry: 1524674419\n",
+			"headerData": [
+				{
+					"key": "access-token",
+					"value": "QDevvup7ZCOZtb3FglV0-Q",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "calopezro@unal.edu.co",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "d0JwTl8RHwXQ1-NR1s38xA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "expiry",
+					"value": "1524674419",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/locations",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/locations",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1523465081351,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "95f215b2-7e7e-8d6c-ba8d-c3940cddd181",
+			"headers": "//Content-Type: application/json\nuid: calopezro@unal.edu.co\naccess-token: QDevvup7ZCOZtb3FglV0-Q\nclient: d0JwTl8RHwXQ1-NR1s38xA\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "uid",
+					"value": "calopezro@unal.edu.co",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "access-token",
+					"value": "QDevvup7ZCOZtb3FglV0-Q",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "d0JwTl8RHwXQ1-NR1s38xA",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/auth_user/sign_out",
+			"queryParams": [
+				{
+					"key": "uid",
+					"value": "caralopezrom@gmail.com",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "access-token",
+					"value": "KkdiTC_Xw7jPmtoqItpAJA",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "client ",
+					"value": "lXTHhTftPoLtsQUnb1iZHg",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [
+				{
+					"key": "uid",
+					"value": "caralopezrom@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "client",
+					"value": "MUR4HBOL3NOW9Uy1c2wHog",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "access-token",
+					"value": "F6VVwkyXxhlNdvewU3nxUw",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523465149339,
+			"name": "http://0.0.0.0:3000/auth_user/sign_out",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "e139f2cb-f826-9d5d-c8d8-8c5bcfefcc91",
+			"headers": "",
+			"headerData": [],
+			"url": "http://0.0.0.0:3000/auth_admin/sign_in",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "caralopezrom@unal.edu.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523388253300,
+			"name": "http://0.0.0.0:3000/auth_admin/sign_in",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "e1be9234-7c1f-d9db-d747-e12e042a32b1",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/auth_user/sign_in",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "calopezro@unal.edu.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1523465182178,
+			"name": "http://0.0.0.0:3000/auth_user/sign_in",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		}
+	]
+}

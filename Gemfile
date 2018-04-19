@@ -23,16 +23,19 @@ gem 'faker'
 # gema paginacion
 gem 'will_paginate', '~> 3.1.0'
 # Gema para imagenes y archivos
+
 gem 'carrierwave'
+
 # Gema de idioma
 #gem 'rails-i18n', '~> 5.0.0'
 #Gema para autenticacion de user
 gem 'devise'
 # Gema para tokens
-gem 'simple_token_authentication', '~> 1.0'
+
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors', :require => 'rack/cors'
-
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'devise_token_auth'
 gem 'omniauth'
 # Use Capistrano for deployment
