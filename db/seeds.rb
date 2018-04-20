@@ -1176,7 +1176,7 @@
     v.save!
 
     u = User.new(
-        email: Faker::Internet.free_email,
+        email: "adavilam@unal.edu.co",#Faker::Internet.free_email,
         password: "123456789",
         name: Faker::HarryPotter.character,
         username: Faker::Internet.user_name,
@@ -1184,11 +1184,11 @@
         )
     u.save!
 
-    up = UserPolymorphism.new(
+    up = UserPolymorphism.create(
 	user_id: u.id,
         user_data_id: v.id,
         user_data_type: "Voluntary")
-    up.save!
+    #up.save!
 
 
 20.times do
@@ -1231,7 +1231,7 @@ Admin.create(email: "caralopezrom@unal.edu.co",
                 password_confirmation: "123456789",
                 username: "caralopezrom",
                 name: "Carlos Arturo lopez Romero")
-Admin.create(email: "adavilam@unal.edu.co ",
+Admin.create(email: "adavilame@unal.edu.co ",
     password: "123456789",
     password_confirmation: "123456789",
     username: "adavilam",
