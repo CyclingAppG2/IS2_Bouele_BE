@@ -3,14 +3,20 @@ class VoluntariesController < ApplicationController
 
   def joinEvent
     EventVoluntary.create(voluntary_id: params[:voluntary][:id], event_id: params[:event][:id])
+    @UserPolymorphism = UserPolymorphism.find_by user_data_id: params[:voluntary][:id]
+    puts "User id: " + @UserPolymorphism.user_id
+    @User = User.find(@UserPolymorphism.user_id)
+    puts "User name: " + @User.name
+    UserMailer.joined_event_email(@User).deliver
   end
 
 
   # GET /voluntaries
   def index
     @voluntaries = Voluntary.all
-
+    
     render json: @voluntaries
+
   end
 
   # GET /voluntaries/1
@@ -23,7 +29,7 @@ class VoluntariesController < ApplicationController
     @voluntary = Voluntary.new(voluntary_params)
 
     if @voluntary.save
-      render json: @voluntary, status: :created, location: @voluntary
+      render json: @voluntary, status: :created, location: @voluntary  
     else
       render json: @voluntary.errors, status: :unprocessable_entity
     end
