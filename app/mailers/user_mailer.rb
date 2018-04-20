@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   
-  default from: "boueleunal@gmail.com"
+  default from:  'bouele.app@gmail.com'
 
   def joined_event_mail(user)
     @user = user
