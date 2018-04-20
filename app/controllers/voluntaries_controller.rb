@@ -2,14 +2,16 @@ class VoluntariesController < ApplicationController
   before_action :set_voluntary, only: [:show, :update, :destroy]
 
   def joinEvent
-    EventVoluntary.create(voluntary_id: params[:voluntary][:id], event_id: params[:event][:id])
-    @UserPolymorphism = UserPolymorphism.find_by user_data_id: params[:voluntary][:id]
-    puts "User id: " + @UserPolymorphism.user_id
+    @Voluntary = Voluntary.find(params[:voluntary][:id])
+    EventVoluntary.create(voluntary_id: @Voluntary.id, event_id: params[:event][:id])
+    @UserPolymorphism = UserPolymorphism.find_by user_data_id: @Voluntary.id
     @User = User.find(@UserPolymorphism.user_id)
-    puts "User name: " + @User.name
-    UserMailer.joined_event_email(@User).deliver
+    UserMailer.joined_event_mail(@User).deliver
   end
 
+  def voluntariesInEvents
+    return Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
+  end
 
   # GET /voluntaries
   def index
