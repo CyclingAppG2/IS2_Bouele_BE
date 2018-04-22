@@ -56,6 +56,7 @@ class UserPolymorphismsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_polymorphism_params
-      params.fetch(:user_polymorphism, {})
+      params.require(:user_polymorphism).permit(:user_id, :user_data_id, :user_data_type)
+      ##params.fetch(:user_polymorphism, {:user_id, :user_data_id, :user_data_type})
     end
 end
