@@ -32,11 +32,11 @@ module Bouele
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-    #config.to_prepare do
-    #  DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
-    #  DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
-    #  
-    #end
+    config.to_prepare do
+      DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+      DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+      
+    end
 
     config.i18n.default_locale = 'es'
     I18n.l Time.now
