@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412201825) do
+ActiveRecord::Schema.define(version: 20180423184454) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -218,7 +218,6 @@ ActiveRecord::Schema.define(version: 20180412201825) do
     t.string "user_data_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_data_type", "user_data_id"], name: "index_user_polymorphisms_on_user_data_type_and_user_data_id"
   end
 
   create_table "users", force: :cascade do |t|
