@@ -3,10 +3,21 @@ class VoluntariesController < ApplicationController
 
   def joinEvent
     @Voluntary = Voluntary.find(params[:voluntary][:id])
-    EventVoluntary.create(voluntary_id: @Voluntary.id, event_id: params[:event][:id])
+    @Event = Event.find(params[:event][:id])
+    EventVoluntary.create(voluntary_id: @Voluntary.id, event_id: @Event.id)
     @UserPolymorphism = UserPolymorphism.find_by user_data_id: @Voluntary.id
     @User = User.find(@UserPolymorphism.user_id)
-    UserMailer.joined_event_mail(@User).deliver
+    UserMailer.joined_event_mail(@User, @Event).deliver
+  end
+
+  def leaveEvent
+    @Event = Event.find(params[:event][:id])
+    @Voluntary = Voluntary.find(params[:voluntary][:id])
+    @EventVoluntary = EventVoluntary.find_by voluntary_id: @Voluntary.id, event_id: @Event.id
+    @EventVoluntary.destroy
+    @UserPolymorphism = UserPolymorphism.find_by user_data_id: @Voluntary.id
+    @User = User.find(@UserPolymorphism.user_id)
+    UserMailer.left_event_mail(@User, @Event).deliver
   end
 
   def voluntariesInEvents

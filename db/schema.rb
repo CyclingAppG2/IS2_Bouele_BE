@@ -100,8 +100,6 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.integer "voluntary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_event_voluntaries_on_event_id"
-    t.index ["voluntary_id"], name: "index_event_voluntaries_on_voluntary_id"
   end
 
   create_table "events", force: :cascade do |t|

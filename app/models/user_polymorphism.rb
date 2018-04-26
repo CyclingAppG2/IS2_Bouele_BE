@@ -11,4 +11,6 @@
 #
 
 class UserPolymorphism < ApplicationRecord
+  belongs_to :user
+  belongs_to :user_data, polymorphic: true
 end
