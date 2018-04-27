@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  def getUsersInfoAsPDF
+  def getUsedUsernamesAsPDF
     respond_to :json, :html
     @users = User.all
     pdf = Prawn::Document.new
