@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
+  def getUsersInfoAsPDF
+    respond_to :json, :html
+    @users = User.all
+    pdf = Prawn::Document.new
+    pdf.text 'The following usernames are currently being used:'
+    pdf.text ''
+    @users.each do |u|
+      pdf.text u.username
+    end
+    send_data pdf.render
+  end
+
   # GET /users
   def index
     @users = User.all
