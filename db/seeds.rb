@@ -1240,3 +1240,19 @@ Admin.create(email: "adavilame@unal.edu.co ",
 TypeContact.create(name: "Queja")
 TypeContact.create(name: "Peticion")
 TypeContact.create(name: "Reclamo")
+
+20.times do
+    Reason.create(name: Faker::Lorem.paragraph)
+end
+
+20.times do
+    Ban.create(
+        log: Faker::GameOfThrones.house,
+        reason_id: 1,
+        starttime: DateTime.now,
+        endtime: DateTime.now + 15.days,
+        user_id: 1,
+        admin_id: 1
+        )
+end
+

@@ -190,8 +190,9 @@ Rails.application.routes.draw do
 
   mount_devise_token_auth_for 'Admin', at: 'auth_admin'
   as :admin do
-    # Define routes for Admin within this block.
+    resources :bans
   end
+  get 'bans/showBansUser/:id' => 'bans#showBansUser'
 
   match 'organization/new_event' => 'organizations#createEvent', via: :post
   match 'organization/change_event_name' => 'organizations#changeEventName', via: :patch
@@ -212,7 +213,7 @@ Rails.application.routes.draw do
   resources :theme_interes
   resources :organizations
   resources :reasons
-  resources :bans
+  
   resources :voluntaries
   resources :user_polymorphisms
   get 'home/index'

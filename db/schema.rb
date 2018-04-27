@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20180412201825) do
 
   create_table "bans", force: :cascade do |t|
     t.string "log"
-    t.string "reason"
+    t.integer "reason_id"
     t.datetime "starttime"
     t.datetime "endtime"
     t.integer "user_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180412201825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_bans_on_admin_id"
+    t.index ["reason_id"], name: "index_bans_on_reason_id"
     t.index ["user_id"], name: "index_bans_on_user_id"
   end
 
@@ -183,10 +184,8 @@ ActiveRecord::Schema.define(version: 20180412201825) do
 
   create_table "reasons", force: :cascade do |t|
     t.string "name"
-    t.integer "ban_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ban_id"], name: "index_reasons_on_ban_id"
   end
 
   create_table "subforums", force: :cascade do |t|

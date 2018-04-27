@@ -35,6 +35,7 @@ module Bouele
     config.to_prepare do
       DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
       DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+      DeviseTokenAuth::SessionsController.skip_before_action :authenticate_admin!
       
     end
 
