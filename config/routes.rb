@@ -198,6 +198,9 @@ Rails.application.routes.draw do
   match 'organization/cancel_event' => 'organizations#cancelEvent', via: :delete
 
   match 'voluntary/join_event' => 'voluntaries#joinEvent', via: :post
+  match 'voluntary/leave_event' => 'voluntaries#leaveEvent', via: :delete
+
+  match 'user/get_used_usernames' => 'users#getUsersInfoAsPDF', via: :get
 
   resources :attachments
   resources :contacts
