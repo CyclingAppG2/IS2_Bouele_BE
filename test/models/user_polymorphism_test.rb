@@ -9,10 +9,6 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-# Indexes
-#
-#  index_user_polymorphisms_on_user_data_type_and_user_data_id  (user_data_type,user_data_id)
-#
 
 require 'test_helper'
 

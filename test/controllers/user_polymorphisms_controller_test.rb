@@ -6,43 +6,33 @@ class UserPolymorphismsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get user_polymorphisms_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_user_polymorphism_url
+    get user_polymorphisms_url, as: :json
     assert_response :success
   end
 
   test "should create user_polymorphism" do
     assert_difference('UserPolymorphism.count') do
-      post user_polymorphisms_url, params: { user_polymorphism: {  } }
+      post user_polymorphisms_url, params: { user_polymorphism: { user_data_id: @user_polymorphism.user_data_id, user_data_type: @user_polymorphism.user_data_type, user_id: @user_polymorphism.user_id } }, as: :json
     end
 
-    assert_redirected_to user_polymorphism_url(UserPolymorphism.last)
+    assert_response 201
   end
 
   test "should show user_polymorphism" do
-    get user_polymorphism_url(@user_polymorphism)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_user_polymorphism_url(@user_polymorphism)
+    get user_polymorphism_url(@user_polymorphism), as: :json
     assert_response :success
   end
 
   test "should update user_polymorphism" do
-    patch user_polymorphism_url(@user_polymorphism), params: { user_polymorphism: {  } }
-    assert_redirected_to user_polymorphism_url(@user_polymorphism)
+    patch user_polymorphism_url(@user_polymorphism), params: { user_polymorphism: { user_data_id: @user_polymorphism.user_data_id, user_data_type: @user_polymorphism.user_data_type, user_id: @user_polymorphism.user_id } }, as: :json
+    assert_response 200
   end
 
   test "should destroy user_polymorphism" do
     assert_difference('UserPolymorphism.count', -1) do
-      delete user_polymorphism_url(@user_polymorphism)
+      delete user_polymorphism_url(@user_polymorphism), as: :json
     end
 
-    assert_redirected_to user_polymorphisms_url
+    assert_response 204
   end
 end

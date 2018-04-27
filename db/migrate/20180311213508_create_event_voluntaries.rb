@@ -11,10 +11,10 @@ class CreateEventVoluntaries < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :event_voluntaries, :event_id
-    add_foreign_key :event_voluntaries, :events
+    #add_index :event_voluntaries, :event_id
+    #add_foreign_key :event_voluntaries, :events
 
-    add_index :event_voluntaries, :voluntary_id
-    add_foreign_key :event_voluntaries, :voluntaries
+    #add_index :event_voluntaries, :voluntary_id
+    #add_foreign_key :event_voluntaries, :voluntaries
   end
 end

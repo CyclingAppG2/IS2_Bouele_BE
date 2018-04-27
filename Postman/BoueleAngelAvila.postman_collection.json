@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "e93086ac-6456-4af1-a769-017b729ebe9b",
+		"name": "Bouele",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "change event name",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\" : {\n    \t\"id\": 1,\n\t\t\"new_name\": \"Oh yeah\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/organization/change_event_name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"organization",
+						"change_event_name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create event from organization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\" : {\n    \t\"organization_id\": 2,\n\t\t\"name\": \"Testingz\",\n\t\t\"description\": \"Ohnonononoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo\",\n\t\t\"duration\": 5\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/organization/new_event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"organization",
+						"new_event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "destroy event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\" : {\n    \t\"id\": 2\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/organization/cancel_event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"organization",
+						"cancel_event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "join event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\" : {\n    \t\"id\": 1\n    },\n    \"voluntary\" : {\n    \t\"id\": 1\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/voluntary/join_event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"voluntary",
+						"join_event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voluntary leave event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\" : {\n    \t\"id\": 1\n    },\n    \"voluntary\" : {\n    \t\"id\": 1\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/voluntary/leave_event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"voluntary",
+						"leave_event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get used usernames",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/user/get_used_usernames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"get_used_usernames"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

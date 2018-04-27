@@ -9,12 +9,8 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-# Indexes
-#
-#  index_user_polymorphisms_on_user_data_type_and_user_data_id  (user_data_type,user_data_id)
-#
 
 class UserPolymorphism < ApplicationRecord
-	belongs_to :user
-	belongs_to :user_data, polymorphic: true	
+  belongs_to :user
+  belongs_to :user_data, polymorphic: true
 end
