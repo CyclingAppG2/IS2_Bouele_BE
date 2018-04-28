@@ -1176,7 +1176,7 @@
     v.save!
 
     u = User.new(
-        email: "adavilam@unal.edu.co",#Faker::Internet.free_email,
+        email: Faker::Internet.free_email,
         password: "123456789",
         name: Faker::HarryPotter.character,
         username: Faker::Internet.user_name,

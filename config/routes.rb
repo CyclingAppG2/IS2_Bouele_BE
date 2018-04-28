@@ -188,9 +188,10 @@ Rails.application.routes.draw do
   resources :type_contacts
   mount_devise_token_auth_for 'User', at: 'auth_user'
 
+
   mount_devise_token_auth_for 'Admin', at: 'auth_admin'
   as :admin do
-    resources :bans
+  
   end
   get 'bans/showBansUser/:id' => 'bans#showBansUser'
 
@@ -208,7 +209,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :event_voluntaries
   resources :plus
-  resources :events
+  resources :bans
   resources :departments
   resources :minicipalities
   resources :organization_categories
@@ -216,7 +217,7 @@ Rails.application.routes.draw do
   resources :theme_interes
   resources :organizations
   resources :reasons
-  
+  resources :events
   resources :voluntaries
   resources :user_polymorphisms
   get 'home/index'
