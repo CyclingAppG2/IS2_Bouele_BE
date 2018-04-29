@@ -34,13 +34,10 @@ module Bouele
     config.middleware.use ActionDispatch::Session::CookieStore
 
     config.to_prepare do
-      DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
-      DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
-      #DeviseTokenAuth::SessionsController.skip_before_action :authenticate_admin!
-      #DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_admin!
-      DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
-      #DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_admin!
-      
+      # DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+      # DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+      # DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
+
     end
 
     config.i18n.default_locale = 'es'

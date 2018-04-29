@@ -184,9 +184,10 @@
 # 
 
 Rails.application.routes.draw do
+  require "devise_token_auth"
   resources :contact_data
   resources :type_contacts
-  mount_devise_token_auth_for 'User', at: 'auth_user'
+  mount_devise_token_auth_for 'User', at: 'auth_user' #, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
 
   mount_devise_token_auth_for 'Admin', at: 'auth_admin'
@@ -225,6 +226,7 @@ Rails.application.routes.draw do
   resources :forum_threads
   resources :user_polymorphisms
   resources :subforums
+  match 'user/:id' => 'users#update', via: :patch
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
