@@ -34,9 +34,9 @@ module Bouele
     config.middleware.use ActionDispatch::Session::CookieStore
 
     config.to_prepare do
-      # DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
-      # DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
-      # DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
 
     end
 

@@ -34,32 +34,31 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:3000/user/22",
+			"url": "http://localhost:3000/auth_user",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "PATCH",
-			"collectionId": "1a029026-729e-a4a0-168b-8692689439b7",
 			"data": [
 				{
-					"key": "user[image]",
-					"value": "",
+					"key": "image",
+					"value": "Controlador.png",
 					"description": "",
 					"type": "file",
 					"enabled": true
 				}
 			],
 			"dataMode": "params",
-			"name": "http://localhost:3000/user/22",
-			"description": "Subir avatar al user",
-			"descriptionFormat": "html",
-			"time": 1525020856765,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1525021706892,
+			"name": "upload avatar user",
+			"description": "Subir avatar al user",
+			"collectionId": "1a029026-729e-a4a0-168b-8692689439b7",
+			"responses": []
 		}
 	]
 }
