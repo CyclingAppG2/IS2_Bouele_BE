@@ -247,7 +247,7 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.integer "voluntary_score"
     t.date "birthday"
     t.string "gender"
-    t.integer "cellphone"
+    t.bigint "cellphone"
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
