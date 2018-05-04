@@ -32,10 +32,10 @@
 #
 
 class Admin < ApplicationRecord
-  # Include default devise modules. :confirmable,
+  # Include default devise modules. :confirmable,            :omniauthable
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-           :omniauthable
+          :recoverable, :rememberable, :trackable, :validatable
+
   include DeviseTokenAuth::Concerns::User
   #validates :hoursperweek,  presence: true, default: 0, numericality: { only_integer: true, greater_than: 0 }
 
@@ -43,5 +43,10 @@ class Admin < ApplicationRecord
 
 	has_many :subforums
 	has_many :bans
-	has_many :users, through: :bans
+  has_many :users, through: :bans
+  
+  # def getBanSbyUser user
+    
+  # end
+
 end

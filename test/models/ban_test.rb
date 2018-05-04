@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  log        :string
-#  reason     :string
+#  reason_id  :integer
 #  starttime  :datetime
 #  endtime    :datetime
 #  user_id    :integer
@@ -14,8 +14,9 @@
 #
 # Indexes
 #
-#  index_bans_on_admin_id  (admin_id)
-#  index_bans_on_user_id   (user_id)
+#  index_bans_on_admin_id   (admin_id)
+#  index_bans_on_reason_id  (reason_id)
+#  index_bans_on_user_id    (user_id)
 #
 
 require 'test_helper'

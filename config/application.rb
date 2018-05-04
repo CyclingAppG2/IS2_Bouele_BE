@@ -32,10 +32,12 @@ module Bouele
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
     config.to_prepare do
-      DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
-      DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
-      
+       DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
+
     end
 
     config.i18n.default_locale = 'es'
@@ -47,7 +49,7 @@ module Bouele
         resource '*', 
         :headers => :any, 
         expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-        :methods => [:get, :post, :options, :delete, :put]
+        :methods => [:get, :post, :options, :delete, :put, :patch]
       end
     end
 

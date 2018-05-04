@@ -5,7 +5,7 @@ class CreateVoluntaries < ActiveRecord::Migration[5.1]
       t.integer :voluntary_score
       t.date :birthday
       t.string :gender
-      t.integer :cellphone
+      t.bigint :cellphone
       t.string :city
 
       t.timestamps

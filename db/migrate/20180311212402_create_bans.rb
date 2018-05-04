@@ -2,7 +2,7 @@ class CreateBans < ActiveRecord::Migration[5.1]
   def change
     create_table :bans do |t|
       t.string :log
-      t.string :reason
+      t.integer :reason_id
       t.datetime :starttime
       t.datetime :endtime
       t.integer :user_id
@@ -16,5 +16,8 @@ class CreateBans < ActiveRecord::Migration[5.1]
 
     add_index :bans, :admin_id
     add_foreign_key :bans, :admins
+
+    add_index :bans, :reason_id
+    add_foreign_key :bans, :reasons
   end
 end

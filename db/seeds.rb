@@ -1176,7 +1176,7 @@
     v.save!
 
     u = User.new(
-        email: "adavilam@unal.edu.co",#Faker::Internet.free_email,
+        email: Faker::Internet.free_email,
         password: "123456789",
         name: Faker::HarryPotter.character,
         username: Faker::Internet.user_name,
@@ -1240,3 +1240,19 @@ Admin.create(email: "adavilame@unal.edu.co ",
 TypeContact.create(name: "Queja")
 TypeContact.create(name: "Peticion")
 TypeContact.create(name: "Reclamo")
+
+20.times do
+    Reason.create(name: Faker::Lorem.paragraph)
+end
+
+20.times do
+    Ban.create(
+        log: Faker::GameOfThrones.house,
+        reason_id: 1,
+        starttime: DateTime.now,
+        endtime: DateTime.now + 15.days,
+        user_id: 1,
+        admin_id: 1
+        )
+end
+

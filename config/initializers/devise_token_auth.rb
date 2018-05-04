@@ -3,7 +3,7 @@ DeviseTokenAuth.setup do |config|
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
   # each request.
-  # config.change_headers_on_each_request = true
+  config.change_headers_on_each_request = false
 
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
@@ -45,5 +45,14 @@ DeviseTokenAuth.setup do |config|
   # By default, only Bearer Token authentication is implemented out of the box.
   # If, however, you wish to integrate with legacy Devise authentication, you can
   # do so by enabling this flag. NOTE: This feature is highly experimental!
-  # config.enable_standard_devise_support = false
+  #config.enable_standard_devise_support = false
+  # Rails.application.config.to_prepare do
+  #   Devise::OmniauthCallbacksController.class_eval do
+  #     # https://stackoverflow.com/questions/39879995/undefined-local-variable-or-method-flash-for-deviseomniauthcallbackscontro
+  #     def failure
+  #       set_flash_message! :alert, :failure, kind: OmniAuth::Utils.camelize(failed_strategy.name), reason: failure_message
+  #       redirect_to after_omniauth_failure_path_for(resource_name)
+  #     end
+  #   end
+  # end
 end

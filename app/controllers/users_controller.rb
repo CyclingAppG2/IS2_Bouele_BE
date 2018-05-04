@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin!, only: [:index]
   before_action :set_user, only: [:show, :update, :destroy]
 
   def getUsedUsernamesAsPDF
@@ -58,6 +59,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password, :name, :username)
+      params.require(:user).permit(:email, :password, :name, :username, :image)
     end
 end

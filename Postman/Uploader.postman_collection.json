@@ -1,0 +1,64 @@
+{
+	"id": "1a029026-729e-a4a0-168b-8692689439b7",
+	"name": "Uploader",
+	"description": "",
+	"order": [
+		"6b34a33f-dd85-5c93-1270-492b5bb8d8b3"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1525020855297,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "6b34a33f-dd85-5c93-1270-492b5bb8d8b3",
+			"headers": "access-token: HaFZYt23Iu-arBzLaQzCfQ\nclient: MzgjVVk7_JcUUP8MkA3OZw\nuid: calopezro@unal.edu.co\n",
+			"headerData": [
+				{
+					"key": "access-token",
+					"value": "HaFZYt23Iu-arBzLaQzCfQ",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "MzgjVVk7_JcUUP8MkA3OZw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "calopezro@unal.edu.co",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/auth_user",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PATCH",
+			"data": [
+				{
+					"key": "image",
+					"value": "Controlador.png",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1525021706892,
+			"name": "upload avatar user",
+			"description": "Subir avatar al user",
+			"collectionId": "1a029026-729e-a4a0-168b-8692689439b7",
+			"responses": []
+		}
+	]
+}

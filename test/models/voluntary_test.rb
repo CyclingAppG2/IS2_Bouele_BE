@@ -7,7 +7,7 @@
 #  voluntary_score :integer
 #  birthday        :date
 #  gender          :string
-#  cellphone       :integer
+#  cellphone       :bigint(8)
 #  city            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
