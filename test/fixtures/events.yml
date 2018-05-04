@@ -8,6 +8,8 @@
 #  duration        :integer
 #  plus            :string
 #  organization_id :integer
+#  start_datetime  :datetime
+#  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
