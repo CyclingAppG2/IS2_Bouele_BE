@@ -47,7 +47,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true
     mount_uploader :image, AvatarUploader
-    serialize :image, JSON 
+    #serialize :image, JSON 
 
     
 end

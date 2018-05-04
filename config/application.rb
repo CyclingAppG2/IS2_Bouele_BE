@@ -43,7 +43,7 @@ module Bouele
     config.i18n.default_locale = 'es'
     I18n.l Time.now
 
-    config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.use Rack::Cors do
       allow do
         origins '*'
         resource '*', 

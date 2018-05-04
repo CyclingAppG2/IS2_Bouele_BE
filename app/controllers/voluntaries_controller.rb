@@ -21,7 +21,7 @@ class VoluntariesController < ApplicationController
   end
 
   def voluntariesInEvents
-    return Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
+    return Voluntary.voluntariesInEvents
   end
 
   # GET /voluntaries
