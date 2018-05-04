@@ -23,3 +23,7 @@ class Voluntary < ApplicationRecord
 	has_one :user_polymorphism, as: :user_data
 
 end
+
+def sellf.voluntariesInEvents
+	Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
+end
