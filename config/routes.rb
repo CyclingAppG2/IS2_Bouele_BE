@@ -184,16 +184,22 @@
 # 
 
 Rails.application.routes.draw do
+  get 'devise_token_auth_override/session'
+
   require "devise_token_auth"
   resources :contact_data
   resources :type_contacts
   mount_devise_token_auth_for 'User', at: 'auth_user' #, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
 
-  mount_devise_token_auth_for 'Admin', at: 'auth_admin'
-  as :admin do
+  mount_devise_token_auth_for 'Admin', at: 'auth_admin', controllers: { sessions: "users/sessions"}
+
+  # as :admin do
+  #   # Define routes for Admin within this block.
+  # end
+  # as :admin do
   
-  end
+  # end
   get 'bans/showBansUser/:id' => 'bans#showBansUser'
 
   match 'organization/new_event' => 'organizations#createEvent', via: :post
