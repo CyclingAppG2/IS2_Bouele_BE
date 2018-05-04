@@ -8,6 +8,8 @@
 #  duration        :integer
 #  plus            :string
 #  organization_id :integer
+#  start_datetime  :datetime
+#  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -17,7 +19,7 @@
 #
 
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :duration, :plus
+  attributes :id, :name, :description, :duration, :plus, :start_datetime, :max_voluntaries
 
   has_many :event_voluntaries
   has_many :voluntaries

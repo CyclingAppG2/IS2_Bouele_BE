@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.integer "duration"
     t.string "plus"
     t.integer "organization_id"
+    t.datetime "start_datetime"
+    t.integer "max_voluntaries", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_events_on_organization_id"

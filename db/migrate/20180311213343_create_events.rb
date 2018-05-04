@@ -6,6 +6,8 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.integer :duration
       t.string :plus
       t.integer :organization_id
+      t.datetime :start_datetime
+      t.integer :max_voluntaries, :default => 100 
 
       t.timestamps
     end
