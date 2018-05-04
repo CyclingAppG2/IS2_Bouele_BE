@@ -8,6 +8,7 @@ class Users::SessionsController  < DeviseTokenAuth::SessionsController
         response.set_header("expiry", auth_header["expiry"])
         response.set_header("uid", auth_header["uid"])
         render json: {
+            success: "true",
             data: @resource
         }
       end
