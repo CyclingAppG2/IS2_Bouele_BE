@@ -13,4 +13,6 @@
 class UserPolymorphism < ApplicationRecord
   belongs_to :user
   belongs_to :user_data, polymorphic: true
+  validates :user_id, uniqueness:true
+  validates_uniqueness_of :user_data_id, :scope => [:user_data_type]
 end
