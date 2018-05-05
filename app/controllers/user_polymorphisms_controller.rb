@@ -38,6 +38,10 @@ class UserPolymorphismsController < ApplicationController
     @user_polymorphism.destroy
   end
 
+  def getTypeUser
+    @ans =  UserPolymorphism.getTypeUser(@current_user.id)
+    render json: @ans
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_polymorphism

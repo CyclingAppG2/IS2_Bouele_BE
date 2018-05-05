@@ -232,7 +232,7 @@ Rails.application.routes.draw do
   resources :forum_threads
   resources :user_polymorphisms
   resources :subforums
-
+  get 'userType' => "user_polymorphisms#getTypeUser"
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -11,7 +11,8 @@
 		"0535a191-fb4e-6159-e68e-2caff339bc75",
 		"8ff48a63-a95c-c2db-8a02-eee7d1ba386b",
 		"c8cd1073-3b05-9247-e6e3-eb0dda6bf19b",
-		"242718ff-1a50-5d25-e059-85422982bc99"
+		"242718ff-1a50-5d25-e059-85422982bc99",
+		"53a715f4-3f9b-6ed0-ab91-d11f6953a36b"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -124,6 +125,27 @@
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
 			"responses": []
+		},
+		{
+			"id": "53a715f4-3f9b-6ed0-ab91-d11f6953a36b",
+			"headers": "access-token: 2AfDPgQpZD47Cg_GqdS5NA\nclient: 78fycpQGVcGJAyM6GYJv9g\nuid: caralopezrom@unal.edu.co\n",
+			"url": "http://localhost:3000/userType",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"name": "http://localhost:3000/userType",
+			"description": "",
+			"sandboxFiles": "",
+			"sendMethod": "xhr",
+			"time": 1525557536529,
+			"responses": [],
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6"
 		},
 		{
 			"id": "6261f4cf-c2f3-8eb1-0fa8-11eb56ccc635",
@@ -415,28 +437,28 @@
 		},
 		{
 			"id": "c8cd1073-3b05-9247-e6e3-eb0dda6bf19b",
-			"headers": "access-token: HmT6UwNXEv7rncfTEAkJRg\nclient: -emuWgXhZNJqnDj9w5PbXA\nuid: adavilame@unal.edu.co\n",
+			"headers": "access-token: 2AfDPgQpZD47Cg_GqdS5NA\nclient: 78fycpQGVcGJAyM6GYJv9g\nuid: caralopezrom@unal.edu.co\n",
 			"headerData": [
 				{
 					"key": "access-token",
-					"value": "HmT6UwNXEv7rncfTEAkJRg",
+					"value": "2AfDPgQpZD47Cg_GqdS5NA",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "client",
-					"value": "-emuWgXhZNJqnDj9w5PbXA",
+					"value": "78fycpQGVcGJAyM6GYJv9g",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "uid",
-					"value": "adavilame@unal.edu.co",
+					"value": "caralopezrom@unal.edu.co",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:3000/auth_admin/validate_token",
+			"url": "http://localhost:3000/auth_user/validate_token",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -448,7 +470,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1525418490221,
+			"time": 1525557595646,
 			"name": "http://localhost:3000/auth_user/validate_token",
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
