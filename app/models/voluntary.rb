@@ -24,6 +24,6 @@ class Voluntary < ApplicationRecord
 
 end
 
-def sellf.voluntariesInEvents
+def self.voluntariesInEvents
 	Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
 end
