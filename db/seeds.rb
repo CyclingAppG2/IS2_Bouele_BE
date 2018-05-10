@@ -1165,56 +1165,64 @@
 # Minicipality.create(name:  "ZIPAQUIRA")
 # Minicipality.create(name:  "ZONA BANANERA")
 
+3.times do
+    org = OrganizationCategory.create(name: Faker::Commerce.department)
+    5.times do
+        d = Department.create(name: Faker::Space.constellation)
+        4.times do
+            m = Minicipality.create(name: Faker::Space.meteorite, department_id: d.id )
+            2.times do
+                o = Organization.create(
+                    NIT: Faker::Color.hex_color,
+                    mainaddress: Faker::Zelda.game,
+                    firm: Faker::Hacker.say_something_smart,
+                    organization_score: 5,
+                    minicipality_id: m.id,
+                    organization_category_id: org.id)
+                u = User.create(
+                    email: Faker::Internet.free_email,
+                    password: "123456789",
+                    name: Faker::HarryPotter.character,
+                    username: Faker::Internet.user_name,
+                    password_confirmation: "123456789"
+                    )
+                up = UserPolymorphism.create(
+                user_id: u.id,
+                    user_data_id: o.id,
+                    user_data_type: "Organization")
+
+            end
+        end
+    end
+
+end
 ####Usuarios 20
 
-    v = Voluntary.new(
-        gender: Faker::Lovecraft.deity,
-        cellphone: "320320420",
-        voluntary_score: 5,
-	city: "Hazing"
-        )
-    v.save!
+    # v = Voluntary.new(
+    #     gender: Faker::Lovecraft.deity,
+    #     cellphone: "320320420",
+    #     voluntary_score: 5,
+	# city: "Hazing"
+    #     )
+    # v.save!
 
-    u = User.new(
-        email: Faker::Internet.free_email,
-        password: "123456789",
-        name: Faker::HarryPotter.character,
-        username: Faker::Internet.user_name,
-        password_confirmation: "123456789"
-        )
-    u.save!
+    # u = User.new(
+    #     email: Faker::Internet.free_email,
+    #     password: "123456789",
+    #     name: Faker::HarryPotter.character,
+    #     username: Faker::Internet.user_name,
+    #     password_confirmation: "123456789"
+    #     )
+    # u.save!
 
-    up = UserPolymorphism.create(
-	user_id: u.id,
-        user_data_id: v.id,
-        user_data_type: "Voluntary")
-    #up.save!
+    # up = UserPolymorphism.create(
+	# user_id: u.id,
+    #     user_data_id: v.id,
+    #     user_data_type: "Voluntary")
+    # #up.save!
 
 
-20.times do
-    o = Organization.new(
-        NIT: Faker::Color.hex_color,
-        mainaddress: Faker::Zelda.game,
-        firm: Faker::Hacker.say_something_smart,
-        organization_score: 5
-        )
-    o.save!
 
-    u = User.new(
-        email: Faker::Internet.free_email,
-        password: "123456789",
-        name: Faker::HarryPotter.character,
-        username: Faker::Internet.user_name,
-        password_confirmation: "123456789"
-        )
-    u.save!
-
-    up = UserPolymorphism.new(
-	user_id: u.id,
-        user_data_id: o.id,
-        user_data_type: "Organization")
-    up.save!
-end
 
 
 Event.create(organization_id: 2,
@@ -1242,17 +1250,19 @@ TypeContact.create(name: "Peticion")
 TypeContact.create(name: "Reclamo")
 
 20.times do
-    Reason.create(name: Faker::Lorem.paragraph)
-end
+    r = Reason.create(name: Faker::Lorem.paragraph)
+
 
 20.times do
     Ban.create(
         log: Faker::GameOfThrones.house,
-        reason_id: 1,
+        reason_id: r.id,
         starttime: DateTime.now,
         endtime: DateTime.now + 15.days,
         user_id: 1,
         admin_id: 1
         )
+end
+
 end
 

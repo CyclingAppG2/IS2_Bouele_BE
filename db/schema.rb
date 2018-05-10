@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423184454) do
+ActiveRecord::Schema.define(version: 20180510203048) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -148,19 +148,16 @@ ActiveRecord::Schema.define(version: 20180423184454) do
   create_table "minicipalities", force: :cascade do |t|
     t.string "name"
     t.integer "department_id"
-    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_minicipalities_on_department_id"
-    t.index ["organization_id"], name: "index_minicipalities_on_organization_id"
   end
 
   create_table "organization_categories", force: :cascade do |t|
     t.string "name"
-    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_organization_categories_on_organization_id"
+    t.index [nil], name: "index_organization_categories_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -172,6 +169,10 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.integer "organization_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_category_id"
+    t.integer "minicipality_id"
+    t.index ["minicipality_id"], name: "index_organizations_on_minicipality_id"
+    t.index ["organization_category_id"], name: "index_organizations_on_organization_category_id"
   end
 
   create_table "plus", force: :cascade do |t|
