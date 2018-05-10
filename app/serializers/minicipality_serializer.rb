@@ -17,5 +17,5 @@ class MinicipalitySerializer < ActiveModel::Serializer
   attributes :id, :name, :department_id
 
   belongs_to :department
-
+  has_many :organizations
 end
