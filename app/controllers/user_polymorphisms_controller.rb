@@ -40,7 +40,18 @@ class UserPolymorphismsController < ApplicationController
 
   def getTypeUser
     @ans =  UserPolymorphism.getTypeUser(@current_user.id)
-    render json: @ans
+    if @ans.nil?
+      render json: {
+        success: "false",
+        data: "null"
+    }, status: :unprocessable_entity
+    else
+      render json: {
+        success: "true",
+        data: @ans
+    }
+    end
+    
   end
   private
     # Use callbacks to share common setup or constraints between actions.
