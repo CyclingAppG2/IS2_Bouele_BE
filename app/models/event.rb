@@ -11,6 +11,7 @@
 #  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  files           :string
 #
 # Indexes
 #
@@ -21,14 +22,15 @@ class Event < ApplicationRecord
 	has_many :event_voluntaries, before_add: :validate_voluntary_limit, dependent: :destroy
 	has_many :voluntaries, through: :event_voluntaries
 	has_many :plus
-	has_many :attachments
 	has_many :locations
 	belongs_to :organization
 
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
     validates :description, presence: true, length: {minimum: 100}, uniqueness: true
     validates :duration, presence: true
-    #validates :start_datetime, presence: true
+    validates :start_datetime, presence: true
+
+    mount_uploaders :files, FileUploader
 
   private
 

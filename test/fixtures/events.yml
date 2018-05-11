@@ -11,6 +11,7 @@
 #  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  files           :string
 #
 # Indexes
 #

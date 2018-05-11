@@ -203,7 +203,7 @@ Rails.application.routes.draw do
   # end
   get 'bans/showBansUser/:id' => 'bans#showBansUser'
 
-  match 'organization/new_event' => 'organizations#createEvent', via: :post
+  ##match 'organization/new_event' => 'organizations#createEvent', via: :post
   match 'organization/change_event_name' => 'organizations#changeEventName', via: :patch
   match 'organization/cancel_event' => 'organizations#cancelEvent', via: :delete
 

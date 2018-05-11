@@ -11,6 +11,7 @@
 #  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  files           :string
 #
 # Indexes
 #
@@ -18,12 +19,11 @@
 #
 
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :duration, :plus, :start_datetime, :max_voluntaries
+  attributes :id, :name, :description, :duration, :start_datetime, :max_voluntaries, :files
 
   has_many :event_voluntaries
   has_many :voluntaries
   has_many :plus
-  has_many :attachments
   has_many :locations
   belongs_to :organization
 end

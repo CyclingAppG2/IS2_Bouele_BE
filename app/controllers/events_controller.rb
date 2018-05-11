@@ -29,26 +29,28 @@ class EventsController < ApplicationController
     if @event.save
 
       @locations.each do |location|
-        l = Location.new(latitude: location[:lat], longitude: location[:lon], event_id: @event.id)
-        if !l.save
+        l = Location.new(latitude: location[:lat], longitude: location[:lng], event_id: @event.id)
+        if l.save == false
           render json: {
             success: "false",
             data: "null"
         }, status: :unprocessable_entity
+        return
         end
       end
 
       @plus.each do |p|
         aux = Plu.new(name: p, event_id: @event.id)
-        if !aux.save!
+        if aux.save == false
           render json: {
             success: "false",
             data: "null"
         }, status: :unprocessable_entity
+        return
         end
       end
 
-      render json: @event, status: :created, location: @event
+      render json: @event, status: :created#, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
     end
@@ -76,6 +78,6 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :description, :duration, :photos, :start_datetime, :max_voluntaries, :organization_id)
+      params.require(:event).permit(:name, :description, :duration, :start_datetime, :max_voluntaries, :organization_id, files: [])
     end
 end
