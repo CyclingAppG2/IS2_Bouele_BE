@@ -10,7 +10,11 @@ class OrganizationsController < ApplicationController
 #	name: "Testings",
 #	description: Faker::Lovecraft.fhtagn(11),
 #	duration: 5,)
-    @event.save!
+    if @event.save!
+      render json: @event, status: :ok
+    else
+      render json: @event.errors , status: :unprocessable_entity
+    end
   end
 
   def changeEventName
