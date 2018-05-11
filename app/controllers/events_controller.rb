@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     
   # end
 
-  
+
 
   # GET /events
   def index
@@ -21,9 +21,33 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
+    @locations = params[:event].delete :locations
+    @plus = params[:event].delete :plus
+    
     @event = Event.new(event_params)
 
     if @event.save
+
+      @locations.each do |location|
+        l = Location.new(latitude: location[:lat], longitude: location[:lon], event_id: @event.id)
+        if !l.save
+          render json: {
+            success: "false",
+            data: "null"
+        }, status: :unprocessable_entity
+        end
+      end
+
+      @plus.each do |p|
+        aux = Plu.new(name: p, event_id: @event.id)
+        if !aux.save!
+          render json: {
+            success: "false",
+            data: "null"
+        }, status: :unprocessable_entity
+        end
+      end
+
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -52,6 +76,6 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :description, :locations, :duration, :photos, :start_datetime, :max_voluntaries, :plus)
+      params.require(:event).permit(:name, :description, :duration, :photos, :start_datetime, :max_voluntaries, :organization_id)
     end
 end
