@@ -3,18 +3,21 @@
 # Table name: voluntaries
 #
 #  id              :integer          not null, primary key
-#  themesinterest  :string
 #  voluntary_score :integer
 #  birthday        :date
 #  gender          :string
 #  cellphone       :bigint(8)
-#  city            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  minicipality_id :integer
+#
+# Indexes
+#
+#  index_voluntaries_on_minicipality_id  (minicipality_id)
 #
 
 class VoluntarySerializer < ActiveModel::Serializer
-  attributes :id, :themesinterest, :voluntary_score, :birthday, :gender, :cellphone, :city
+  attributes :id, :voluntary_score, :birthday, :gender, :cellphone
 
   has_many :theme_interests
   has_many :event_voluntaries

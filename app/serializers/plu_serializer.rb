@@ -14,7 +14,7 @@
 #
 
 class PluSerializer < ActiveModel::Serializer
-  attributes :id, :name, :event_id
+  attributes :id, :name
 
   belongs_to :event
 end

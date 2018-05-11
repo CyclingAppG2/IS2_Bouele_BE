@@ -1,9 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
 
-  def getStatisticsByUser
+  # def getStatisticsByUser
     
-  end
+  # end
+
+  
 
   # GET /events
   def index

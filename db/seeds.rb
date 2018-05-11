@@ -1249,11 +1249,11 @@ TypeContact.create(name: "Queja")
 TypeContact.create(name: "Peticion")
 TypeContact.create(name: "Reclamo")
 
-20.times do
+10.times do
     r = Reason.create(name: Faker::Lorem.paragraph)
 
 
-20.times do
+10.times do
     Ban.create(
         log: Faker::GameOfThrones.house,
         reason_id: r.id,
@@ -1262,7 +1262,10 @@ TypeContact.create(name: "Reclamo")
         user_id: 1,
         admin_id: 1
         )
-end
+    end
+
+   
+
 
 end
 

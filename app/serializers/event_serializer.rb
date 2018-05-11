@@ -5,8 +5,7 @@
 #  id              :integer          not null, primary key
 #  name            :string
 #  description     :string
-#  duration        :integer
-#  plus            :string
+#  duration        :bigint(8)
 #  organization_id :integer
 #  start_datetime  :datetime
 #  max_voluntaries :integer          default(100)

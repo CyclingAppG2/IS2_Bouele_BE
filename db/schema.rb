@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510203048) do
+ActiveRecord::Schema.define(version: 20180511030043) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -106,8 +106,7 @@ ActiveRecord::Schema.define(version: 20180510203048) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "duration"
-    t.string "plus"
+    t.bigint "duration"
     t.integer "organization_id"
     t.datetime "start_datetime"
     t.integer "max_voluntaries", default: 100
@@ -134,6 +133,15 @@ ActiveRecord::Schema.define(version: 20180510203048) do
     t.datetime "updated_at", null: false
     t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
+  end
+
+  create_table "interest_voluntaries", force: :cascade do |t|
+    t.integer "theme_interes_id"
+    t.integer "voluntary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_interes_id"], name: "index_interest_voluntaries_on_theme_interes_id"
+    t.index ["voluntary_id"], name: "index_interest_voluntaries_on_voluntary_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -200,10 +208,8 @@ ActiveRecord::Schema.define(version: 20180510203048) do
 
   create_table "theme_interests", force: :cascade do |t|
     t.string "themesinterest"
-    t.integer "voluntary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["voluntary_id"], name: "index_theme_interests_on_voluntary_id"
   end
 
   create_table "type_contacts", force: :cascade do |t|
@@ -246,14 +252,14 @@ ActiveRecord::Schema.define(version: 20180510203048) do
   end
 
   create_table "voluntaries", force: :cascade do |t|
-    t.string "themesinterest"
     t.integer "voluntary_score"
     t.date "birthday"
     t.string "gender"
     t.bigint "cellphone"
-    t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "minicipality_id"
+    t.index ["minicipality_id"], name: "index_voluntaries_on_minicipality_id"
   end
 
 end
