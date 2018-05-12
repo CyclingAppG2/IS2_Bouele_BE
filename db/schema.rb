@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512053532) do
+ActiveRecord::Schema.define(version: 20180512072844) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -123,6 +123,12 @@ ActiveRecord::Schema.define(version: 20180512053532) do
     t.datetime "updated_at", null: false
     t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -247,11 +253,12 @@ ActiveRecord::Schema.define(version: 20180512053532) do
   create_table "voluntaries", force: :cascade do |t|
     t.integer "voluntary_score"
     t.date "birthday"
-    t.string "gender"
     t.bigint "cellphone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "minicipality_id"
+    t.integer "gender_id"
+    t.index ["gender_id"], name: "index_voluntaries_on_gender_id"
     t.index ["minicipality_id"], name: "index_voluntaries_on_minicipality_id"
   end
 

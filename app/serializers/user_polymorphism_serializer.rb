@@ -13,6 +13,6 @@
 class UserPolymorphismSerializer < ActiveModel::Serializer
   attributes :id, :user_id, :user_data_id, :user_data_type
 
-  #belongs_to :user
-  #belongs_to :user_data
+  belongs_to :user
+  belongs_to :user_data
 end

@@ -6,22 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Gender.create(gender: "Niño")
+Gender.create(gender: "Niña")
+Gender.create(gender: "NiñX")
 
-
+20.times do
+    ThemeInterest.create(themesinterest: Faker::Book.genre)
+    
+end
 3.times do
     org = OrganizationCategory.create(name: Faker::Commerce.department)
     5.times do
         d = Department.create(name: Faker::Space.constellation)
         4.times do
             m = Minicipality.create(name: Faker::RickAndMorty.location, department_id: d.id )
-            2.times do
-                o = Organization.create(
-                    NIT: Faker::Color.hex_color,
-                    mainaddress: Faker::Zelda.game,
-                    firm: Faker::Hacker.say_something_smart,
-                    organization_score: 5,
-                    minicipality_id: m.id,
-                    organization_category_id: org.id)
+            2.times do |x|
+                if x%2==0
+                    o = Organization.create(
+                        NIT: Faker::Color.hex_color,
+                        mainaddress: Faker::Zelda.game,
+                        firm: Faker::Hacker.say_something_smart,
+                        organization_score: 5,
+                        minicipality_id: m.id,
+                        organization_category_id: org.id)
+                else
+                    o = Voluntary.create(
+                        minicipality_id: m,
+                        birthday: Faker::Date.birthday(18, 65),
+                        gender_id: x+1,
+                        cellphone: Faker::PhoneNumber.phone_number)
+                    ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
+                end
+                
                 u = User.create(
                     email: Faker::Internet.free_email,
                     password: "123456789",
@@ -94,25 +110,17 @@ TypeContact.create(name: "Reclamo")
 
 10.times do
     r = Reason.create(name: Faker::Lorem.paragraph)
-
-
-10.times do
-    Ban.create(
-        log: Faker::GameOfThrones.house,
-        reason_id: r.id,
-        starttime: DateTime.now,
-        endtime: DateTime.now + 15.days,
-        user_id: 1,
-        admin_id: 1
-        )
+    10.times do
+        Ban.create(
+            log: Faker::GameOfThrones.house,
+            reason_id: r.id,
+            starttime: DateTime.now,
+            endtime: DateTime.now + 15.days,
+            user_id: 1,
+            admin_id: 1
+            )
     end
-
-   
-
-
 end
 
-20.times do
-    ThemeInterest.create(themesinterest: Faker::Book.genre)
-end
+
 

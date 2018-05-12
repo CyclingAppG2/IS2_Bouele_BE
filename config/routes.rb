@@ -184,6 +184,7 @@
 # 
 
 Rails.application.routes.draw do
+  resources :genders
   resources :theme_interests_voluntaries
   get 'devise_token_auth_override/session'
 
