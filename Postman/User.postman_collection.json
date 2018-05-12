@@ -1,0 +1,68 @@
+{
+	"id": "11d965ae-b128-489a-fcb0-7ea92f66ba8f",
+	"name": "User",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "UserPolymorphism",
+			"description": "",
+			"collectionId": "11d965ae-b128-489a-fcb0-7ea92f66ba8f",
+			"order": [
+				"9dbc6758-a85b-881a-ae9f-4af14aaa79d8"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "9026eac5-071c-84a2-6e37-51188e58fd99"
+		}
+	],
+	"folders_order": [
+		"9026eac5-071c-84a2-6e37-51188e58fd99"
+	],
+	"timestamp": 1526159398767,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "9dbc6758-a85b-881a-ae9f-4af14aaa79d8",
+			"headers": "access-token: Ya3HfwkXK1sT2wGmpwg-UQ\nclient: X6A5aDF2YocRTeM_FEliPw\nuid: mailuser1@gmail.com\n",
+			"headerData": [
+				{
+					"key": "access-token",
+					"value": "Ya3HfwkXK1sT2wGmpwg-UQ",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "X6A5aDF2YocRTeM_FEliPw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "mailuser1@gmail.com",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/user_polymorphisms/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1526160561765,
+			"name": "http://localhost:3000/user_polymorphism",
+			"description": "",
+			"collectionId": "11d965ae-b128-489a-fcb0-7ea92f66ba8f",
+			"responses": []
+		}
+	]
+}

@@ -11,9 +11,9 @@ Gender.create(gender: "Niña")
 Gender.create(gender: "NiñX")
 
 20.times do
-    ThemeInterest.create(themesinterest: Faker::Book.genre)
-    
+    ThemeInterest.create(themesinterest: Faker::Book.genre) 
 end
+userN = 1; 
 3.times do
     org = OrganizationCategory.create(name: Faker::Commerce.department)
     5.times do
@@ -39,7 +39,7 @@ end
                 end
                 
                 u = User.create(
-                    email: Faker::Internet.free_email,
+                    email: "mailUser" + userN.to_s+ "@gmail.com",
                     password: "123456789",
                     name: Faker::HarryPotter.character,
                     username: Faker::Internet.user_name,
@@ -49,6 +49,7 @@ end
                 user_id: u.id,
                     user_data_id: o.id,
                     user_data_type: "Organization")
+                userN = userN + 1
 
             end
         end

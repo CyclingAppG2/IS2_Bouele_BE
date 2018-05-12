@@ -12,7 +12,7 @@
 		"8ff48a63-a95c-c2db-8a02-eee7d1ba386b",
 		"c8cd1073-3b05-9247-e6e3-eb0dda6bf19b",
 		"242718ff-1a50-5d25-e059-85422982bc99",
-		"53a715f4-3f9b-6ed0-ab91-d11f6953a36b"
+		"6e0350d0-ba8d-8f52-4277-bd58ad124db1"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -87,23 +87,23 @@
 		},
 		{
 			"id": "242718ff-1a50-5d25-e059-85422982bc99",
-			"headers": "access-token: X5ZOJJbVNZjEmaam4mq9nA\nclient: Lq-ic7x-ha83hpW_dWVKTA\nuid: caralopezrom@unal.edu.co\n",
+			"headers": "access-token: Ya3HfwkXK1sT2wGmpwg-UQ\nclient: X6A5aDF2YocRTeM_FEliPw\nuid: mailuser1@gmail.com\n",
 			"headerData": [
 				{
 					"key": "access-token",
-					"value": "X5ZOJJbVNZjEmaam4mq9nA",
+					"value": "Ya3HfwkXK1sT2wGmpwg-UQ",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "client",
-					"value": "Lq-ic7x-ha83hpW_dWVKTA",
+					"value": "X6A5aDF2YocRTeM_FEliPw",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "uid",
-					"value": "caralopezrom@unal.edu.co",
+					"value": "mailuser1@gmail.com",
 					"description": "",
 					"enabled": true
 				}
@@ -120,32 +120,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1525415481414,
-			"name": "http://localhost:3000/auth_user/validate_token copy",
+			"time": 1526160266900,
+			"name": "http://localhost:3000/auth_user/validate_token",
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
 			"responses": []
-		},
-		{
-			"id": "53a715f4-3f9b-6ed0-ab91-d11f6953a36b",
-			"headers": "access-token: 2AfDPgQpZD47Cg_GqdS5NA\nclient: 78fycpQGVcGJAyM6GYJv9g\nuid: caralopezrom@unal.edu.co\n",
-			"url": "http://localhost:3000/userType",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"name": "http://localhost:3000/userType",
-			"description": "",
-			"sandboxFiles": "",
-			"sendMethod": "xhr",
-			"time": 1525557536529,
-			"responses": [],
-			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6"
 		},
 		{
 			"id": "6261f4cf-c2f3-8eb1-0fa8-11eb56ccc635",
@@ -199,8 +178,155 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1524980871457,
-			"name": "http://0.0.0.0:3000/auth_user",
+			"time": 1526008681261,
+			"name": "http://0.0.0.0:3000auth_user",
+			"description": "",
+			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
+			"responses": []
+		},
+		{
+			"id": "6e0350d0-ba8d-8f52-4277-bd58ad124db1",
+			"headers": "access-token: -ky6WNdtFW_kBR9DYU0rjw\nclient: 9M2mSURROEGMvOZMz3YPIg\nuid: caralopezrom@unal.edu.co\n",
+			"headerData": [
+				{
+					"key": "access-token",
+					"value": "-ky6WNdtFW_kBR9DYU0rjw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "client",
+					"value": "9M2mSURROEGMvOZMz3YPIg",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "caralopezrom@unal.edu.co",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/user_polymorphisms",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "event[name]",
+					"value": "strifdfffdcgfcsnfgfdfgb vfgfhgffgggfgdd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[description]",
+					"value": "sdaggggcgcvfg   xfggxdvfffgfgffgfgfdfxcggggvvvggggggggggggggggggggggggggggggggggggggggggggggggggggfgggggggggggggggggggggggggggggggggggggggggggggggggggdfsdfdfs",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[duration]",
+					"value": "50",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[organization_id]",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[start_datetime]",
+					"value": "Thu May 20 2018 21:11:31 GMT-0500 (-05)",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[max_voluntaries]",
+					"value": "80",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[locations][][lat]",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[locations][][lng]",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[locations][][person_name]",
+					"value": "lola",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[locations][][email]",
+					"value": "kjfdjkfdsjfdfjnf",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[locations][][label]",
+					"value": "my label",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[plus][]",
+					"value": "Pofdfllo",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[plus][]",
+					"value": "Pafdfdto",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "event[files][]",
+					"value": "Captura de pantalla de 2018-03-18 17-45-36.png",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "event[files][]",
+					"value": "Controlador.png",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1526105749116,
+			"name": "http://localhost:3000/voluntary",
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
 			"responses": []
@@ -437,17 +563,17 @@
 		},
 		{
 			"id": "c8cd1073-3b05-9247-e6e3-eb0dda6bf19b",
-			"headers": "access-token: 2AfDPgQpZD47Cg_GqdS5NA\nclient: 78fycpQGVcGJAyM6GYJv9g\nuid: caralopezrom@unal.edu.co\n",
+			"headers": "access-token: TC-W23GUzg8C1zvD5qbXSA\nclient: qckhTtz8ZjVK0JVjvE_rLw\nuid: caralopezrom@unal.edu.co\n",
 			"headerData": [
 				{
 					"key": "access-token",
-					"value": "2AfDPgQpZD47Cg_GqdS5NA",
+					"value": "TC-W23GUzg8C1zvD5qbXSA",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "client",
-					"value": "78fycpQGVcGJAyM6GYJv9g",
+					"value": "qckhTtz8ZjVK0JVjvE_rLw",
 					"description": "",
 					"enabled": true
 				},
@@ -458,7 +584,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:3000/auth_user/validate_token",
+			"url": "http://localhost:3000/user/events",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -470,8 +596,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1525557595646,
-			"name": "http://localhost:3000/auth_user/validate_token",
+			"time": 1526097842335,
+			"name": "http://localhost:3000/events",
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",
 			"responses": []
@@ -526,7 +652,7 @@
 			"data": [
 				{
 					"key": "email",
-					"value": "caralopezrom@unal.edu.co",
+					"value": "mailUser1@gmail.com",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -544,7 +670,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1525415204771,
+			"time": 1526159302671,
 			"name": "http://0.0.0.0:3000/auth_user/sign_in",
 			"description": "",
 			"collectionId": "76ce0623-d741-b946-681a-80a4f3f5b1d6",

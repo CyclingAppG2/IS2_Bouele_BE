@@ -1,0 +1,38 @@
+{
+	"id": "e0661061-fa19-b7c3-f550-90a5769a7b7f",
+	"name": "Ban",
+	"description": "",
+	"order": [
+		"eacda62e-58c5-b4df-afb9-4a5c74a7a54f"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1526159268313,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "eacda62e-58c5-b4df-afb9-4a5c74a7a54f",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/bans/showBansUser/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "e0661061-fa19-b7c3-f550-90a5769a7b7f",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/bans/showBansUser/1",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1526159270188,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}

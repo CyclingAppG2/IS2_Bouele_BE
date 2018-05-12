@@ -13,34 +13,64 @@
 	"requests": [
 		{
 			"id": "8393c655-8021-515b-42bc-ab0cb79e7148",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:3000/contact_data",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/type_contacts",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "87feaa3b-b455-eb70-907f-1f3d4f71a1b6",
-			"data": [],
-			"dataMode": "raw",
-			"name": "http://localhost:3000/contact_data",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1523758508835,
-			"version": 2,
-			"responses": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "contact_datum[email]",
+					"value": "caralopezrom@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[name]",
+					"value": "Carlos Arturo Lopez",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[city]",
+					"value": "Bogota",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[phone]",
+					"value": "1234567890",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[type_contact_id]",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[body]",
+					"value": "Esta es una prueba para la pagina de contacto, deberia funcionar el meiler"
+				}
+			],
+			"dataMode": "params",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\n  \"contact_datum\": {\n    \"email\": \"caralopezrom@gmail.com\",\n    \"name\": \"Carlos Arturo Lopez\",\n    \"city\": \"Bogota\",\n    \"phone\": \"1234567890\",\n    \"type_contact_id\": 1,\n    \"body\": \"Esta es una prueba para la pagina de contacto, deberia funcionar el meiler\"\n  }\n}"
+			"time": 1524806090917,
+			"name": "http://localhost:3000/contact_data",
+			"description": "",
+			"collectionId": "87feaa3b-b455-eb70-907f-1f3d4f71a1b6",
+			"responses": []
 		}
 	]
 }

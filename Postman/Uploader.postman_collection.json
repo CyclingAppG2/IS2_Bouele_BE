@@ -13,23 +13,23 @@
 	"requests": [
 		{
 			"id": "6b34a33f-dd85-5c93-1270-492b5bb8d8b3",
-			"headers": "access-token: HaFZYt23Iu-arBzLaQzCfQ\nclient: MzgjVVk7_JcUUP8MkA3OZw\nuid: calopezro@unal.edu.co\n",
+			"headers": "access-token: 6ceNqZDMB3LwrY-OVb14Yg\nclient: pHIKvcB28PiQO6iw-mpzdA\nuid: caralopezrom@unal.edu.co\n",
 			"headerData": [
 				{
 					"key": "access-token",
-					"value": "HaFZYt23Iu-arBzLaQzCfQ",
+					"value": "6ceNqZDMB3LwrY-OVb14Yg",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "client",
-					"value": "MzgjVVk7_JcUUP8MkA3OZw",
+					"value": "pHIKvcB28PiQO6iw-mpzdA",
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "uid",
-					"value": "calopezro@unal.edu.co",
+					"value": "caralopezrom@unal.edu.co",
 					"description": "",
 					"enabled": true
 				}
@@ -54,7 +54,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1525021706892,
+			"time": 1525414957083,
 			"name": "upload avatar user",
 			"description": "Subir avatar al user",
 			"collectionId": "1a029026-729e-a4a0-168b-8692689439b7",
