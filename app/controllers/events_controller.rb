@@ -35,6 +35,7 @@ class EventsController < ApplicationController
             success: "false",
             data: "null"
         }, status: :unprocessable_entity
+        @event.destroy
         return
         end
       end
@@ -46,6 +47,7 @@ class EventsController < ApplicationController
             success: "false",
             data: "null"
         }, status: :unprocessable_entity
+        @event.destroy
         return
         end
       end
