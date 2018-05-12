@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512013124) do
+ActiveRecord::Schema.define(version: 20180512053532) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -41,12 +41,10 @@ ActiveRecord::Schema.define(version: 20180512013124) do
   create_table "attachments", force: :cascade do |t|
     t.string "route"
     t.string "comments"
-    t.integer "event_id"
     t.integer "forum_thread_id"
     t.integer "forum_post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_attachments_on_event_id"
     t.index ["forum_post_id"], name: "index_attachments_on_forum_post_id"
     t.index ["forum_thread_id"], name: "index_attachments_on_forum_thread_id"
   end
@@ -75,15 +73,6 @@ ActiveRecord::Schema.define(version: 20180512013124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type_contact_id"], name: "index_contact_data_on_type_contact_id"
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.integer "cellphone"
-    t.integer "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_contacts_on_location_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -134,15 +123,6 @@ ActiveRecord::Schema.define(version: 20180512013124) do
     t.datetime "updated_at", null: false
     t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
-  end
-
-  create_table "interest_voluntaries", force: :cascade do |t|
-    t.integer "theme_interes_id"
-    t.integer "voluntary_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["theme_interes_id"], name: "index_interest_voluntaries_on_theme_interes_id"
-    t.index ["voluntary_id"], name: "index_interest_voluntaries_on_voluntary_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -214,6 +194,15 @@ ActiveRecord::Schema.define(version: 20180512013124) do
     t.string "themesinterest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "theme_interests_voluntaries", force: :cascade do |t|
+    t.integer "theme_interest_id"
+    t.integer "voluntary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_interest_id"], name: "index_theme_interests_voluntaries_on_theme_interest_id"
+    t.index ["voluntary_id"], name: "index_theme_interests_voluntaries_on_voluntary_id"
   end
 
   create_table "type_contacts", force: :cascade do |t|

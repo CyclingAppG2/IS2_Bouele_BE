@@ -184,7 +184,7 @@
 # 
 
 Rails.application.routes.draw do
-  resources :interest_voluntaries
+  resources :theme_interests_voluntaries
   get 'devise_token_auth_override/session'
 
   require "devise_token_auth"

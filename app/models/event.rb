@@ -27,7 +27,7 @@ class Event < ApplicationRecord
 
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
     validates :description, presence: true, length: {minimum: 100}, uniqueness: true
-    validates :duration, presence: true
+    validates :duration, presence: true,  numericality: { only_integer: true, greater_than: 0 }
     validates :start_datetime, presence: true
 
     mount_uploaders :files, FileUploader

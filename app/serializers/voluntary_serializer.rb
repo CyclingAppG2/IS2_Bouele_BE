@@ -18,7 +18,8 @@
 
 class VoluntarySerializer < ActiveModel::Serializer
   attributes :id, :voluntary_score, :birthday, :gender, :cellphone
-
+  has_many :theme_interests, :through => :theme_interests_voluntaries
+	has_many  :theme_interests_voluntaries
   has_many :theme_interests
   has_many :event_voluntaries
   has_many :events

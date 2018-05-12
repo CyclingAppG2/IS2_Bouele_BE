@@ -20,7 +20,8 @@ class Voluntary < ApplicationRecord
     #validates :voluntary_score , presence: true, default: 0
     validates :gender , presence: true, length: {minimum: 1}
     validates :cellphone , presence: true, length: {minimum: 5}, numericality: { only_integer: true, greater_than: 0 }
-	has_many :interest_voluntaries
+	has_many :theme_interests, :through => :theme_interests_voluntaries
+	has_many  :theme_interests_voluntaries
 	has_many :event_voluntaries, dependent: :destroy
 	has_many :events, through: :event_voluntaries
 	has_one :user_polymorphism, as: :user_data

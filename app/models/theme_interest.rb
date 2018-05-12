@@ -9,7 +9,9 @@
 #
 
 class ThemeInterest < ApplicationRecord
-    has_many :interest_voluntaries
+    has_many :voluntaries, :through => :theme_interests_voluntaries
+	has_many  :theme_interests_voluntaries
+    has_and_belongs_to_many :voluntaries
 	
     validates :themesinterest, presence: true, length: {minimum: 3}, uniqueness: true
 end

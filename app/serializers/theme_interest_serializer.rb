@@ -11,5 +11,7 @@
 class ThemeInterestSerializer < ActiveModel::Serializer
   attributes :id, :themesinterest
 
-  has_many :interest_voluntaries
+  # has_many :voluntaries
+  #has_many :voluntaries, :through => :theme_interests_voluntaries
+	#has_many  :theme_interests_voluntaries
 end
