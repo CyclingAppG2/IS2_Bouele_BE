@@ -25,15 +25,22 @@ class EventsController < ApplicationController
     @plus = params[:event].delete :plus
     
     @event = Event.new(event_params)
+    if @event.start_datetime < Time.current
+      render json: {
+        success: "false",
+        data: "start_date menor a fecha actual"
+    }, status: :unprocessable_entity
+    return
+      end
 
     if @event.save
 
       @locations.each do |location|
-        l = Location.new(latitude: location[:lat], longitude: location[:lng], event_id: @event.id)
-        if l.save == false
+        @l = Location.new(latitude: location[:lat], longitude: location[:lng], event_id: @event.id, label: location[:label], person_name: location[:person_name], email: location[:email])
+        if @l.save == false
           render json: {
             success: "false",
-            data: "null"
+            data: @l.errors
         }, status: :unprocessable_entity
         @event.destroy
         return
@@ -41,18 +48,18 @@ class EventsController < ApplicationController
       end
 
       @plus.each do |p|
-        aux = Plu.new(name: p, event_id: @event.id)
-        if aux.save == false
+        @aux = Plu.new(name: p, event_id: @event.id)
+        if @aux.save == false
           render json: {
             success: "false",
-            data: "null"
+            data: @aux.errors
         }, status: :unprocessable_entity
         @event.destroy
         return
         end
       end
 
-      render json: @event, status: :created#, location: @event
+      render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
     end

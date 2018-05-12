@@ -213,7 +213,6 @@ Rails.application.routes.draw do
   match 'user/get_used_usernames' => 'users#getUsedUsernamesAsPDF', via: :get
 
   resources :attachments
-  resources :contacts
   resources :locations
   resources :event_voluntaries
   resources :plus
