@@ -21,7 +21,7 @@ class VoluntariesController < ApplicationController
   end
 
   def voluntariesInEvents
-    return Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
+    return Voluntary.voluntariesInEvents
   end
 
   # GET /voluntaries
@@ -42,6 +42,19 @@ class VoluntariesController < ApplicationController
     @voluntary = Voluntary.new(voluntary_params)
 
     if @voluntary.save
+      @themesInterest = params[:themes]
+      @themesInterest.each do |theme|
+        @t = ThemeInterestsVoluntary.new(voluntary_id: @voluntary.id, theme_interest_id: theme)
+        if @t.save == false
+          render json: {
+            success: "false",
+            data: @l.errors
+        }, status: :unprocessable_entity
+        @voluntary.destroy
+        return
+        end
+      end
+
       render json: @voluntary, status: :created, location: @voluntary  
     else
       render json: @voluntary.errors, status: :unprocessable_entity
@@ -70,6 +83,6 @@ class VoluntariesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def voluntary_params
-      params.require(:voluntary).permit(:themesinterest, :score, :birthday, :photo, :gender, :cellphone, :city)
+      params.require(:voluntary).permit(:score, :birthday, :gender_id, :cellphone, :minicipality_id)
     end
 end

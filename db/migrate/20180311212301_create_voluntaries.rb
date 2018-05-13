@@ -1,12 +1,9 @@
 class CreateVoluntaries < ActiveRecord::Migration[5.1]
   def change
     create_table :voluntaries do |t|
-      t.string :themesinterest
       t.integer :voluntary_score
       t.date :birthday
-      t.string :gender
-      t.integer :cellphone
-      t.string :city
+      t.bigint :cellphone
 
       t.timestamps
     end

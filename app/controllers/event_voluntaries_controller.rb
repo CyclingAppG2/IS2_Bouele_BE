@@ -13,15 +13,22 @@ class EventVoluntariesController < ApplicationController
     render json: @event_voluntary
   end
 
-  # POST /event_voluntaries
+  # POST /event_voluntaries 
   def create
     @event_voluntary = EventVoluntary.new(event_voluntary_params)
-
-    if @event_voluntary.save
-      render json: @event_voluntary, status: :created, location: @event_voluntary
+    if !EventVoluntary.validateAll(params[:event_voluntary][:event_id])
+      render json: {
+        success: "false",
+        data: "Evento lleno o expirado"
+    }, status: :unprocessable_entity
     else
-      render json: @event_voluntary.errors, status: :unprocessable_entity
-    end
+      if @event_voluntary.save 
+        render json: @event_voluntary, status: :created, location: @event_voluntary
+        UserMailer.joined_event_mail(@current_user, Event.find(params[:event_voluntary][:event_id])).deliver
+      else
+        render json: @event_voluntary.errors, status: :unprocessable_entity
+      end
+  end
   end
 
   # PATCH/PUT /event_voluntaries/1
@@ -46,6 +53,6 @@ class EventVoluntariesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_voluntary_params
-      params.require(:event_voluntary).permit(:scorevoluntary, :scoreorganization, :commentsvoluntary, :commentsorganization)
+      params.require(:event_voluntary).permit(:scorevoluntary, :scoreorganization, :commentsvoluntary, :commentsorganization, :event_id, :voluntary_id)
     end
 end

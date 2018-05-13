@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423184454) do
+ActiveRecord::Schema.define(version: 20180512072844) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -41,19 +41,17 @@ ActiveRecord::Schema.define(version: 20180423184454) do
   create_table "attachments", force: :cascade do |t|
     t.string "route"
     t.string "comments"
-    t.integer "event_id"
     t.integer "forum_thread_id"
     t.integer "forum_post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_attachments_on_event_id"
     t.index ["forum_post_id"], name: "index_attachments_on_forum_post_id"
     t.index ["forum_thread_id"], name: "index_attachments_on_forum_thread_id"
   end
 
   create_table "bans", force: :cascade do |t|
     t.string "log"
-    t.string "reason"
+    t.integer "reason_id"
     t.datetime "starttime"
     t.datetime "endtime"
     t.integer "user_id"
@@ -61,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_bans_on_admin_id"
+    t.index ["reason_id"], name: "index_bans_on_reason_id"
     t.index ["user_id"], name: "index_bans_on_user_id"
   end
 
@@ -74,15 +73,6 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type_contact_id"], name: "index_contact_data_on_type_contact_id"
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.integer "cellphone"
-    t.integer "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_contacts_on_location_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -105,13 +95,13 @@ ActiveRecord::Schema.define(version: 20180423184454) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "duration"
-    t.string "plus"
+    t.bigint "duration"
     t.integer "organization_id"
     t.datetime "start_datetime"
     t.integer "max_voluntaries", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "files"
     t.index ["organization_id"], name: "index_events_on_organization_id"
   end
 
@@ -135,31 +125,37 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
   end
 
+  create_table "genders", force: :cascade do |t|
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.float "longitude"
     t.float "latitude"
     t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label"
+    t.string "person_name"
+    t.string "email"
     t.index ["event_id"], name: "index_locations_on_event_id"
   end
 
   create_table "minicipalities", force: :cascade do |t|
     t.string "name"
     t.integer "department_id"
-    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_minicipalities_on_department_id"
-    t.index ["organization_id"], name: "index_minicipalities_on_organization_id"
   end
 
   create_table "organization_categories", force: :cascade do |t|
     t.string "name"
-    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_organization_categories_on_organization_id"
+    t.index [nil], name: "index_organization_categories_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -171,6 +167,10 @@ ActiveRecord::Schema.define(version: 20180423184454) do
     t.integer "organization_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organization_category_id"
+    t.integer "minicipality_id"
+    t.index ["minicipality_id"], name: "index_organizations_on_minicipality_id"
+    t.index ["organization_category_id"], name: "index_organizations_on_organization_category_id"
   end
 
   create_table "plus", force: :cascade do |t|
@@ -183,10 +183,8 @@ ActiveRecord::Schema.define(version: 20180423184454) do
 
   create_table "reasons", force: :cascade do |t|
     t.string "name"
-    t.integer "ban_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ban_id"], name: "index_reasons_on_ban_id"
   end
 
   create_table "subforums", force: :cascade do |t|
@@ -200,10 +198,17 @@ ActiveRecord::Schema.define(version: 20180423184454) do
 
   create_table "theme_interests", force: :cascade do |t|
     t.string "themesinterest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "theme_interests_voluntaries", force: :cascade do |t|
+    t.integer "theme_interest_id"
     t.integer "voluntary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["voluntary_id"], name: "index_theme_interests_on_voluntary_id"
+    t.index ["theme_interest_id"], name: "index_theme_interests_voluntaries_on_theme_interest_id"
+    t.index ["voluntary_id"], name: "index_theme_interests_voluntaries_on_voluntary_id"
   end
 
   create_table "type_contacts", force: :cascade do |t|
@@ -246,14 +251,15 @@ ActiveRecord::Schema.define(version: 20180423184454) do
   end
 
   create_table "voluntaries", force: :cascade do |t|
-    t.string "themesinterest"
     t.integer "voluntary_score"
     t.date "birthday"
-    t.string "gender"
-    t.integer "cellphone"
-    t.string "city"
+    t.bigint "cellphone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "minicipality_id"
+    t.integer "gender_id"
+    t.index ["gender_id"], name: "index_voluntaries_on_gender_id"
+    t.index ["minicipality_id"], name: "index_voluntaries_on_minicipality_id"
   end
 
 end

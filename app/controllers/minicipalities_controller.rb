@@ -1,4 +1,5 @@
 class MinicipalitiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index ]
   before_action :set_minicipality, only: [:show, :update, :destroy]
 
   # GET /minicipalities

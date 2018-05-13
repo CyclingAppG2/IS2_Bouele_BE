@@ -36,8 +36,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'devise_token_auth'
-gem 'omniauth'
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+##gem 'omniauth'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,7 +45,9 @@ gem 'omniauth'
 # gem 'rack-cors'
 
 #gem reporte pdf
-gem 'prawn'
+#gem 'prawn'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

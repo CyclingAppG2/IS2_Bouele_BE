@@ -1,4 +1,5 @@
 class OrganizationCategoriesController < ApplicationController
+
   before_action :set_organization_category, only: [:show, :update, :destroy]
 
   # GET /organization_categories

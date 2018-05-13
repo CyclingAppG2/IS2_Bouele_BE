@@ -33,8 +33,8 @@
 class User < ApplicationRecord
   # Include default devise modules. :confirmable,
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-           :omniauthable
+          :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: %i[facebook, google_oauth2]
   include DeviseTokenAuth::Concerns::User
 
 
@@ -47,5 +47,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true
     mount_uploader :image, AvatarUploader
-    serialize :image, JSON 
+    #serialize :image, JSON 
+
+    
 end

@@ -7,7 +7,7 @@
 #  body            :text
 #  name            :string
 #  city            :string
-#  phone           :integer
+#  phone           :bigint(8)
 #  type_contact_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

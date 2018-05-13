@@ -4,17 +4,14 @@
 #
 #  id             :integer          not null, primary key
 #  themesinterest :string
-#  voluntary_id   :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-# Indexes
-#
-#  index_theme_interests_on_voluntary_id  (voluntary_id)
-#
 
 class ThemeInterestSerializer < ActiveModel::Serializer
-  attributes :id, :themesinterest, :voluntary_id
+  attributes :id, :themesinterest
 
-  belongs_to :voluntaries
+  # has_many :voluntaries
+  #has_many :voluntaries, :through => :theme_interests_voluntaries
+	#has_many  :theme_interests_voluntaries
 end

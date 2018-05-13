@@ -21,4 +21,13 @@ class EventVoluntary < ApplicationRecord
     #validates :scoreorganization, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
     #validates :commentsvoluntary, presence: true, length: {minimum: 20}
     #validates :commentsorganization, presence: true, length: {minimum: 20}
+
+    def self.validateAll(event_id)
+        event = Event.find(event_id)
+        if Event.howManyVoluntaries(event_id) < event.max_voluntaries && !Event.eventIsLast(event_id)
+            true
+        else
+            false
+        end
+    end
 end

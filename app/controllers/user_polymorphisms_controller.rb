@@ -38,10 +38,30 @@ class UserPolymorphismsController < ApplicationController
     @user_polymorphism.destroy
   end
 
+  def getTypeUser
+    aux =  UserPolymorphism.getTypeUser(@current_user.id)
+    if aux.nil?
+      render json: {
+        success: "false",
+        data: "null"
+    }, status: :unprocessable_entity
+    else
+      set_user_by_id_polymorphism(aux.id)
+      render json: {
+        success: "true",
+        data: @user_polymorphism
+    }
+    end
+    
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_polymorphism
       @user_polymorphism = UserPolymorphism.find(params[:id])
+    end
+
+    def set_user_by_id_polymorphism(id)
+      @user_polymorphism = UserPolymorphism.find(id)
     end
 
     # Only allow a trusted parameter "white list" through.

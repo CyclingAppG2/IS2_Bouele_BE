@@ -1,4 +1,7 @@
 class BansController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_admin!
+  #skip_before_action :authenticate_admin!
   before_action :set_ban, only: [:show, :update, :destroy]
 
   # GET /bans
@@ -12,9 +15,16 @@ class BansController < ApplicationController
   def show
     render json: @ban
   end
-
+# GET /bans/showBansUser/1
+  def showBansUser
+    params.require(:id)
+    user = params[:id]
+    @allBansUser = Ban.getBansByUser(user)
+    render json: @allBansUser
+  end
   # POST /bans
   def create
+    
     @ban = Ban.new(ban_params)
 
     if @ban.save

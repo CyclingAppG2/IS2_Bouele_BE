@@ -3,8 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
     create_table :events do |t|
       t.string :name
       t.string :description
-      t.integer :duration
-      t.string :plus
+      t.bigint :duration
       t.integer :organization_id
       t.datetime :start_datetime
       t.integer :max_voluntaries, :default => 100 

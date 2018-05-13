@@ -1,0 +1,126 @@
+{
+	"id": "47b6ae84-d1aa-3563-3fa0-e2e0535c2d46",
+	"name": "Public_method",
+	"description": "",
+	"order": [
+		"a26881db-5d41-b040-eaf8-1dfb3b04bc95",
+		"fdb39b09-ed72-d5b3-371e-b57ac098d767",
+		"3b1377a5-1bbe-4102-1ead-a406a3fb8f63"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1524370936361,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "3b1377a5-1bbe-4102-1ead-a406a3fb8f63",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/minicipalities",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "47b6ae84-d1aa-3563-3fa0-e2e0535c2d46",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/minicipalities",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1525997372533,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a26881db-5d41-b040-eaf8-1dfb3b04bc95",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/type_contacts",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "47b6ae84-d1aa-3563-3fa0-e2e0535c2d46",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/type_contacts",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1524370946583,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "fdb39b09-ed72-d5b3-371e-b57ac098d767",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3000/type_contacts",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "47b6ae84-d1aa-3563-3fa0-e2e0535c2d46",
+			"data": [
+				{
+					"key": "contact_datum[email]",
+					"value": "caralopezrom@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[name]",
+					"value": "Carlos Arturo Lopez",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[city]",
+					"value": "Bogota",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[phone]",
+					"value": "1234567890",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[type_contact_id]",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contact_datum[body]",
+					"value": "Esta es una prueba para la pagina de contacto, deberia funcionar el meiler"
+				}
+			],
+			"dataMode": "params",
+			"name": "http://localhost:3000/contact_data",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1524371008798,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
