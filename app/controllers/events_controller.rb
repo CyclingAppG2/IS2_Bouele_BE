@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :destroy]
+  before_action :set_event, only: [:show, :update, :destroy, :voluntaries_in_event]
 
   # def getStatisticsByUser
     
@@ -77,6 +77,22 @@ class EventsController < ApplicationController
   # DELETE /events/1
   def destroy
     @event.destroy
+  end
+
+  def events_organization
+      @organization = Organization.find(params:[:organization_id])
+      format.json {render   json: @organization.events}
+  end
+
+  def voluntaries_in_event
+    if @current_user.user_polimorphism.user_data_type == "Organization"
+      respond_to do |format|
+        format.json {render   json: @event}
+        format.pdf {render template: 'organization/list_voluntaries_template_pdf',pdf:'lista'}
+      end
+    end
+    
+    
   end
 
   private
