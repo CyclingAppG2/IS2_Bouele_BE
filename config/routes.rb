@@ -188,6 +188,7 @@
 
 Rails.application.routes.draw do
   get 'events/available' => 'events#events_available'
+  get 'voluntaries_in_event/:id' => 'events#voluntaries_in_event'
   resources :genders
   resources :theme_interests_voluntaries
   get 'devise_token_auth_override/session'

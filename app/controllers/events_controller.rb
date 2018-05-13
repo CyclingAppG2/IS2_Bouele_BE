@@ -90,7 +90,11 @@ class EventsController < ApplicationController
   end
 
   def voluntaries_in_event
-    if @current_user.user_polimorphism.user_data_type == "Organization"
+    if @current_user.user_polymorphism.user_data_type == "Organization"
+      @users = []
+      @event.voluntaries.each do |v|
+        @users.push(v.user_polymorphism.user)
+      end
       respond_to do |format|
         format.json {render   json: @event}
         format.pdf {render template: 'organization/list_voluntaries_template_pdf',pdf:'lista'}
