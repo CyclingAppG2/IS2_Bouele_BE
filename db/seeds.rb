@@ -31,10 +31,10 @@ userN = 1;
                         organization_category_id: org.id)
                 else
                     o = Voluntary.create(
-                        minicipality_id: m,
+                        minicipality_id: m.id,
                         birthday: Faker::Date.birthday(18, 65),
                         gender_id: x+1,
-                        cellphone: Faker::PhoneNumber.phone_number)
+                        cellphone: Faker::Number.number(10))
                     ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
                 end
                 
