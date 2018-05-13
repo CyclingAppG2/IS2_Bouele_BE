@@ -6,9 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Gender.create(gender: "Niño")
-Gender.create(gender: "Niña")
-Gender.create(gender: "NiñX")
+
+4.times do
+
+    Gender.create(gender: Faker::HarryPotter.house)
+end
+# Gender.create(gender: "Niño")
+# Gender.create(gender: "Niña")
+# Gender.create(gender: "NiñX")
 
 20.times do
     ThemeInterest.create(themesinterest: Faker::Book.genre) 
@@ -29,6 +34,18 @@ userN = 1;
                         organization_score: 5,
                         minicipality_id: m.id,
                         organization_category_id: org.id)
+                        u = User.create(
+                            email: "mailUser" + userN.to_s+ "@gmail.com",
+                            password: "123456789",
+                            name: Faker::HarryPotter.character,
+                            username: Faker::Internet.user_name,
+                            password_confirmation: "123456789"
+                            )
+                        up = UserPolymorphism.create(
+                        user_id: u.id,
+                            user_data_id: o.id,
+                            user_data_type: "Organization")
+                        userN = userN + 1
                 else
                     o = Voluntary.create(
                         minicipality_id: m.id,
@@ -36,75 +53,50 @@ userN = 1;
                         gender_id: x+1,
                         cellphone: Faker::Number.number(10))
                     ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
+                    u = User.create(
+                        email: "mailUser" + userN.to_s+ "@gmail.com",
+                        password: "123456789",
+                        name: Faker::HarryPotter.character,
+                        username: Faker::Internet.user_name,
+                        password_confirmation: "123456789"
+                        )
+                    up = UserPolymorphism.create(
+                    user_id: u.id,
+                        user_data_id: o.id,
+                        user_data_type: "Voluntary")
+                    userN = userN + 1
                 end
-                
-                u = User.create(
-                    email: "mailUser" + userN.to_s+ "@gmail.com",
-                    password: "123456789",
-                    name: Faker::HarryPotter.character,
-                    username: Faker::Internet.user_name,
-                    password_confirmation: "123456789"
-                    )
-                up = UserPolymorphism.create(
-                user_id: u.id,
-                    user_data_id: o.id,
-                    user_data_type: "Organization")
-                userN = userN + 1
+               
 
             end
         end
     end
 
 end
-####Usuarios 20
-
-    # v = Voluntary.new(
-    #     gender: Faker::Lovecraft.deity,
-    #     cellphone: "320320420",
-    #     voluntary_score: 5,
-	# city: "Hazing"
-    #     )
-    # v.save!
-
-    # u = User.new(
-    #     email: Faker::Internet.free_email,
-    #     password: "123456789",
-    #     name: Faker::HarryPotter.character,
-    #     username: Faker::Internet.user_name,
-    #     password_confirmation: "123456789"
-    #     )
-    # u.save!
-
-    # up = UserPolymorphism.create(
-	# user_id: u.id,
-    #     user_data_id: v.id,
-    #     user_data_type: "Voluntary")
-    # #up.save!
-
 
 
 10.times do |x|
 
-e = Event.create(organization_id: x/2+1,
-	name: Faker::Team.name,
-	description: Faker::Lovecraft.fhtagn(1),
-    duration: x*10,
-    start_datetime: Faker::Date.forward(x*5),
-    max_voluntaries: x*8
-    )
-    2.times do
-        Location.create(longitude: Faker::Address.longitude,
-                        latitude: Faker::Address.latitude,
-                        label: Faker::Hobbit.thorins_company,
-                        person_name: Faker::BackToTheFuture.character,
-                        email: Faker::Internet.email,
-                        event_id: e.id )
-    end
-    Plu.create(name: Faker::Hacker.adjective,
-                event_id: e.id)
+    e = Event.create(organization_id: x/2+1,
+        name: Faker::Team.name,
+        description: Faker::Lovecraft.fhtagn(1),
+        duration: x*10,
+        start_datetime: Faker::Date.forward(x*5),
+        max_voluntaries: x*8
+        )
+        2.times do
+            Location.create(longitude: Faker::Address.longitude,
+                            latitude: Faker::Address.latitude,
+                            label: Faker::Hobbit.thorins_company,
+                            person_name: Faker::BackToTheFuture.character,
+                            email: Faker::Internet.email,
+                            event_id: e.id )
+        end
+        Plu.create(name: Faker::Hacker.adjective,
+                    event_id: e.id)
 
-EventVoluntary.create(voluntary_id: 1,
-                        event_id: 1)
+    EventVoluntary.create(voluntary_id: 1,
+                            event_id: e.id)
 end
 
 Admin.create(email: "caralopezrom@unal.edu.co",
