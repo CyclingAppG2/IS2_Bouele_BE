@@ -237,6 +237,7 @@ Rails.application.routes.draw do
   resources :subforums
   get 'userType' => "user_polymorphisms#getTypeUser"
   get 'organization/events/:organization_id' => "events#events_organization"
+  get 'events/available' => 'events#events_available'
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -79,6 +79,11 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
+  def events_available
+    @events = Event.eventsAvailables
+    render json: @events
+  end
+
   def events_organization
       @organization = Organization.find(params:[:organization_id])
       format.json {render   json: @organization.events}
