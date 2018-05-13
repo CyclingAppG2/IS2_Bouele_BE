@@ -208,7 +208,7 @@ Rails.application.routes.draw do
   match 'organization/change_event_name' => 'organizations#changeEventName', via: :patch
   match 'organization/cancel_event' => 'organizations#cancelEvent', via: :delete
 
-  match 'voluntary/join_event' => 'voluntaries#joinEvent', via: :post
+ # match 'voluntary/join_event' => 'voluntaries#joinEvent', via: :post
   match 'voluntary/leave_event' => 'voluntaries#leaveEvent', via: :delete
 
   match 'user/get_used_usernames' => 'users#getUsedUsernamesAsPDF', via: :get
@@ -231,7 +231,6 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :forum_posts
   resources :forum_threads
-  resources :user_polymorphisms
   resources :subforums
   get 'userType' => "user_polymorphisms#getTypeUser"
   root to: "home#index"

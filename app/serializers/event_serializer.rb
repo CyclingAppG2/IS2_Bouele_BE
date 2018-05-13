@@ -22,7 +22,7 @@ class EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :duration, :start_datetime, :max_voluntaries, :files
 
   has_many :event_voluntaries
-  has_many :voluntaries
+  has_many :voluntaries, through: :event_voluntaries
   has_many :plus
   has_many :locations
   belongs_to :organization

@@ -26,11 +26,24 @@ class Event < ApplicationRecord
 	belongs_to :organization
 
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
-    validates :description, presence: true, length: {minimum: 100}, uniqueness: true
-    validates :duration, presence: true,  numericality: { only_integer: true, greater_than: 0 }
+    validates :description, presence: true, length: {minimum: 20}
+    validates :duration, presence: true,  numericality: { only_integer: true, greater_than: 1 }
     validates :start_datetime, presence: true
 
     mount_uploaders :files, FileUploader
+
+    def self.howManyVoluntaries(event_id)
+      Event.find(event_id).voluntaries.count()
+    end
+
+    def self.eventIsLast(event_id)
+      ans = Event.where("start_datetime > ? AND id = ?", DateTime.now, event_id)
+      if ans.empty?
+        true
+      else
+        false
+      end
+    end
 
   private
 

@@ -83,16 +83,29 @@ end
 
 
 
+10.times do |x|
 
-
-Event.create(organization_id: 2,
-	name: "Testing",
-	description: Faker::Lovecraft.fhtagn(10),
-	duration: 5,
-	)
+e = Event.create(organization_id: x/2+1,
+	name: Faker::Team.name,
+	description: Faker::Lovecraft.fhtagn(1),
+    duration: x*10,
+    start_datetime: Faker::Date.forward(x*5),
+    max_voluntaries: x*8
+    )
+    2.times do
+        Location.create(longitude: Faker::Address.longitude,
+                        latitude: Faker::Address.latitude,
+                        label: Faker::Hobbit.thorins_company,
+                        person_name: Faker::BackToTheFuture.character,
+                        email: Faker::Internet.email,
+                        event_id: e.id )
+    end
+    Plu.create(name: Faker::Hacker.adjective,
+                event_id: e.id)
 
 EventVoluntary.create(voluntary_id: 1,
-	event_id: 1)
+                        event_id: 1)
+end
 
 Admin.create(email: "caralopezrom@unal.edu.co",
                 password: "123456789",
