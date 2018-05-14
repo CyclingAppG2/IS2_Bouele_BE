@@ -2,12 +2,14 @@
 #
 # Table name: forum_threads
 #
-#  id          :integer          not null, primary key
-#  text        :string
-#  user_id     :integer
-#  subforum_id :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :integer          not null, primary key
+#  text           :string
+#  user_id        :integer
+#  subforum_id    :integer
+#  last_poster_id :integer
+#  last_post_at   :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #

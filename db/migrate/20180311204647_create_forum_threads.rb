@@ -4,6 +4,8 @@ class CreateForumThreads < ActiveRecord::Migration[5.1]
       t.string :text
       t.integer :user_id
       t.integer :subforum_id
+      t.integer :last_poster_id
+      t.datetime :last_post_at
 
       t.timestamps
     end

@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.string "text"
     t.integer "user_id"
     t.integer "subforum_id"
+    t.integer "last_poster_id"
+    t.datetime "last_post_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
