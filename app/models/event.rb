@@ -45,7 +45,21 @@ class Event < ApplicationRecord
       end
     end
 
-  private
+    def self.eventsAvailables
+      eventInFuture = Event.eventsInFuture
+      ans = []
+      eventInFuture.each do |event|
+        ans = event.voluntaries.count() < event.max_voluntaries ?  ans.push(event) : ans
+      end
+      ans
+    end
+
+    private
+    def self.eventsInFuture
+      Event.where("start_datetime > ? ", DateTime.now)
+    end
+
+  
 
   def validate_voluntary_limit(event_voluntary)
     raise Exception.new if event_voluntaries.size >= max_voluntaries

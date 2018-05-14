@@ -43,15 +43,17 @@ class VoluntariesController < ApplicationController
 
     if @voluntary.save
       @themesInterest = params[:themes]
-      @themesInterest.each do |theme|
-        @t = ThemeInterestsVoluntary.new(voluntary_id: @voluntary.id, theme_interest_id: theme)
-        if @t.save == false
-          render json: {
-            success: "false",
-            data: @l.errors
-        }, status: :unprocessable_entity
-        @voluntary.destroy
-        return
+      if !@themesInterest.nil?
+        @themesInterest.each do |theme|
+          @t = ThemeInterestsVoluntary.new(voluntary_id: @voluntary.id, theme_interest_id: theme)
+          if @t.save == false
+            render json: {
+              success: "false",
+              data: @l.errors
+          }, status: :unprocessable_entity
+          @voluntary.destroy
+          return
+          end
         end
       end
 

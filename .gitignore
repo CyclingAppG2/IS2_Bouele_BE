@@ -20,3 +20,6 @@
 
 # Ingore avatars
 /public/uploads/*
+
+#Ignore config bundle
+.bundle
