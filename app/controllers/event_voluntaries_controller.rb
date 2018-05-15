@@ -15,20 +15,30 @@ class EventVoluntariesController < ApplicationController
 
   # POST /event_voluntaries 
   def create
-    @event_voluntary = EventVoluntary.new(event_voluntary_params)
-    if !EventVoluntary.validateAll(params[:event_voluntary][:event_id])
+    data = event_voluntary_params
+    if @current_user.user_polymorphism.user_data_type != "Voluntary"
       render json: {
         success: "false",
-        data: "Evento lleno o expirado"
+        data: "Debes ser un voluntario para unirte a un evento"
     }, status: :unprocessable_entity
     else
-      if @event_voluntary.save 
-        render json: @event_voluntary, status: :created, location: @event_voluntary
-        UserMailer.joined_event_mail(@current_user, Event.find(params[:event_voluntary][:event_id])).deliver
+      data[:voluntary_id] = @current_user.id
+      @event_voluntary = EventVoluntary.new(data)
+      if !EventVoluntary.validateAll(params[:event_voluntary][:event_id])
+        render json: {
+          success: "false",
+          data: "Evento lleno o expirado"
+      }, status: :unprocessable_entity
       else
-        render json: @event_voluntary.errors, status: :unprocessable_entity
-      end
-  end
+        if @event_voluntary.save 
+          render json: @event_voluntary, status: :created, location: @event_voluntary
+          UserMailer.joined_event_mail(@current_user, Event.find(params[:event_voluntary][:event_id])).deliver
+        else
+          render json: @event_voluntary.errors, status: :unprocessable_entity
+        end
+    end
+    end
+   
   end
 
   # PATCH/PUT /event_voluntaries/1

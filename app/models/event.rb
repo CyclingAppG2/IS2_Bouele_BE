@@ -54,11 +54,17 @@ class Event < ApplicationRecord
       ans
     end
 
+    def self.filter_events(events, filters)
+      
+    end
+
     private
     def self.eventsInFuture
       Event.where("start_datetime > ? ", DateTime.now)
     end
-
+    def validate_filters(filters)
+      
+    end
   
 
   def validate_voluntary_limit(event_voluntary)
