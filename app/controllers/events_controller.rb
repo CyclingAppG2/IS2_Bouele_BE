@@ -93,7 +93,15 @@ class EventsController < ApplicationController
       @ans = Voluntary.find(@current_user.user_polymorphism.user_data.id)
       # format.json {render   json: @organization.events}
     end
-    render   json: @ans.events
+    if @ans.nil?
+      render json: {
+        success: "false",
+        data: "Error al consultar events"
+    }, status: :unprocessable_entity
+    else
+      render   json: @ans.events.order(:start_datetime)
+    end
+    
   end
 
   def voluntaries_in_event
