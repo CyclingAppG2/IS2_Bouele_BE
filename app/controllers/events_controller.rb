@@ -84,9 +84,16 @@ class EventsController < ApplicationController
     render json: @events
   end
 
-  def events_organization
-      @organization = Organization.find(params:[:organization_id])
-      format.json {render   json: @organization.events}
+  def my_events
+    @ans = nil
+    if @current_user.user_polymorphism.user_data_type == "Organization"
+      @ans = Organization.find(@current_user.user_polymorphism.user_data.id)
+      # format.json {render   json: @organization.events}
+    else
+      @ans = Voluntary.find(@current_user.user_polymorphism.user_data.id)
+      # format.json {render   json: @organization.events}
+    end
+    render   json: @ans.events
   end
 
   def voluntaries_in_event

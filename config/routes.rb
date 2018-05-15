@@ -187,6 +187,7 @@
 #                               root GET      /                                               home#index
 
 Rails.application.routes.draw do
+  get 'events/my_events' => "events#my_events"
   get 'events/available' => 'events#events_available'
   get 'voluntaries_in_event/:id' => 'events#voluntaries_in_event'
   resources :genders
@@ -238,7 +239,7 @@ Rails.application.routes.draw do
   resources :forum_threads
   resources :subforums
   get 'userType' => "user_polymorphisms#getTypeUser"
-  get 'organization/events/:organization_id' => "events#events_organization"
+
  
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
