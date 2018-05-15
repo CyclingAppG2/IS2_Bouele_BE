@@ -20,11 +20,20 @@ class OrganizationsController < ApplicationController
   def changeEventName
     @event = Event.find(params[:event][:id])
     @event.name = params[:event][:new_name]
-    @event.save
+    if @event.save
+      render json: @event, status: :ok
+    else
+      render json: @event.errors , status: :unprocessable_entity
+    end
   end
     
   def cancelEvent
-    Event.find(params[:event][:id]).destroy
+    @event = Event.find(params[:event][:id])
+    if @event.destroy
+      render json: @event, status: :destroyed
+    else
+      render json: @event.errors , status: :unprocessable_entity
+    end
   end
 
   # GET /organizations

@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20180512072844) do
 
   create_table "forum_threads", force: :cascade do |t|
     t.string "text"
+    t.string "title"
     t.integer "user_id"
     t.integer "subforum_id"
     t.integer "last_poster_id"

@@ -4,6 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  text           :string
+#  title          :string
 #  user_id        :integer
 #  subforum_id    :integer
 #  last_poster_id :integer

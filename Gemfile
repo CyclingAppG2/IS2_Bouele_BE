@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.1.6'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -48,6 +48,9 @@ gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 #gem 'prawn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'haml', '~> 4.0.5'
+gem 'simple_form', '~> 4.0.0'
+gem 'erubis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

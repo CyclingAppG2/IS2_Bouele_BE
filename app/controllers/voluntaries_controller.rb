@@ -4,17 +4,31 @@ class VoluntariesController < ApplicationController
   def joinEvent
     @Voluntary = Voluntary.find(params[:voluntary][:id])
     @Event = Event.find(params[:event][:id])
-    EventVoluntary.create(voluntary_id: @Voluntary.id, event_id: @Event.id)
+    @Event_Voluntary = EventVoluntary.new(voluntary_id: @Voluntary.id, event_id: @Event.id)
+
+    if @Event_Voluntary.save
+      render json: @Event_Voluntary, status: :created, location: @Event_Voluntary
+    else
+      render json: @Event_Voluntary.errors, status: :unprocessable_entity
+    end
+
     @UserPolymorphism = UserPolymorphism.find_by user_data_id: @Voluntary.id
     @User = User.find(@UserPolymorphism.user_id)
     UserMailer.joined_event_mail(@User, @Event).deliver
+
   end
 
   def leaveEvent
     @Event = Event.find(params[:event][:id])
     @Voluntary = Voluntary.find(params[:voluntary][:id])
     @EventVoluntary = EventVoluntary.find_by voluntary_id: @Voluntary.id, event_id: @Event.id
-    @EventVoluntary.destroy
+    
+    if @Event_Voluntary.destroy
+      render json: @Event_Voluntary, status: :destroyed, location: @Event_Voluntary
+    else
+      render json: @Event_Voluntary.errors, status: :unprocessable_entity
+    end
+
     @UserPolymorphism = UserPolymorphism.find_by user_data_id: @Voluntary.id
     @User = User.find(@UserPolymorphism.user_id)
     UserMailer.left_event_mail(@User, @Event).deliver

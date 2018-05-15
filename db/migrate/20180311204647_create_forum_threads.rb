@@ -2,6 +2,7 @@ class CreateForumThreads < ActiveRecord::Migration[5.1]
   def change
     create_table :forum_threads do |t|
       t.string :text
+      t.string :title
       t.integer :user_id
       t.integer :subforum_id
       t.integer :last_poster_id

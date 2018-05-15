@@ -4,6 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  text           :string
+#  title          :string
 #  user_id        :integer
 #  subforum_id    :integer
 #  last_poster_id :integer
@@ -18,7 +19,7 @@
 #
 
 class ForumThreadSerializer < ActiveModel::Serializer
-  attributes :id, :text, :user_id, :subforum_id
+  attributes :id, :title, :text, :user_id, :subforum_id
 
   belongs_to :user
   belongs_to :subforum
