@@ -31,7 +31,6 @@ userN = 1;
                         NIT: Faker::Color.hex_color,
                         mainaddress: Faker::Zelda.game,
                         firm: Faker::Hacker.say_something_smart,
-                        organization_score: 5,
                         minicipality_id: m.id,
                         organization_category_id: org.id)
                         u = User.create(

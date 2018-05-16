@@ -20,7 +20,7 @@ class EventVoluntariesController < ApplicationController
       render json: {
         success: "false",
         data: "Debes ser un voluntario para unirte a un evento"
-    }, status: :unprocessable_entity
+    }, status: :precondition_failed
     else
       data[:voluntary_id] = @current_user.id
       @event_voluntary = EventVoluntary.new(data)
@@ -28,7 +28,7 @@ class EventVoluntariesController < ApplicationController
         render json: {
           success: "false",
           data: "Evento lleno o expirado"
-      }, status: :unprocessable_entity
+      }, status: :precondition_failed
       else
         if @event_voluntary.save 
           render json: @event_voluntary, status: :created, location: @event_voluntary
@@ -53,6 +53,22 @@ class EventVoluntariesController < ApplicationController
   # DELETE /event_voluntaries/1
   def destroy
     @event_voluntary.destroy
+  end
+
+  def leave_event
+    @data = EventVoluntary.voluntaryInEvent(current_user.user_polymorphism.user_data.id, params[:event])
+    if @current_user.user_polymorphism.user_data_type == "Voluntary" && !@data.empty?
+      @data.first.destroy
+      render json: {
+        success: "true",
+        data: "Has abandonado el evento"
+    }, status: :ok
+    else
+      render json: {
+        success: "false",
+        data: "Voluntario fuera del evento o evento no existente"
+    }, status: :failed_dependency
+    end
   end
 
   private
