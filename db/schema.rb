@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512072844) do
+ActiveRecord::Schema.define(version: 20180516004042) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 20180512072844) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.bigint "duration"
+    t.integer "duration", limit: 8
     t.integer "organization_id"
-    t.datetime "start_datetime"
+    t.bigint "start_datetime"
     t.integer "max_voluntaries", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -29,7 +29,7 @@ class EventsController < ApplicationController
     if @event.start_datetime.to_i < Time.now.to_i*1000
       render json: {
         success: "false",
-        data: "start_date menor a fecha actual"
+        data: "start_date menor a fecha actual " + @event.start_datetime.to_s
     }, status: :unprocessable_entity
     return
       end
