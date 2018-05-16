@@ -5,9 +5,9 @@
 #  id              :integer          not null, primary key
 #  name            :string
 #  description     :string
-#  duration        :integer
+#  duration        :bigint(8)
 #  organization_id :integer
-#  start_datetime  :bigint(8)
+#  start_datetime  :datetime
 #  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -37,7 +37,7 @@ class Event < ApplicationRecord
     end
 
     def self.eventIsLast(event_id)
-      ans = Event.where("start_datetime > ? AND id = ?", DateTime.now, event_id)
+      ans = Event.where("start_datetime > ? AND id = ?", Time.now.to_i*1000, event_id)
       if ans.empty?
         true
       else
@@ -62,12 +62,40 @@ class Event < ApplicationRecord
     def self.eventsInFuture
       Event.where("start_datetime > ? ", DateTime.now)
     end
-    def validate_filters(filters)
-      
-    end
+
+    # def validate_filters(filters)
+    #   result = {}
+    #   if !filters.nil?
+    #     filters.each do |filter|
+    #       if filter[:type] == "plus"
+    #         result[:plus] = 
+    #       end
+              
+    #     end
+    #   end
+    #   result
+    # end
   
 
   def validate_voluntary_limit(event_voluntary)
     raise Exception.new if event_voluntaries.size >= max_voluntaries
   end    
 end
+
+
+# {
+#   "filters": [
+#     {
+#       "type": "plus",
+#       "data": "string"
+#     },
+#      {
+#       "type": "date_min",
+#       "data": "long"
+#     },
+#      {
+#       "type": "date_max",
+#       "data": "long"
+#     }
+#   ]
+# }
