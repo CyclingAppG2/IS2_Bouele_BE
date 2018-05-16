@@ -4,13 +4,16 @@ class ForumThreadsController < ApplicationController
   # GET /forum_threads
   def index
     @forum_threads = ForumThread.all
-
     render json: @forum_threads
+  end
+
+  def new
+    @forum_thread = ForumThread.new
   end
 
   # GET /forum_threads/1
   def show
-    render json: @forum_thread
+    #render json: @forum_thread
   end
 
   # POST /forum_threads
@@ -18,16 +21,22 @@ class ForumThreadsController < ApplicationController
     @forum_thread = ForumThread.new(forum_thread_params)
 
     if @forum_thread.save
-      render json: @forum_thread, status: :created, location: @forum_thread
+      #render json: @forum_thread, status: :created, location: @forum_thread
+     redirect_to @forum_thread
     else
       render json: @forum_thread.errors, status: :unprocessable_entity
+      #!render 'new'
     end
+  end
+
+  def edit
+
   end
 
   # PATCH/PUT /forum_threads/1
   def update
     if @forum_thread.update(forum_thread_params)
-      render json: @forum_thread
+      redirect_to @forum_thread
     else
       render json: @forum_thread.errors, status: :unprocessable_entity
     end
@@ -36,6 +45,7 @@ class ForumThreadsController < ApplicationController
   # DELETE /forum_threads/1
   def destroy
     @forum_thread.destroy
+    #redirect_to Where?
   end
 
   private
@@ -46,6 +56,6 @@ class ForumThreadsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def forum_thread_params
-      params.require(:forum_thread).permit(:text, :images, :createdat, :updatedat)
+      params.require(:forum_thread).permit(:title, :text, :images, :user_id, :subforum_id, :createdat, :updatedat)
     end
 end

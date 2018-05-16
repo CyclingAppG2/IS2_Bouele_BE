@@ -128,5 +128,6 @@ TypeContact.create(name: "Reclamo")
     end
 end
 
-
-
+Subforum.create(name: "adavilame@unal.edu.co",
+    description: "123456789",
+    admin_id: 1)

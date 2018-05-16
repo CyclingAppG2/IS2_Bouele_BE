@@ -1,4 +1,6 @@
-= simple_form_for @forum_thread do |f|
+= simple_form_for(@forum_thread) do |f|
 	= f.input :title
 	= f.input :text
+	= f.input :user_id
+	= f.input :subforum_id
 	= f.submit
