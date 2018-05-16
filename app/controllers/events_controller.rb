@@ -88,7 +88,7 @@ class EventsController < ApplicationController
   end
 
   def events_available
-    @events = Event.eventsAvailables
+    @events = Event.eventsAvailables(@current_user.user_polymorphism.user_data.id)
     render json: @events
   end
 

@@ -45,36 +45,41 @@ class Event < ApplicationRecord
       end
     end
 
-    def self.eventsAvailables
+    def self.eventsAvailables(voluntary_id)
       eventInFuture = Event.eventsInFuture
       ans = []
       eventInFuture.each do |event|
-        ans = event.voluntaries.count() < event.max_voluntaries ?  ans.push(event) : ans
+        ans = event.voluntaries.count() < event.max_voluntaries && !event.voluntaries.exists?(voluntary_id)  ?  ans.push(event) : ans
       end
       ans
     end
 
-    def self.filter_events(events, filters)
-      
+    def self.filter_events(events, filters )
+      filter = validate_filters(filters)
     end
 
     private
     def self.eventsInFuture
-      Event.where("start_datetime > ? ", DateTime.now)
+      Event.where("start_datetime > ? ", Time.now.to_i*1000)
     end
 
-    # def validate_filters(filters)
-    #   result = {}
-    #   if !filters.nil?
-    #     filters.each do |filter|
-    #       if filter[:type] == "plus"
-    #         result[:plus] = 
-    #       end
-              
-    #     end
-    #   end
-    #   result
-    # end
+    def validate_filters(filters)
+      result = {}
+      if !filters.nil?
+        filters.each do |filter|
+          if filter[:type] == "plus"
+            result[:plus] = filter[:data]
+          end
+          if filter[:date_min] == "plus"
+            result[:date_min] = filter[:data]
+          end
+          if filter[:date_max] == "plus"
+            result[:date_max] = filter[:data]
+          end
+        end
+      end
+      result
+    end
   
 
   def validate_voluntary_limit(event_voluntary)
