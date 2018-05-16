@@ -21,11 +21,12 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @locations = params[:event].delete :locations
+    if @current_user.user_polymorphism.user_data_type == "Organization"
+      @locations = params[:event].delete :locations
     @plus = params[:event].delete :plus
     
     @event = Event.new(event_params)
-    if @event.start_datetime < Time.current
+    if @event.start_datetime.to_i < Time.now.to_i*1000
       render json: {
         success: "false",
         data: "start_date menor a fecha actual"
@@ -63,6 +64,13 @@ class EventsController < ApplicationController
     else
       render json: @event.errors, status: :unprocessable_entity
     end
+    else
+      render json: {
+        success: "false",
+        data: "Debe tener cuenta de organizacion para esta accion"
+    }, status: :unprocessable_entity
+    end
+    
   end
 
   # PATCH/PUT /events/1
