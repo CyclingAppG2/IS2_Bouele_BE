@@ -10,12 +10,12 @@ class ForumPostsController < ApplicationController
 
   # GET /forum_posts/1
   def show
-    render json: @forum_post
+    render :json => {:user => @forum_post.user_id, :text => @forum_post.text}
   end
 
   # POST /forum_posts
   def create
-    @forum_post = ForumPost.new(forum_post_params)
+    @forum_post = ForumPost.new(text: params[:text], forum_thread_id: params[:forum_thread_id],user_id: @current_user.id)
 
     if @forum_post.save
       render json: @forum_post, status: :created, location: @forum_post
@@ -26,10 +26,15 @@ class ForumPostsController < ApplicationController
 
   # PATCH/PUT /forum_posts/1
   def update
-    if @forum_post.update(forum_post_params)
-      render json: @forum_post
+    if @forum_post.user_id == @current_user.id
+      if @forum_post.update(forum_post_params)
+        render json: @forum_post
+      else
+        render json: @forum_post.errors, status: :unprocessable_entity
+      end
     else
-      render json: @forum_post.errors, status: :unprocessable_entity
+      msg = {:error => "Debes ser el creador de un mensaje para poder editarlo"}
+      render :json => msg
     end
   end
 
