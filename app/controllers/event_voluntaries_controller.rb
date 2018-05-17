@@ -22,7 +22,7 @@ class EventVoluntariesController < ApplicationController
         data: "Debes ser un voluntario para unirte a un evento"
     }, status: :precondition_failed
     else
-      data[:voluntary_id] = @current_user.id
+      data[:voluntary_id] = @current_user.user_polymorphism.user_data.id
       @event_voluntary = EventVoluntary.new(data)
       if !EventVoluntary.validateAll(params[:event_voluntary][:event_id])
         render json: {
@@ -56,7 +56,7 @@ class EventVoluntariesController < ApplicationController
   end
 
   def leave_event
-    @data = EventVoluntary.voluntaryInEvent(current_user.user_polymorphism.user_data.id, params[:event])
+    @data = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:event])
     if @current_user.user_polymorphism.user_data_type == "Voluntary" && !@data.empty?
       @data.first.destroy
       render json: {

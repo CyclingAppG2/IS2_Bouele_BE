@@ -19,4 +19,10 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: @msg)
   end
 
+  def cancel_event_mail(user, event)
+    @user = user
+    @event = event
+    mail(to: @user.mail, subject: "!Notificacion de evento " + @event.name + " !!Cancelado")
+  end
+
 end

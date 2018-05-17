@@ -17,15 +17,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def changeEventName
-    @event = Event.find(params[:event][:id])
-    @event.name = params[:event][:new_name]
-    @event.save
-  end
-    
-  def cancelEvent
-    Event.find(params[:event][:id]).destroy
-  end
+
 
   # GET /organizations
   def index

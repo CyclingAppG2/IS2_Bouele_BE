@@ -84,7 +84,22 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
-    @event.destroy
+    if @current_user.user_polymorphism.user_data_type != "Organization" 
+      render json: {
+        success: "false",
+        data: "Debe tener rol de organizador para eliminar eventos"
+    }, status: :unprocessable_entity
+    else
+      if @event.organization_id == @current_user.user_polymorphism.user_data.id && @event.start_datetime < Time.now.to_i*1000
+        @event.destroy
+      else
+        render json: {
+          success: "false",
+          data: "Este evento no le pertenece o  el evento ya paso"
+      }, status: :unprocessable_entity
+      end
+    end
+    
   end
 
   def events_available
@@ -123,9 +138,9 @@ class EventsController < ApplicationController
         format.pdf {render template: 'organization/list_voluntaries_template_pdf',pdf:'lista'}
       end
     end
-    
-    
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

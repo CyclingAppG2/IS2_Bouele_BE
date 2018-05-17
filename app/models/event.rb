@@ -54,8 +54,10 @@ class Event < ApplicationRecord
       ans
     end
 
-    def self.filter_events(events, filters )
+    def self.filter_events(events, filters, voluntary_id )
       filter = validate_filters(filters)
+
+      
     end
 
     private
