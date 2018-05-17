@@ -56,6 +56,18 @@ class OrganizationsController < ApplicationController
     @organization.destroy
   end
 
+  def statistics
+    if @current_user.user_polymorphism.user_data_type != "Organization"
+      render json: {
+        success: "false",
+        data: @aux.errors
+    }, status: :unauthorized
+    else
+      
+      
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

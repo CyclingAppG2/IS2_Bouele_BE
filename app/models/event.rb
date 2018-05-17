@@ -56,6 +56,11 @@ class Event < ApplicationRecord
 
     def self.filter_events(events, filters, voluntary_id )
       filter = validate_filters(filters)
+      strFilter = ""
+      # filter.each do |f|
+      #   strFilter += 
+      # end
+      Event.where("start_datetime > ?   ", Time.now.to_i*1000, )
 
       
     end
@@ -104,5 +109,5 @@ end
 #       "type": "date_max",
 #       "data": "long"
 #     }
-#   ]
+#   ] Event.select("events.*, count(event_voluntaries.id) as num").joins(:plus, :voluntaries).group('event_voluntaries.event_id').where("start_datetime > ?   ", Time.now.to_i*1000, ).where("plus.name LIKE ?", "%#{8}%")
 # }

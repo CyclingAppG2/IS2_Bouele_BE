@@ -66,7 +66,7 @@ class EventsController < ApplicationController
       render json: {
         success: "false",
         data: "Debe tener cuenta de organizacion para esta accion"
-    }, status: :unprocessable_entity
+    }, status: :unauthorized
     end
     
   end
@@ -85,8 +85,8 @@ class EventsController < ApplicationController
     if @current_user.user_polymorphism.user_data_type != "Organization" 
       render json: {
         success: "false",
-        data: "Debe tener rol de organizador para eliminar eventos" + @current_user.user_polymorphism.user_data_type
-    }, status: :unprocessable_entity
+        data: "Debe tener rol de organizador para eliminar eventos" 
+    }, status: :unauthorized
     else
       if @event.organization_id == @current_user.user_polymorphism.user_data.id && @event.start_datetime > Time.now.to_i*1000
         UserMailer.cancel_event_mail(@event.voluntaries, @event).deliver
@@ -138,7 +138,8 @@ class EventsController < ApplicationController
         @users.push(v.user_polymorphism.user)
       end
       respond_to do |format|
-        format.json {render   json: @event}
+        format.json {render   json: {"event": @event, 
+                                    "users": @users}}
         format.pdf {render template: 'organization/list_voluntaries_template_pdf',pdf:'lista'}
       end
     end

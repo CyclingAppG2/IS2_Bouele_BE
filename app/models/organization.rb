@@ -30,4 +30,9 @@ class Organization < ApplicationRecord
     validates :firm, presence: true, length: {minimum: 5}
     ## validates :organization_score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
     
+    def self.getMyStatistics(organization_id)
+        ans = {}
+        
+    end
+
 end
