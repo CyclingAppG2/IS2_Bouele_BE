@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(version: 20180516004042) do
     t.string "user_data_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_data_type", "user_data_id"], name: "index_user_polymorphisms_on_user_data_type_and_user_data_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -18,23 +18,21 @@ end
 20.times do
     ThemeInterest.create(themesinterest: Faker::Book.genre) 
 end
-userN = 1; 
-3.times do
+ 
+50.times do |x|
     org = OrganizationCategory.create(name: Faker::Commerce.department)
-    5.times do
         d = Department.create(name: Faker::Space.constellation)
-        4.times do
+
             m = Minicipality.create(name: Faker::RickAndMorty.location, department_id: d.id )
-            2.times do |x|
+
                 if x%2==0
-                    o = Organization.create(
-                        NIT: Faker::Color.hex_color,
+                    o = Organization.create(NIT: Faker::Color.hex_color,
                         mainaddress: Faker::Zelda.game,
                         firm: Faker::Hacker.say_something_smart,
                         minicipality_id: m.id,
                         organization_category_id: org.id)
                         u = User.create(
-                            email: "mailUser" + userN.to_s+ "@gmail.com",
+                            email: "mailUser" + x.to_s+ "@gmail.com",
                             password: "123456789",
                             name: Faker::HarryPotter.character,
                             username: Faker::Internet.user_name,
@@ -44,16 +42,16 @@ userN = 1;
                         user_id: u.id,
                             user_data_id: o.id,
                             user_data_type: "Organization")
-                        userN = userN + 1
+
                 else
                     o = Voluntary.create(
                         minicipality_id: m.id,
                         birthday: Faker::Date.birthday(18, 65),
-                        gender_id: x+1,
+                        gender_id: x%2==0 ? 1 : 2,
                         cellphone: Faker::Number.number(10))
                     ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
                     u = User.create(
-                        email: "mailUser" + userN.to_s+ "@gmail.com",
+                        email: "mailUser" + x.to_s+ "@gmail.com",
                         password: "123456789",
                         name: Faker::HarryPotter.character,
                         username: Faker::Internet.user_name,
@@ -63,13 +61,11 @@ userN = 1;
                     user_id: u.id,
                         user_data_id: o.id,
                         user_data_type: "Voluntary")
-                    userN = userN + 1
                 end
                
 
-            end
-        end
-    end
+ 
+
 
 end
 
@@ -79,9 +75,9 @@ end
     e = Event.create(organization_id: x/2+1,
         name: Faker::Team.name,
         description: Faker::Lovecraft.fhtagn(1),
-        duration: x*10,
+        duration: x*10+1,
         start_datetime: Faker::Number.between(1526431956340, 1530334800000),
-        max_voluntaries: x*8
+        max_voluntaries: x*8+1
         )
         2.times do
             Location.create(longitude: Faker::Address.longitude,

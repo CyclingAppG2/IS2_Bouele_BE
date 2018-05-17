@@ -5,8 +5,6 @@ class EventsController < ApplicationController
     
   # end
 
-
-
   # GET /events
   def index
     @events = Event.all
@@ -87,11 +85,17 @@ class EventsController < ApplicationController
     if @current_user.user_polymorphism.user_data_type != "Organization" 
       render json: {
         success: "false",
-        data: "Debe tener rol de organizador para eliminar eventos"
+        data: "Debe tener rol de organizador para eliminar eventos" + @current_user.user_polymorphism.user_data_type
     }, status: :unprocessable_entity
     else
-      if @event.organization_id == @current_user.user_polymorphism.user_data.id && @event.start_datetime < Time.now.to_i*1000
+      if @event.organization_id == @current_user.user_polymorphism.user_data.id && @event.start_datetime > Time.now.to_i*1000
+        UserMailer.cancel_event_mail(@event.voluntaries, @event).deliver
         @event.destroy
+        
+        render json: {
+          success: "true",
+          data: "Este evento fue borrado"
+      }, status: :ok
       else
         render json: {
           success: "false",
