@@ -64,7 +64,7 @@ class OrganizationsController < ApplicationController
     }, status: :unauthorized
     else
       data = Organization.getMyStatistics(@organization.id)
-      render json: data
+      render json: data.as_json
     end
   end
 
