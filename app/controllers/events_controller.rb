@@ -133,9 +133,12 @@ class EventsController < ApplicationController
 
   def voluntaries_in_event
     if @current_user.user_polymorphism.user_data_type == "Organization"
+      
       @users = []
       @event.voluntaries.each do |v|
-        @users.push(v.user_polymorphism.user)
+        user = {"user": v.user_polymorphism.user, "user_polymorphism":  v.user_polymorphism,  "voluntary": v}
+
+        @users.push(user)
       end
       respond_to do |format|
         format.json {render   json: {"event": @event, 
