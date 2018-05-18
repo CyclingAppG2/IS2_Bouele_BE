@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :update, :destroy]
+  before_action :set_organization, only: [:show, :update, :destroy, :statistics]
 
   def createEvent
     @event = Event.new(organization_id: params[:event][:organization_id],
@@ -63,8 +63,8 @@ class OrganizationsController < ApplicationController
         data: @aux.errors
     }, status: :unauthorized
     else
-      
-      
+      data = Organization.getMyStatistics(@organization.id)
+      render json: data, status: :OK
     end
   end
 

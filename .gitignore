@@ -23,3 +23,5 @@
 
 #Ignore config bundle
 .bundle
+
+public/
