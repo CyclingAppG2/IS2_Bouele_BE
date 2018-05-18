@@ -153,8 +153,8 @@ Rails.application.routes.draw do
   delete 'voluntary/leave_event' => 'event_voluntaries#leave_event'
   get 'organizations/statistics/:id' => 'organizations#statistics'
   resources :genders,  only: [:show]
-  #resources :theme_interests_voluntaries,  only: [:show]
-  get 'devise_token_auth_override/session'
+  resources :theme_interests_voluntaries,  only: [:show]
+  #get 'devise_token_auth_override/session'
 
   require "devise_token_auth"
   resources :contact_data
