@@ -10,7 +10,7 @@ class SubforumsController < ApplicationController
 
   # GET /subforums/1
   def show
-    @forum_threads = ForumThread.where(subforum_id: @subforum.id).order("created_at DESC")
+    @forum_threads = ForumThread.findThreadsThatBelongToSubforum(@subforum.id)
     render :json => {:name => @subforum.name, :description => @subforum.description, :threads => @forum_threads}
   end
 

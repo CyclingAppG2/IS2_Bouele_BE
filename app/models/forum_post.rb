@@ -20,4 +20,9 @@ class ForumPost < ApplicationRecord
 	belongs_to :user
 	has_many :attachments
     validates :text, presence: true, length: {minimum: 20}
+
+    def self.findPostsThatBelongToThread(forum_threadid)
+      @forum_posts = ForumPost.where(forum_thread_id: forum_threadid).order("created_at")
+      @forum_posts
+    end
 end

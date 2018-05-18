@@ -3,7 +3,7 @@ class ForumThreadsController < ApplicationController
 
   # GET /forum_threads
   def index
-    @forum_threads = ForumThread.all.order("created_at DESC")
+    @forum_threads = ForumThread.sortForIndex
     render json: @forum_threads
   end
 
@@ -14,8 +14,8 @@ class ForumThreadsController < ApplicationController
   # GET /forum_threads/1
   def show
     #render json: @forum_thread
-    @posts = ForumPost.where(forum_thread_id: @forum_thread.id).order("created_at")
-    render :json => {:title => @forum_thread.title, :text => @forum_thread.text, :user => @forum_thread.user_id, :posts => @posts}
+    @forum_posts = ForumPost.findPostsThatBelongToThread(@forum_thread.id)
+    render :json => {:title => @forum_thread.title, :text => @forum_thread.text, :user => @forum_thread.user_id, :forum_posts => @forum_posts}
   end
 
   # POST /forum_threads
@@ -35,10 +35,15 @@ class ForumThreadsController < ApplicationController
 
   # PATCH/PUT /forum_threads/1
   def update
-    if @forum_thread.update(forum_thread_params)
-      render json: @forum_thread, status: :updated
+    if @forum_thread.user_id == @current_user.id
+      if @forum_thread.update(forum_thread_params)
+        render json: @forum_thread, status: :updated
+      else
+        render json: @forum_thread.errors, status: :unprocessable_entity
+      end
     else
-      render json: @forum_thread.errors, status: :unprocessable_entity
+      msg = {:error => "Debes ser el creador de un hilo para poder editarlo"}
+      render :json => msg
     end
   end
 

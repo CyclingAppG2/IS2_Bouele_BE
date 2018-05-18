@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e93086ac-6456-4af1-a769-017b729ebe9b",
+		"_postman_id": "647e8784-4ceb-4255-85d5-39dbab233c13",
 		"name": "Bouele",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -35,6 +35,64 @@
 			"response": []
 		},
 		{
+			"name": "edit forum thread",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"title\": \"This is a new name\",\n\t\t\"text\": \"This is a new text, at least 20 chars long\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum_threads/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum_threads",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit forum post",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"text\": \"This is a new text, at least 20 chars long\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum_posts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum_posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "create event from organization",
 			"request": {
 				"method": "POST",
@@ -58,6 +116,62 @@
 					"path": [
 						"organization",
 						"new_event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create forum thread",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"New forum thread\",\n    \"text\" : \"This is a forum thread, and it exists, you cant deny that\",\n    \"subforum_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum_threads",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum_threads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create forum post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\" : \"This is a forum post, and it exists, you cant deny that\",\n    \"forum_thread_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum_threads",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum_threads"
 					]
 				}
 			},
@@ -160,7 +274,10 @@
 						"value": "application/json"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:3000/user/get_used_usernames",
 					"protocol": "http",
@@ -171,6 +288,35 @@
 					"path": [
 						"user",
 						"get_used_usernames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get forum thread and its posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum_threads/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum_threads",
+						"1"
 					]
 				}
 			},

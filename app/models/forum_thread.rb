@@ -24,4 +24,14 @@ class ForumThread < ApplicationRecord
 	has_many :forum_posts
 	has_many :attachments
     validates :text, presence: true, length: {minimum: 20}
+
+    def self.sortForIndex
+      @forum_threads = ForumThread.all.order("created_at DESC")
+      @forum_threads
+    end
+
+    def self.findThreadsThatBelongToSubforum(subforumid)
+      @forum_threads = ForumThread.where(subforum_id: subforumid).order("created_at DESC")
+      @forum_threads
+    end
 end
