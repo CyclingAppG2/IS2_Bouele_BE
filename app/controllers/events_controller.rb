@@ -133,11 +133,11 @@ class EventsController < ApplicationController
 
   def voluntaries_in_event
     if @current_user.user_polymorphism.user_data_type == "Organization"
-      
+      @voluntaries = []
       @users = []
       @event.voluntaries.each do |v|
         user = {"user": v.user_polymorphism.user, "user_polymorphism":  v.user_polymorphism,  "voluntary": v}
-
+        @voluntaries.push(v.user_polymorphism.user)
         @users.push(user)
       end
       respond_to do |format|
