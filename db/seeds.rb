@@ -92,8 +92,16 @@ end
         Plu.create(name: Faker::Hacker.adjective,
                     event_id: e.id)
     for i in 1..e.max_voluntaries do
-        EventVoluntary.create(voluntary_id: i,
-            event_id: e.id)
+        ev = EventVoluntary.create(voluntary_id: i,
+            event_id: e.id )
+        if Random.new.rand(1..3) != 3
+            ev.scorevoluntary = Random.new.rand(0..5)
+            ev.scoreorganization = Random.new.rand(0..5)
+            ev.commentsvoluntary = Faker::RickAndMorty.quote
+            ev.commentsorganization = Faker::Simpsons.quote 
+            ev.save
+        end
+
     end        
 
 end

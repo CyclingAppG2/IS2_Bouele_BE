@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516004042) do
+ActiveRecord::Schema.define(version: 20180521040712) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20180516004042) do
     t.datetime "updated_at", null: false
     t.integer "organization_category_id"
     t.integer "minicipality_id"
+    t.float "score"
     t.index ["minicipality_id"], name: "index_organizations_on_minicipality_id"
     t.index ["organization_category_id"], name: "index_organizations_on_organization_category_id"
   end

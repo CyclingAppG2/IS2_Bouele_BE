@@ -44,11 +44,19 @@ class OrganizationsController < ApplicationController
 
   # PATCH/PUT /organizations/1
   def update
-    if @organization.update(organization_params)
-      render json: @organization
+    if @current_user.user_polymorphism.user_data_type != "Organization"
+      render json: {
+        success: "false",
+        data: @aux.errors
+    }, status: :unauthorized
     else
-      render json: @organization.errors, status: :unprocessable_entity
-    end
+      end
+      if @organization.update(organization_params)
+        render json: @organization
+      else
+        render json: @organization.errors, status: :unprocessable_entity
+      end
+  end
   end
 
   # DELETE /organizations/1
@@ -76,7 +84,7 @@ class OrganizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def organization_params
-      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm, :organization_score, :minicipality_id, :organization_category_id)
+      params.require(:organization).permit(:category, :NIT, :mainaddress, :branches, :logo, :firm,  :minicipality_id, :organization_category_id)
     end
 
 

@@ -13,6 +13,7 @@
 #  updated_at               :datetime         not null
 #  organization_category_id :integer
 #  minicipality_id          :integer
+#  score                    :float
 #
 # Indexes
 #

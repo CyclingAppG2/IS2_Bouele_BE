@@ -34,5 +34,7 @@ class EventVoluntary < ApplicationRecord
     def self.voluntaryInEvent(voluntary_id, event_id)
         EventVoluntary.where(voluntary_id: voluntary_id, event_id: event_id)       
     end
+
+    
     
 end

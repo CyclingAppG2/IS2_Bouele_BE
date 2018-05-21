@@ -13,6 +13,7 @@
 #  updated_at               :datetime         not null
 #  organization_category_id :integer
 #  minicipality_id          :integer
+#  score                    :float
 #
 # Indexes
 #
@@ -49,8 +50,24 @@ class Organization < ApplicationRecord
             end
             statistics["eventsStartInMonth"][y.to_s] = data
         end
+        statistics["assistenceByEvent"]={}
+        statistics["scoreByEvent"] ={}
+        @org.events.each do |e|
+            data = {"max_voluntaries": e.max_voluntaries, "assistences":  e.voluntaries.where.not("event_voluntaries.scorevoluntary IS ?", nil ).count}
+            statistics["assistenceByEvent"][e.name] = data
+            statistics["scoreByEvent"][e.name] = e.voluntaries.where('event_voluntaries.scoreorganization IS NOT ?', nil).average('event_voluntaries.scoreorganization').to_f
+        end
         statistics
-        
+    end
+
+    def self.calculateScore(organization_id)
+        @organization = Organization.find(organization_id)
+        data = 0
+        @organization.events.each do |e|
+            data += e.voluntaries.where('event_voluntaries.scoreorganization IS NOT ?', nil).average('event_voluntaries.scoreorganization').to_f
+        end
+        @organization.score = data / @organization.events.count
+        @organization.save
     end
 
 end
