@@ -25,12 +25,14 @@ end
 
             m = Minicipality.create(name: Faker::RickAndMorty.location, department_id: d.id )
 
-                if x%2==0
+                if x< 4
                     o = Organization.create(NIT: Faker::Color.hex_color,
                         mainaddress: Faker::Zelda.game,
                         firm: Faker::Hacker.say_something_smart,
                         minicipality_id: m.id,
-                        organization_category_id: org.id)
+                        organization_category_id: org.id,
+                        created_at: Time.new(2016,1,1)
+                        )
                         u = User.create(
                             email: "mailUser" + x.to_s+ "@gmail.com",
                             password: "123456789",
@@ -70,14 +72,14 @@ end
 end
 
 
-10.times do |x|
+100.times do |x|
 
-    e = Event.create(organization_id: x/2+1,
+    e = Event.create(organization_id: (x%3)+1,
         name: Faker::Team.name,
-        description: Faker::Lovecraft.fhtagn(1),
+        description: Faker::Lovecraft.fhtagn(2),
         duration: x*10+1,
-        start_datetime: Faker::Number.between(1526431956340, 1530334800000),
-        max_voluntaries: x*8+1
+        start_datetime: Faker::Number.between(1451624400000, 1577768400000),
+        max_voluntaries: ((x*3)%10 )+ 5
         )
         2.times do
             Location.create(longitude: Faker::Address.longitude,
@@ -89,9 +91,11 @@ end
         end
         Plu.create(name: Faker::Hacker.adjective,
                     event_id: e.id)
+    for i in 1..e.max_voluntaries do
+        EventVoluntary.create(voluntary_id: i,
+            event_id: e.id)
+    end        
 
-    EventVoluntary.create(voluntary_id: 1,
-                            event_id: e.id)
 end
 
 Admin.create(email: "caralopezrom@unal.edu.co",

@@ -39,6 +39,7 @@ class Organization < ApplicationRecord
         month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         
         statistics = {}
+        statistics["eventsStartInMonth"]={}
         years.each do |y|
             data = []
             month.each do |m|
@@ -46,7 +47,7 @@ class Organization < ApplicationRecord
                 lastDay = DateTime.new(y,m,-1,-1,-1,-1).to_time.to_i*1000
                 data.push(@org.events.where("events.start_datetime > ? AND events.start_datetime <= ?",firstDay,lastDay).count)
             end
-            statistics["eventsStartInMonth"] = {y.to_s => data}
+            statistics["eventsStartInMonth"][y.to_s] = data
         end
         statistics
         
