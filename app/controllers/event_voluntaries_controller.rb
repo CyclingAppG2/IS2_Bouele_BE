@@ -50,27 +50,64 @@ class EventVoluntariesController < ApplicationController
     end
   end
 
+
   def update_scores
-    @event_voluntary = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:id]).first
-    if @current_user.user_polymorphism.user_data_type == "Voluntary"
-      data = params[:score]
-      if !data[:scoreorganization].nil? && data[:scoreorganization] => 0 && data[:scoreorganization] <= 5 
-        aux = {scoreorganization: data[:scoreorganization], commentsorganization: data[:commentsorganization]}
-        @event_voluntary.update(data)
-      end
-      
+    if Event.find(params[:id]).start_datetime > Time.now.to_i*1000
       render json: {
         success: "false",
-        data: @aux.errors
-    }, status: :unauthorized
+        data: 'Evento no iniciado'
+        }, status: :unprocessable_entity
     else
-    if @event_voluntary.update(event_voluntary_params)
-      render json: @event_voluntary
+    if @current_user.user_polymorphism.user_data_type == "Voluntary"
+      @event_voluntary = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:id]).first
+      @event_voluntary = EventVoluntary.voluntaryInEvent(data[:voluntary_id], params[:id]).first
+      if @event_voluntary.nil?
+        render json: {
+          success: "false",
+          data: 'El voluntario no exite para este evento'
+        }, status: :unprocessable_entity
+        return
+      end
+      data = params[:score]
+      if !data[:scoreorganization].nil? && data[:scoreorganization].to_i >= 0 && data[:scoreorganization].to_i <= 5 
+        aux = {scoreorganization: data[:scoreorganization].to_i, commentsorganization: data[:commentsorganization]}
+        @event_voluntary.update(aux)
+        render json: {
+          success: "true",
+          data: aux
+        }, status: :ok
+      else
+        render json: {
+          success: "false",
+          data: 'La calificacion ingresada no es valida'
+        }, status: :unprocessable_entity
+      end
     else
-      render json: @event_voluntary.errors, status: :unprocessable_entity
+      data = params[:score]
+      if !data[:scorevoluntary].nil? && data[:scorevoluntary].to_i >= 0 && data[:scorevoluntary].to_i <= 5 && data[:voluntary_id]
+        @event_voluntary = EventVoluntary.voluntaryInEvent(data[:voluntary_id], params[:id]).first
+        if @event_voluntary.nil?
+          render json: {
+            success: "false",
+            data: 'El voluntario no exite para este evento'
+          }, status: :unprocessable_entity
+          return
+        end
+        aux = {scorevoluntary: data[:scorevoluntary].to_i, commentsvoluntary: data[:commentsvoluntary]}
+        @event_voluntary.update(aux)
+        render json: {
+          success: "true",
+          data: aux
+        }, status: :ok
+      else
+        render json: {
+          success: "false",
+          data: 'Datos imcompletos, se requiere Voluntario y calificacion 0-5'
+        }, status: :unprocessable_entity
+      end
     end
   end
-  end
+end
 
   # DELETE /event_voluntaries/1
   def destroy

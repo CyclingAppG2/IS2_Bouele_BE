@@ -152,6 +152,7 @@ Rails.application.routes.draw do
   get 'voluntaries_in_event/:id' => 'events#voluntaries_in_event'
   delete 'voluntary/leave_event' => 'event_voluntaries#leave_event'
   get 'organizations/statistics/:id' => 'organizations#statistics'
+  put 'event/scores/:id' => 'event_voluntaries#update_scores'
   resources :genders,  only: [:show]
   resources :theme_interests_voluntaries,  only: [:show]
   #get 'devise_token_auth_override/session'
@@ -194,6 +195,7 @@ Rails.application.routes.draw do
   resources :forum_threads
   resources :subforums
   get 'userType' => "user_polymorphisms#getTypeUser"
+
 
  
   root to: "home#index"
