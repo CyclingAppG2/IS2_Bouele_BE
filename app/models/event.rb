@@ -54,6 +54,7 @@ class Event < ApplicationRecord
       ans
     end
 
+
     def self.filter_events(events, filters, voluntary_id )
       filter = validate_filters(filters)
       strFilter = ""
@@ -87,6 +88,8 @@ class Event < ApplicationRecord
       end
       result
     end
+
+
   
 
   def validate_voluntary_limit(event_voluntary)

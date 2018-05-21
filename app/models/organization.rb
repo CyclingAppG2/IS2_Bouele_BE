@@ -42,9 +42,9 @@ class Organization < ApplicationRecord
         years.each do |y|
             data = []
             month.each do |m|
-                firstDay = Date.civil(y,m,1).to_time.to_i*1000
-                lastDay = Date.civil(y,m,-1).to_time.to_i*1000
-                data.push(@org.events.where("events.start_datetime > ? AND events.start_datetime < ?",firstDay,lastDay).count)
+                firstDay = DateTime.new(y,m,1).to_time.to_i*1000
+                lastDay = DateTime.new(y,m,-1,-1,-1,-1).to_time.to_i*1000
+                data.push(@org.events.where("events.start_datetime > ? AND events.start_datetime <= ?",firstDay,lastDay).count)
             end
             statistics["eventsStartInMonth"] = {y.to_s => data}
         end
