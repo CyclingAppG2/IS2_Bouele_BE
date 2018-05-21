@@ -43,10 +43,20 @@ class EventVoluntariesController < ApplicationController
 
   # PATCH/PUT /event_voluntaries/1
   def update
+    if @event_voluntary.update(event_voluntary_params)
+      render json: @event_voluntary
+    else
+      render json: @event_voluntary.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update_scores
+    @event_voluntary = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:id]).first
     if @current_user.user_polymorphism.user_data_type == "Voluntary"
-      data = event_voluntary_params
+      data = params[:score]
       if !data[:scoreorganization].nil? && data[:scoreorganization] => 0 && data[:scoreorganization] <= 5 
-        @event_voluntary
+        aux = {scoreorganization: data[:scoreorganization], commentsorganization: data[:commentsorganization]}
+        @event_voluntary.update(data)
       end
       
       render json: {
@@ -60,25 +70,6 @@ class EventVoluntariesController < ApplicationController
       render json: @event_voluntary.errors, status: :unprocessable_entity
     end
   end
-
-  def update_scores
-    @event_voluntary = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:id]).first
-    if @current_user.user_polymorphism.user_data_type == "Voluntary"
-      data = params[:score]
-      if !data[:scoreorganization].nil? && data[:scoreorganization] => 0 && data[:scoreorganization] <= 5 
-        @event_voluntary
-      end
-      
-      render json: {
-        success: "false",
-        data: @aux.errors
-    }, status: :unauthorized
-    else
-    if @event_voluntary.update(event_voluntary_params)
-      render json: @event_voluntary
-    else
-      render json: @event_voluntary.errors, status: :unprocessable_entity
-    end
   end
 
   # DELETE /event_voluntaries/1
