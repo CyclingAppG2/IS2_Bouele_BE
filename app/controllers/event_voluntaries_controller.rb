@@ -59,8 +59,8 @@ class EventVoluntariesController < ApplicationController
         }, status: :unprocessable_entity
     else
     if @current_user.user_polymorphism.user_data_type == "Voluntary"
+      data = params[:score]
       @event_voluntary = EventVoluntary.voluntaryInEvent(@current_user.user_polymorphism.user_data.id, params[:id]).first
-      @event_voluntary = EventVoluntary.voluntaryInEvent(data[:voluntary_id], params[:id]).first
       if @event_voluntary.nil?
         render json: {
           success: "false",
@@ -68,10 +68,10 @@ class EventVoluntariesController < ApplicationController
         }, status: :unprocessable_entity
         return
       end
-      data = params[:score]
       if !data[:scoreorganization].nil? && data[:scoreorganization].to_i >= 0 && data[:scoreorganization].to_i <= 5 
         aux = {scoreorganization: data[:scoreorganization].to_i, commentsorganization: data[:commentsorganization]}
         @event_voluntary.update(aux)
+        Organization.calculateScore(@current_user.user_polymorphism.user_data.id)
         render json: {
           success: "true",
           data: aux
@@ -95,6 +95,7 @@ class EventVoluntariesController < ApplicationController
         end
         aux = {scorevoluntary: data[:scorevoluntary].to_i, commentsvoluntary: data[:commentsvoluntary]}
         @event_voluntary.update(aux)
+        
         render json: {
           success: "true",
           data: aux

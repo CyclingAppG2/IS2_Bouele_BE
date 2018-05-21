@@ -8,12 +8,11 @@
 #  mainaddress              :string
 #  branches                 :string
 #  firm                     :string
-#  organization_score       :integer
+#  organization_score       :float
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  organization_category_id :integer
 #  minicipality_id          :integer
-#  score                    :float
 #
 # Indexes
 #
@@ -66,7 +65,7 @@ class Organization < ApplicationRecord
         @organization.events.each do |e|
             data += e.voluntaries.where('event_voluntaries.scoreorganization IS NOT ?', nil).average('event_voluntaries.scoreorganization').to_f
         end
-        @organization.score = data / @organization.events.count
+        @organization.organization_score = data.to_f / @organization.events.count
         @organization.save
     end
 

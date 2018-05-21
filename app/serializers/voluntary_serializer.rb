@@ -3,9 +3,9 @@
 # Table name: voluntaries
 #
 #  id              :integer          not null, primary key
-#  voluntary_score :integer
+#  voluntary_score :float
 #  birthday        :date
-#  cellphone       :bigint(8)
+#  cellphone       :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  minicipality_id :integer

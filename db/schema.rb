@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521040712) do
+ActiveRecord::Schema.define(version: 20180521070414) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -164,12 +164,11 @@ ActiveRecord::Schema.define(version: 20180521040712) do
     t.string "mainaddress"
     t.string "branches"
     t.string "firm"
-    t.integer "organization_score"
+    t.float "organization_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "organization_category_id"
     t.integer "minicipality_id"
-    t.float "score"
     t.index ["minicipality_id"], name: "index_organizations_on_minicipality_id"
     t.index ["organization_category_id"], name: "index_organizations_on_organization_category_id"
   end
@@ -253,9 +252,9 @@ ActiveRecord::Schema.define(version: 20180521040712) do
   end
 
   create_table "voluntaries", force: :cascade do |t|
-    t.integer "voluntary_score"
+    t.float "voluntary_score"
     t.date "birthday"
-    t.bigint "cellphone"
+    t.integer "cellphone", limit: 8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "minicipality_id"

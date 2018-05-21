@@ -105,6 +105,13 @@ end
     end        
 
 end
+Voluntary.all.each do |v|
+    Voluntary.calculateScore(v.id)
+end
+Organization.all.each do |o|
+    Organization.calculateScore(o.id)
+end
+
 
 Admin.create(email: "caralopezrom@unal.edu.co",
                 password: "123456789",
