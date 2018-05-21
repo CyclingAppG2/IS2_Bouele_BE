@@ -50,7 +50,6 @@ class OrganizationsController < ApplicationController
         data: @aux.errors
     }, status: :unauthorized
     else
-      end
       if @organization.update(organization_params)
         render json: @organization
       else

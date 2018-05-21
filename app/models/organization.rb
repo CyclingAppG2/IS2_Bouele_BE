@@ -34,7 +34,7 @@ class Organization < ApplicationRecord
         @org = Organization.find(organization_id)
         years = []
         for i in @org.created_at.year..Time.now.year
-        years.push(i)
+            years.push(i)
         end
         month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         
