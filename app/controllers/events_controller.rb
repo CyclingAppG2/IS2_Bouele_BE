@@ -148,6 +148,21 @@ class EventsController < ApplicationController
     end
   end
 
+  def events_by_filters
+    if @current_user.user_polymorphism.user_data_type == "Voluntary"
+      if params[:filters].present?
+        render json: Event.filter_events(params[:filters], @current_user.user_polymorphism.user_data.id )
+      else
+        render json: {
+          success: "false",
+          data: "Faltan los filtros"
+      }, status: :unprocessable_entity
+      end
+    else
+      render json: {}, status: :not_found
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -55,15 +55,28 @@ class Event < ApplicationRecord
     end
 
 
-    def self.filter_events(events, filters, voluntary_id )
-      filter = validate_filters(filters)
-      strFilter = ""
-      # filter.each do |f|
-      #   strFilter += 
-      # end
-      Event.where("start_datetime > ?   ", Time.now.to_i*1000, )
+    def self.filter_events(filters, voluntary_id )
+      filter = Event.validate_filters(filters)
+      query = Event.joins(:plus)
+    if filter[:name].present?
+      query = query.where("events.name LIKE  ?", "%#{filter[:name]}%")
+    end
+    if filter[:date_min].present?
+      query = query.where("events.start_datetime > ?", filter[:date_min] )
+    end
+    if filter[:date_min].present?
+      query = query.where("events.start_datetime < ?", filter[:date_max] )
+    end  
+     if filter[:plus].present?
+       query = query.where("plus.name LIKE ?","%#{filter[:plus]}%" )
+     end
+     query = query.where("events.start_datetime > ?   ", Time.now.to_i*1000 )
 
-      
+     ans = []
+    query.all.each do |event|
+      ans = event.voluntaries.count() < event.max_voluntaries && !event.voluntaries.exists?(voluntary_id)  ?  ans.push(event) : ans
+    end
+    ans
     end
 
     private
@@ -71,18 +84,21 @@ class Event < ApplicationRecord
       Event.where("start_datetime > ? ", Time.now.to_i*1000)
     end
 
-    def validate_filters(filters)
+    def self.validate_filters(filters)
       result = {}
       if !filters.nil?
         filters.each do |filter|
           if filter[:type] == "plus"
             result[:plus] = filter[:data]
           end
-          if filter[:date_min] == "plus"
+          if filter[:type] == "date_min"
             result[:date_min] = filter[:data]
           end
-          if filter[:date_max] == "plus"
+          if filter[:type] == "date_maxs"
             result[:date_max] = filter[:data]
+          end
+          if filter[:type] == "name"
+            result[:name] = filter[:data]
           end
         end
       end
