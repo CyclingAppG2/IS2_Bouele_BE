@@ -3,10 +3,9 @@
 
 <head>
     <title>PDF</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
 
-    <head>
         <meta charset="UTF-8">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -14,22 +13,22 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-    </head>
+
 </head>
 
 <body>
     <div class="container">
         <div class="text-center">
-            <h1>Lista de voluntarios inscritos en el evento
+            <h2>Lista de voluntarios inscritos en el evento
                 <%= @event.name%>
-            </h1>
+            </h2>
         </div>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Email</th>
-                    <th>Score</th>
+                    <th>% de calificacions positivas</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +37,18 @@
                     <tr>
                         <th><%= voluntary.name%> </th>
                         <th><%= voluntary.email%> </th>
-                        <th><%= voluntary.user_polymorphism.user_data.voluntary_score.nil?  ? "Es primera vez :)" : voluntary.user_polymorphism.user_data.voluntary_score %> </th>
+                        <th>
+                        <% n = voluntary.user_polymorphism.user_data.voluntary_score.nil?  ?  -1 : (voluntary.user_polymorphism.user_data.voluntary_score * 100) / 5 %>
+                        <% if n != -1 %>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width:<%='%.2f'%n%>%">
+                                <%='%.2f'%n%>
+                                </div>
+                            </div>
+                        <% else %>
+                            Es primera vez :)
+                        <% end %> 
+                        </th>
                     </tr>
                     <%end%>
 
@@ -48,37 +58,38 @@
         <br>
         <br>
         <br>
-    <div class="col-4">
-        <div class="card bg-warning">
-            <div class="card-body">
-                <h4>Fecha y hora:</h4>
-                <h5><%= Time.at((@event.start_datetime/1000).to_i).localtime%></h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-8">
-            <div class="card bg-success">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-warning">
                 <div class="card-body">
-                    <h4>Descripcion:</h4>
-                    <h5><%= @event.description%></h5>
+                    <h4>Fecha y hora:</h4>
+                    <h5><%= Time.at((@event.start_datetime/1000).to_i).localtime%></h5>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-                <div class="card bg-secondary">
+        <div class="col">
+                <div class="card bg-success">
                     <div class="card-body">
-                        <h4>Fecha de creacion:</h4>
-                        <h5><%= @event.created_at.localtime%></h5>
+                        <h4>Descripcion:</h4>
+                        <h5><%= @event.description%></h5>
                     </div>
                 </div>
             </div>
+    </div>
+        <div class="row">
+        	<div class="col">
+        	        <div class="card bg-secondary">
+        	            <div class="card-body">
+        	                <h4>Fecha de creacion:</h4>
+        	                <h5><%= @event.created_at.localtime%></h5>
+        	            </div>
+        	        </div>
+        	    </div>
+        </div>
    
         
         
     </div>
-
-
-
     
 </body>
 
