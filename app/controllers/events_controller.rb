@@ -108,14 +108,11 @@ class EventsController < ApplicationController
 
   def events_available
     if @current_user.user_polymorphism.user_data_type != "Organization"
-      size_per_page = 10.0
-      page_now = params[:page].nil? ? 1 : params[:page]
+      
       @events = Event.eventsAvailables(@current_user.user_polymorphism.user_data.id)
-      if params[:count].nil?
-        render json: @events.paginate(:page => page_now , :per_page => size_per_page)
-      else
-        render json: (@events.count/size_per_page).floor
-      end
+      
+      render json: @events
+ 
     else
       render json: {
         success: "false",
