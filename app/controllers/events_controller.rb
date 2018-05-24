@@ -107,12 +107,32 @@ class EventsController < ApplicationController
   end
 
   def events_available
-    @events = Event.eventsAvailables(@current_user.user_polymorphism.user_data.id)
-    render json: @events
+    if @current_user.user_polymorphism.user_data_type != "Organization"
+      size_per_page = 10.0
+      page_now = params[:page].nil? ? 1 : params[:page]
+      @events = Event.eventsAvailables(@current_user.user_polymorphism.user_data.id)
+      if params[:count].nil?
+        render json: @events.paginate(:page => page_now , :per_page => size_per_page)
+      else
+        render json: (@events.count/size_per_page).floor
+      end
+    else
+      render json: {
+        success: "false",
+        data: "Solo un voluntario puede verificar los eventos disponibles"
+    }, status: :not_found
+    end
+    
+    
+    
+    
   end
 
   def my_events
     @ans = nil
+    size_per_page = 10.0
+    page_now = params[:page].nil? ? 1 : params[:page]
+    
     if @current_user.user_polymorphism.user_data_type == "Organization"
       @ans = Organization.find(@current_user.user_polymorphism.user_data.id)
       # format.json {render   json: @organization.events}
@@ -126,7 +146,13 @@ class EventsController < ApplicationController
         data: "Error al consultar events"
     }, status: :unprocessable_entity
     else
-      render   json: @ans.events.order(:start_datetime)
+      if params[:count].nil?
+        render   json: @ans.events.order(:start_datetime).paginate(:page => page_now , :per_page => size_per_page)
+      else
+        render json: (@ans.events.count/size_per_page).floor
+      end
+      
+      
     end
     
   end

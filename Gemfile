@@ -48,6 +48,12 @@ gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 #gem 'prawn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem "wkhtmltopdf-binary-edge"
+
+# Gema para graficos en el pdf 
+gem "chartkick"
+# Gema para agrupar por fechas
+gem 'groupdate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
