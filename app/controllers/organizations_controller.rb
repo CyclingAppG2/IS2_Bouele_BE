@@ -70,8 +70,18 @@ class OrganizationsController < ApplicationController
         data: @aux.errors
     }, status: :unauthorized
     else
-      data = Organization.getMyStatistics(@organization.id)
-      render json: data.as_json
+
+      @data = Organization.getMyStatistics(@organization.id)
+      respond_to do |format|
+        format.json {render   json: @data.as_json}
+        format.pdf do 
+          pdf = StatisticPdf.new(@current_user.user_polymorphism.user_data, @data)
+          send_data pdf.render, filename: "Statistics #{@current_user.user_polymorphism.user_data.firm}.pdf ",
+                                type: "application/pdf",
+                                disposition: "inline"
+        end
+      end
+      # render json: data.as_json
     end
   end
 

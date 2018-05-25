@@ -45,7 +45,7 @@ gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 # gem 'rack-cors'
 
 #gem reporte pdf
-#gem 'prawn'
+gem 'prawn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem "wkhtmltopdf-binary-edge"
@@ -54,6 +54,9 @@ gem "wkhtmltopdf-binary-edge"
 gem "chartkick"
 # Gema para agrupar por fechas
 gem 'groupdate'
+
+# gema para graficos
+gem 'squid', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
