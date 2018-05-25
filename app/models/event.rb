@@ -62,10 +62,10 @@ class Event < ApplicationRecord
       query = query.where("events.name LIKE  ?", "%#{filter[:name]}%")
     end
     if filter[:date_min].present?
-      query = query.where("events.start_datetime <= ?", filter[:date_min] )
+      query = query.where("events.start_datetime >= ?", filter[:date_min] )
     end
-    if filter[:date_min].present?
-      query = query.where("events.start_datetime >= ?", filter[:date_max] )
+    if filter[:date_max].present?
+      query = query.where("events.start_datetime <= ?", filter[:date_max] )
     end  
      if filter[:plus].present?
        query = query.where("plus.name LIKE ?","%#{filter[:plus]}%" )
@@ -94,7 +94,7 @@ class Event < ApplicationRecord
           if filter[:type] == "date_min"
             result[:date_min] = filter[:data]
           end
-          if filter[:type] == "date_maxs"
+          if filter[:type] == "date_max"
             result[:date_max] = filter[:data]
           end
           if filter[:type] == "name"
