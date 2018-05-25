@@ -144,9 +144,9 @@ class EventsController < ApplicationController
     }, status: :unprocessable_entity
     else
       if params[:count].nil?
-        render   json: @ans.events.order(:start_datetime).paginate(:page => page_now , :per_page => size_per_page)
+        render   json: @ans.events.order(start_datetime: :desc).paginate(:page => page_now , :per_page => size_per_page)
       else
-        render json: (@ans.events.count/size_per_page).floor
+        render json: (@ans.events.count/size_per_page).ceil
       end
       
       

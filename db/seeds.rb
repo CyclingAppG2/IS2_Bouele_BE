@@ -95,7 +95,7 @@ end
         ev = EventVoluntary.create(voluntary_id: i,
             event_id: e.id,
             created_at: Faker::Date.between(2.years.ago, 2.days.ago) )
-        if Random.new.rand(1..3) != 3 && e.start_datetime < Time.now.to_i *1000
+        if Random.new.rand(1..3) != 3 && e.start_datetime < (Time.now.to_i * 1000)
             ev.scorevoluntary = Random.new.rand(0..5)
             ev.scoreorganization = Random.new.rand(0..5)
             ev.commentsvoluntary = Faker::RickAndMorty.quote
