@@ -1,15 +1,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :voluntaries_in_event]
 
-  # def getStatisticsByUser
-    
-  # end
-
   # GET /events
   def index
-    @events = Event.all
-
-    render json: @events
+    @events = Event.all.order(name: :asc).select(:id, :name)
+    render json: {data: @events}
   end
 
   # GET /events/1

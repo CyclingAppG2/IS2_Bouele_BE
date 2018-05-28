@@ -22,6 +22,7 @@
 #  tokens                 :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  points_day             :integer          default(0), not null
 #
 # Indexes
 #
@@ -31,9 +32,9 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id,  :email, :password, :name, :username#, :image
+  attributes :id,  :email, :name, :username#, :image
 
-  has_many :bans
+  # has_many :bans
   has_many :admins
   has_many :forum_threads
   has_many :forum_posts	

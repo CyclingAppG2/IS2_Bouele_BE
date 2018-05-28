@@ -3,10 +3,19 @@ class ForumThreadsController < ApplicationController
 
   # GET /forum_threads
   def index
-    @forum_threads = ForumThread.all
+    render json: (ForumThread.all.count/20.0).ceil
+  end
+
+  def index_by
+    page_now = params[:page].nil? ? 1 : params[:page]
+    data = params[:by].nil? ? 1 : params[:by].to_i
+    page_now > ForumThread.all.count ? 1 : page_now
+    @forum_threads = ForumThread.getForumThreadsBy(data, page_now)
 
     render json: @forum_threads
   end
+
+
 
   # GET /forum_threads/1
   def show
@@ -15,7 +24,9 @@ class ForumThreadsController < ApplicationController
 
   # POST /forum_threads
   def create
-    @forum_thread = ForumThread.new(forum_thread_params)
+    data = forum_thread_params
+    data[:user_id] = @current_user.id
+    @forum_thread = ForumThread.new(data)
 
     if @forum_thread.save
       render json: @forum_thread, status: :created, location: @forum_thread
@@ -46,6 +57,6 @@ class ForumThreadsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def forum_thread_params
-      params.require(:forum_thread).permit(:text, :images, :createdat, :updatedat)
+      params.require(:forum_thread).permit(:body, :img_prev, :event_id, :title)
     end
 end

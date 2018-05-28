@@ -26,4 +26,5 @@ class EventSerializer < ActiveModel::Serializer
   has_many :plus
   has_many :locations
   belongs_to :organization
+  has_many :forum_threads
 end

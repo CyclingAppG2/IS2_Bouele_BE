@@ -147,6 +147,7 @@
 #                               root GET      /                                             home#index
 
 Rails.application.routes.draw do
+  resources :tags
   get 'events/my_events' => "events#my_events"
   get 'events/available' => 'events#events_available'
   get 'voluntaries_in_event/:id' => 'events#voluntaries_in_event'
@@ -157,6 +158,9 @@ Rails.application.routes.draw do
   resources :genders,  only: [:show]
   resources :theme_interests_voluntaries,  only: [:show]
   #get 'devise_token_auth_override/session'
+
+  get 'forums' => 'forum_threads#index_by'
+  get 'forums/size_paginate' => 'forum_threads#index'
 
   require "devise_token_auth"
   resources :contact_data

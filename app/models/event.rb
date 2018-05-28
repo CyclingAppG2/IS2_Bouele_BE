@@ -23,7 +23,8 @@ class Event < ApplicationRecord
 	has_many :voluntaries, through: :event_voluntaries
 	has_many :plus, dependent: :destroy
 	has_many :locations, dependent: :destroy
-	belongs_to :organization
+  belongs_to :organization
+  has_many :forum_threads
 
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
     validates :description, presence: true, length: {minimum: 20}

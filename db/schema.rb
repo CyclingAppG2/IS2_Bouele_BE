@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521070414) do
+ActiveRecord::Schema.define(version: 20180528045509) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -116,12 +116,15 @@ ActiveRecord::Schema.define(version: 20180521070414) do
   end
 
   create_table "forum_threads", force: :cascade do |t|
-    t.string "text"
+    t.text "body"
     t.integer "user_id"
-    t.integer "subforum_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
+    t.integer "event_id"
+    t.bigint "points", default: 0, null: false
+    t.string "img_prev"
+    t.string "title"
+    t.index ["event_id"], name: "index_forum_threads_on_event_id"
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
   end
 
@@ -196,6 +199,14 @@ ActiveRecord::Schema.define(version: 20180521070414) do
     t.index ["admin_id"], name: "index_subforums_on_admin_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.integer "forum_thread_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_thread_id"], name: "index_tags_on_forum_thread_id"
+  end
+
   create_table "theme_interests", force: :cascade do |t|
     t.string "themesinterest"
     t.datetime "created_at", null: false
@@ -246,6 +257,7 @@ ActiveRecord::Schema.define(version: 20180521070414) do
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_day", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
