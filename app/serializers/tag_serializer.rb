@@ -15,5 +15,5 @@
 
 class TagSerializer < ActiveModel::Serializer
   attributes :id, :title
-  has_one :forum_threads
+  belongs_to :forum_thread
 end

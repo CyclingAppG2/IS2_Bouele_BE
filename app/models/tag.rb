@@ -14,5 +14,7 @@
 #
 
 class Tag < ApplicationRecord
-  belongs_to :forum_threads
+  belongs_to :forum_thread
+
+  
 end

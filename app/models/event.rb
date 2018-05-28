@@ -19,12 +19,12 @@
 #
 
 class Event < ApplicationRecord
-	has_many :event_voluntaries, before_add: :validate_voluntary_limit, dependent: :destroy
-	has_many :voluntaries, through: :event_voluntaries
+	has_many :event_voluntaries, dependent: :destroy
+	has_many :voluntaries, through: :event_voluntaries,  dependent: :destroy
 	has_many :plus, dependent: :destroy
 	has_many :locations, dependent: :destroy
   belongs_to :organization
-  has_many :forum_threads
+  has_many :forum_threads, dependent: :destroy
 
     validates :name, presence: true, length: {minimum: 3}, uniqueness: true
     validates :description, presence: true, length: {minimum: 20}

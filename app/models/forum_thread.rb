@@ -20,13 +20,14 @@
 
 class ForumThread < ApplicationRecord
 	belongs_to :user
-	has_many :tags
-	has_many :forum_posts
-	has_many :attachments
+	has_many :tags, dependent: :destroy
+	has_many :forum_posts,  dependent: :destroy
+	has_many :attachments, dependent: :destroy
 	validates :body, presence: true, length: {minimum: 200}
-	validates :title, presence: true, length: {minimum: 5}
+	validates :title, presence: true, length: {minimum: 5},  uniqueness: true
 	mount_uploader :img_prev, ImageUploader
 	# validates :img_prev, presence: true
+
 
 	def self.getForumThreadsBy(data, page)
 		size_per_page = 20.0
