@@ -15,6 +15,7 @@ class ForumPostsController < ApplicationController
 
   # POST /forum_posts
   def create
+
     @forum_post = ForumPost.new(forum_post_params)
 
     if @forum_post.save
@@ -46,6 +47,6 @@ class ForumPostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def forum_post_params
-      params.require(:forum_post).permit(:text, :createdat, :updatedat)
+      params.require(:forum_post).permit(:text)
     end
 end

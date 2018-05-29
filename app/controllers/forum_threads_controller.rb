@@ -46,7 +46,12 @@ class ForumThreadsController < ApplicationController
   # PATCH/PUT /forum_threads/1
   def update
     if @forum_thread.user_id == @current_user.id
-      if @forum_thread.update(forum_thread_params)
+      if !params[:img_prev].nil?
+        @data = {img_prev: params[:img_prev]}
+      else
+       @data = forum_thread_params
+      end
+      if @forum_thread.update(@data)
         render json: @forum_thread
       else
         render json: @forum_thread.errors, status: :unprocessable_entity
