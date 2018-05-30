@@ -19,10 +19,11 @@
 #
 
 class ForumThreadSerializer < ActiveModel::Serializer
-  attributes :id, :body, :user_id , :title, :points, :img_prev, :updated_at
+  attributes :id, :body, :user_id , :title, :points, :img_prev, :updated_at, :created_at
 
-  belongs_to :user
+  	belongs_to :user
 	has_many :tags
 	has_many :forum_posts
 	has_many :attachments
+	has_one :event_id
 end

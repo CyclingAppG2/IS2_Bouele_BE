@@ -72,15 +72,16 @@ class ForumThreadsController < ApplicationController
   end
 
   def update_points
-    @points = params[:forum_thread][:points].nil? ? 0 : params[:forum_thread][:points].to_i
-    if @points < @current_user.points_day
-      if @forum_thread.update(points: @points+@forum_thread.points )
+    @points = params[:forum_thread][:points].nil? ? 0 : params[:forum_thread][:points].to_i <= @current_user.points_day ? params[:forum_thread][:points].to_i : @current_user.points_day 
+    if @points <= @current_user.points_day
+      if @current_user.update(points_day: @current_user.points_day-@points) && @forum_thread.update(points: @points+@forum_thread.points)
+
         render json: @forum_thread
       else
         render json: @forum_thread.errors, status: :unprocessable_entity
       end
     else
-      render json: "No posee los suficientes puntos para asignar a este foro", status: :bad_request
+      render json: "No posee los suficientes puntos para asignar a este foro".to_json, status: :bad_request
     end    
   end
 

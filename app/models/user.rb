@@ -47,8 +47,13 @@ class User < ApplicationRecord
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true
+    validates :points_day, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
     mount_uploader :image, AvatarUploader
     #serialize :image, JSON 
 
-    
+  def self.updatePointsDay
+    User.all.each do |u|
+      u.update(points_day: 10)
+    end
+  end
 end
