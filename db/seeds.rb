@@ -119,9 +119,9 @@ end
         description: Faker::Lovecraft.fhtagn(2),
         duration: x*10+1,
         start_datetime: Faker::Number.between(1451624400000, 1577768400000),
-        max_voluntaries: ((x*3)%10 )+ 5,
-        remote_files_urls: [im1.to_s]
+        max_voluntaries: ((x*3)%10 )+ 5
         )
+    e.update(remote_files_urls: [im1.to_s])
         2.times do
             Location.create(longitude: Faker::Address.longitude,
                             latitude: Faker::Address.latitude,
@@ -155,6 +155,18 @@ Organization.all.each do |o|
 end
 
 20.times do
+    s = Faker::LoremFlickr.image("400x300")
+    uri = URI.parse(s)
+    tries = 3
+    im = nil
+    begin
+        uri.open(redirect: false)
+        rescue OpenURI::HTTPRedirect => redirect
+        uri = redirect.uri # assigned from the "Location" response header
+        im =  uri
+        retry if (tries -= 1) > 0
+        raise
+    end
     f = ForumThread.create(user_id: Random.new.rand(1..50),
                         event_id: Random.new.rand(1..100),
                         body: Faker::Lorem.paragraph_by_chars(1024, false),
@@ -162,7 +174,7 @@ end
                         points: Random.new.rand(0..125),
                         created_at: Faker::Date.between(2.years.ago, 2.days.ago)
                         )
-    
+    f.update(remote_img_prev_url: im.to_s)
     Random.new.rand(0..12).times do
         ForumPost.create(
             forum_thread_id: f.id,
