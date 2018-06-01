@@ -33,14 +33,26 @@ end
                         organization_category_id: org.id,
                         created_at: Time.new(2016,1,1)
                         )
+                        s = Faker::LoremFlickr.image("200x200", ['object'])
+                        uri = URI.parse(s)
+                        tries = 3
+                        im = nil
+                        begin
+                            uri.open(redirect: false)
+                            rescue OpenURI::HTTPRedirect => redirect
+                            uri = redirect.uri # assigned from the "Location" response header
+                            im =  uri
+                            retry if (tries -= 1) > 0
+                            raise
+                        end
                         u = User.create(
                             email: "mailUser" + x.to_s+ "@gmail.com",
                             password: "123456789",
                             name: Faker::HarryPotter.character,
                             username: Faker::Internet.user_name,
-                            password_confirmation: "123456789",
-                            image: { "url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)}
+                            password_confirmation: "123456789"                            
                             )
+                        u.update(remote_image_url: im.to_s)                            
                         up = UserPolymorphism.create(
                         user_id: u.id,
                             user_data_id: o.id,
@@ -53,6 +65,18 @@ end
                         gender_id: x%2==0 ? 1 : 2,
                         cellphone: Faker::Number.number(10))
                     ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
+                    s = Faker::LoremFlickr.image("200x200", ['man', 'women'])
+                    uri = URI.parse(s)
+                    tries = 3
+                    im = nil
+                    begin
+                        uri.open(redirect: false)
+                        rescue OpenURI::HTTPRedirect => redirect
+                        uri = redirect.uri # assigned from the "Location" response header
+                        im =  uri
+                        retry if (tries -= 1) > 0
+                        raise
+                    end
                     u = User.create(
                         email: "mailUser" + x.to_s+ "@gmail.com",
                         password: "123456789",
@@ -60,6 +84,7 @@ end
                         username: Faker::Internet.user_name,
                         password_confirmation: "123456789"
                         )
+                    u.update(remote_image_url: im.to_s) 
                     up = UserPolymorphism.create(
                     user_id: u.id,
                         user_data_id: o.id,
@@ -74,6 +99,20 @@ end
 
 
 100.times do |x|
+    
+    s = Faker::LoremFlickr.image("400x300")
+    uri = URI.parse(s)
+    tries = 3
+    im1 = nil
+    begin
+        uri.open(redirect: false)
+        rescue OpenURI::HTTPRedirect => redirect
+        uri = redirect.uri # assigned from the "Location" response header
+        im1 =  uri
+        retry if (tries -= 1) > 0
+        raise
+    end
+
 
     e = Event.create(organization_id: (x%3)+1,
         name: Faker::Team.name,
@@ -81,9 +120,7 @@ end
         duration: x*10+1,
         start_datetime: Faker::Number.between(1451624400000, 1577768400000),
         max_voluntaries: ((x*3)%10 )+ 5,
-        files: [{"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)},
-            {"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)},
-            {"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)}]
+        remote_files_urls: [im1.to_s]
         )
         2.times do
             Location.create(longitude: Faker::Address.longitude,
@@ -116,6 +153,33 @@ end
 Organization.all.each do |o|
     Organization.calculateScore(o.id)
 end
+
+20.times do
+    f = ForumThread.create(user_id: Random.new.rand(1..50),
+                        event_id: Random.new.rand(1..100),
+                        body: Faker::Lorem.paragraph_by_chars(1024, false),
+                        title: Faker::SiliconValley.motto,
+                        points: Random.new.rand(0..125),
+                        created_at: Faker::Date.between(2.years.ago, 2.days.ago)
+                        )
+    
+    Random.new.rand(0..12).times do
+        ForumPost.create(
+            forum_thread_id: f.id,
+            user_id: Random.new.rand(1..50),
+            text: Faker::VForVendetta.quote,
+            created_at: Faker::Date.between(f.created_at, Date.today)
+        )
+        Random.new.rand(0..5).times do
+            r  = Random.new.rand(-1..1)
+            Board.create(
+                user_id: Random.new.rand(1..50),
+                like: r == 0 ? -1 : r
+            )
+        end
+    end       
+end
+
 
 
 Admin.create(email: "caralopezrom@unal.edu.co",

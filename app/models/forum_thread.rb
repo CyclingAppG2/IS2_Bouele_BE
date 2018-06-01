@@ -23,7 +23,7 @@ class ForumThread < ApplicationRecord
 	has_many :tags, dependent: :destroy
 	has_many :forum_posts,  dependent: :destroy
 	has_many :attachments, dependent: :destroy
-	validates :body, presence: true, length: {minimum: 200}
+	validates :body, presence: true, length: {in: 20..5000}
 	validates :title, presence: true, length: {minimum: 5},  uniqueness: true
 	mount_uploader :img_prev, ImageUploader
 	# validates :img_prev, presence: true

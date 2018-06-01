@@ -19,7 +19,7 @@ gem 'puma', '~> 3.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Gema poblar base de datos
-gem 'faker'
+gem 'faker', github: 'stympy/faker'
 # gema paginacion
 gem 'will_paginate', '~> 3.1.0'
 # Gema para imagenes y archivos
