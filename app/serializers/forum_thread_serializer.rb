@@ -24,6 +24,6 @@ class ForumThreadSerializer < ActiveModel::Serializer
   	belongs_to :user
 	has_many :tags
 	has_many :forum_posts
-	has_many :attachments
+	# has_many :attachments
 	has_one :event_id
 end
