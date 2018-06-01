@@ -18,6 +18,11 @@
 class ForumPost < ApplicationRecord
 	belongs_to :forum_thread
 	belongs_to :user
-	has_many :attachments
-    validates :text, presence: true, length: {minimum: 20}
+	has_many :boards
+	validates :text, presence: true, length: {minimum: 5}
+	
+	def self.getAllForumPostByForumThread(forum_thread_id)
+		ForumPost.where(forum_thread_id: forum_thread_id).order(created_at: :asc)
+	end
+
 end

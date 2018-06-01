@@ -38,7 +38,8 @@ end
                             password: "123456789",
                             name: Faker::HarryPotter.character,
                             username: Faker::Internet.user_name,
-                            password_confirmation: "123456789"
+                            password_confirmation: "123456789",
+                            image: { "url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)}
                             )
                         up = UserPolymorphism.create(
                         user_id: u.id,
@@ -79,7 +80,10 @@ end
         description: Faker::Lovecraft.fhtagn(2),
         duration: x*10+1,
         start_datetime: Faker::Number.between(1451624400000, 1577768400000),
-        max_voluntaries: ((x*3)%10 )+ 5
+        max_voluntaries: ((x*3)%10 )+ 5,
+        files: [{"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)},
+            {"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)},
+            {"url": ("https://picsum.photos/800/600?image="+Random.new.rand(0..1084).to_s)}]
         )
         2.times do
             Location.create(longitude: Faker::Address.longitude,

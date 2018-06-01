@@ -20,5 +20,6 @@ class ForumPostSerializer < ActiveModel::Serializer
 
   belongs_to :forum_thread
   belongs_to :user
+  has_many :boards
 
 end

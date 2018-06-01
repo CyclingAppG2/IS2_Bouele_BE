@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528045509) do
+ActiveRecord::Schema.define(version: 20180601033720) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20180528045509) do
     t.index ["admin_id"], name: "index_bans_on_admin_id"
     t.index ["reason_id"], name: "index_bans_on_reason_id"
     t.index ["user_id"], name: "index_bans_on_user_id"
+  end
+
+  create_table "boards", force: :cascade do |t|
+    t.integer "like"
+    t.integer "user_id"
+    t.integer "forum_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_post_id"], name: "index_boards_on_forum_post_id"
+    t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "contact_data", force: :cascade do |t|

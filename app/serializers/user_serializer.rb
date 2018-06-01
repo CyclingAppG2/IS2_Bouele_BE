@@ -32,10 +32,11 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id,  :email, :name, :username, :points_day
+  attributes :id,  :email, :name, :username, :points_day, :image
 
   # has_many :bans
-  has_many :admins
+  # has_many :admins
+  has_many :boards
   has_many :forum_threads
   has_many :forum_posts	
   has_one :user_polymorphism

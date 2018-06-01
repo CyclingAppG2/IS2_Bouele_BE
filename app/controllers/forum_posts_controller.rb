@@ -15,8 +15,9 @@ class ForumPostsController < ApplicationController
 
   # POST /forum_posts
   def create
-
-    @forum_post = ForumPost.new(forum_post_params)
+    @data = forum_post_params
+    @data[:user_id] = @current_user.id
+    @forum_post = ForumPost.new(@data)
 
     if @forum_post.save
       render json: @forum_post, status: :created, location: @forum_post
@@ -39,6 +40,15 @@ class ForumPostsController < ApplicationController
     @forum_post.destroy
   end
 
+  def show_by_forum_thread
+    if params[:id].nil?
+      render json: nil.to_json, status: :not_found
+    else
+      render json: ForumPost.getAllForumPostByForumThread(params[:id])
+    end
+   
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forum_post
@@ -47,6 +57,6 @@ class ForumPostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def forum_post_params
-      params.require(:forum_post).permit(:text)
+      params.require(:forum_post).permit(:text, :forum_thread_id)
     end
 end

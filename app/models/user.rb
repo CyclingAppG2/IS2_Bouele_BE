@@ -42,7 +42,8 @@ class User < ApplicationRecord
 	has_many :bans
 	has_many :admins, through: :bans
 	has_many :forum_threads
-	has_many :forum_posts
+  has_many :forum_posts
+  has_many :boards
 	has_one :user_polymorphism
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
