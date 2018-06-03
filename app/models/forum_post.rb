@@ -23,7 +23,7 @@ class ForumPost < ApplicationRecord
 	validates :text, presence: true, length: {in: 5..300}
 	
 	def self.getAllForumPostByForumThread(forum_thread_id)
-		ForumPost.where(forum_thread_id: forum_thread_id).order(created_at: :asc)
+		ForumPost.where(forum_thread_id: forum_thread_id).order(created_at: :desc)
 	end
 
 end
