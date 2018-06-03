@@ -16,7 +16,7 @@
 #
 
 class BoardSerializer < ActiveModel::Serializer
-  attributes :id, :like
+  attributes :id, :like, :created_at, :updated_at
   has_one :user
   has_one :forum_post
 end

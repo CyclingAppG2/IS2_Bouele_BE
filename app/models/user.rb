@@ -44,7 +44,7 @@ class User < ApplicationRecord
 	has_many :forum_threads,  dependent: :destroy
   has_many :forum_posts,  dependent: :destroy
   has_many :boards,  dependent: :destroy
-  has_one :user_polymorphism, ,  dependent: :destroy
+  has_one :user_polymorphism,   dependent: :destroy
   has_many :forum_posts, through: :boards,  dependent: :destroy
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
