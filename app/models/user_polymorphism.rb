@@ -16,7 +16,7 @@
 
 class UserPolymorphism < ApplicationRecord
   belongs_to :user
-  belongs_to :user_data, polymorphic: true
+  belongs_to :user_data, polymorphic: true,  dependent: :destroy
   #validates :user_id, uniqueness:true
   #validates :user_data_id, :scope => [:user_data_type]
 

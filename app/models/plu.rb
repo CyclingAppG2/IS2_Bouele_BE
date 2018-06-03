@@ -15,5 +15,5 @@
 
 class Plu < ApplicationRecord
 	belongs_to :event
-    validates :name, presence: true, length: {minimum: 5}
+    validates :name, presence: true, length: {minimum: 2}
 end

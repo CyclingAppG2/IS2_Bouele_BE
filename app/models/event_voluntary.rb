@@ -17,10 +17,10 @@ class EventVoluntary < ApplicationRecord
 	belongs_to :voluntary
 	belongs_to :event
     validates :event_id, :uniqueness => { :scope => :voluntary_id }
-    #validates :scorevoluntary, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
-    #validates :scoreorganization, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
-    #validates :commentsvoluntary, presence: true, length: {minimum: 20}
-    #validates :commentsorganization, presence: true, length: {minimum: 20}
+    validates :scorevoluntary, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
+    validates :scoreorganization, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
+    validates :commentsvoluntary, length: {minimum: 5}
+    validates :commentsorganization, length: {minimum: 5}
 
     def self.validateAll(event_id)
         event = Event.find(event_id)

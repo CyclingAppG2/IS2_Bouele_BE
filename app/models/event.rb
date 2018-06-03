@@ -20,7 +20,7 @@
 
 class Event < ApplicationRecord
 	has_many :event_voluntaries, dependent: :destroy
-	has_many :voluntaries, through: :event_voluntaries,  dependent: :destroy
+	has_many :voluntaries, through: :event_voluntaries
 	has_many :plus, dependent: :destroy
 	has_many :locations, dependent: :destroy
   belongs_to :organization

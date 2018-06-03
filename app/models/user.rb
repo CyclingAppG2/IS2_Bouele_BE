@@ -39,13 +39,13 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
 
-	has_many :bans
-	has_many :admins, through: :bans
-	has_many :forum_threads
-  has_many :forum_posts
-  has_many :boards
-  has_one :user_polymorphism
-  has_many :forum_posts, through: :boards
+	# has_many :bans
+	# has_many :admins, through: :bans
+	has_many :forum_threads,  dependent: :destroy
+  has_many :forum_posts,  dependent: :destroy
+  has_many :boards,  dependent: :destroy
+  has_one :user_polymorphism, ,  dependent: :destroy
+  has_many :forum_posts, through: :boards,  dependent: :destroy
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true

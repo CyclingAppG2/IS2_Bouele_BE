@@ -18,7 +18,7 @@
 class ForumPost < ApplicationRecord
 	belongs_to :forum_thread
 	belongs_to :user
-	has_many :boards
+	has_many :boards,  dependent: :destroy
 	has_many :users, through: :boards
 	validates :text, presence: true, length: {in: 5..300}
 	

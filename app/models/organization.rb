@@ -23,7 +23,7 @@
 class Organization < ApplicationRecord
     belongs_to :organization_category
 	belongs_to :minicipality
-	has_many :events
+	has_many :events,  dependent: :destroy
 	has_one :user_polymorphism, as: :user_data
     validates :NIT, presence: true, length: {minimum: 5}
     validates :mainaddress, presence: true, length: {minimum: 5}
