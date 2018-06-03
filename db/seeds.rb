@@ -112,6 +112,18 @@ end
         retry if (tries -= 1) > 0
         raise
     end
+    s = Faker::LoremFlickr.image("400x300")
+    uri = URI.parse(s)
+    tries = 3
+    im2 = nil
+    begin
+        uri.open(redirect: false)
+        rescue OpenURI::HTTPRedirect => redirect
+        uri = redirect.uri # assigned from the "Location" response header
+        im2 =  uri
+        retry if (tries -= 1) > 0
+        raise
+    end
 
 
     e = Event.create(organization_id: (x%3)+1,
@@ -121,7 +133,7 @@ end
         start_datetime: Faker::Number.between(1451624400000, 1577768400000),
         max_voluntaries: ((x*3)%10 )+ 5
         )
-    e.update(remote_files_urls: [im1.to_s])
+    e.update(remote_files_urls: [im1.to_s, im2.to_s])
         2.times do
             Location.create(longitude: Faker::Address.longitude,
                             latitude: Faker::Address.latitude,
@@ -176,7 +188,7 @@ end
                         )
     f.update(remote_img_prev_url: im.to_s)
     Random.new.rand(0..12).times do
-        ForumPost.create(
+       fp= ForumPost.create(
             forum_thread_id: f.id,
             user_id: Random.new.rand(1..50),
             text: Faker::VForVendetta.quote,
@@ -186,7 +198,8 @@ end
             r  = Random.new.rand(-1..1)
             Board.create(
                 user_id: Random.new.rand(1..50),
-                like: r == 0 ? -1 : r
+                like: r == 0 ? -1 : r,
+                forum_post_id: fp.id
             )
         end
     end       
