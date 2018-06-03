@@ -28,11 +28,16 @@ class ForumPostsController < ApplicationController
 
   # PATCH/PUT /forum_posts/1
   def update
-    if @forum_post.update(forum_post_params)
-      render json: @forum_post
+    if @forum_post.user_id == @current_user.id
+      if @forum_post.update(forum_post_params)
+        render json: @forum_post
+      else
+        render json: @forum_post.errors, status: :unprocessable_entity
+      end
     else
-      render json: @forum_post.errors, status: :unprocessable_entity
+      render json: "Esta respuesta no le pertenece".json
     end
+    
   end
 
   # DELETE /forum_posts/1
