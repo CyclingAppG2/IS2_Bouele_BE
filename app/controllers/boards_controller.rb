@@ -15,12 +15,25 @@ class BoardsController < ApplicationController
 
   # POST /boards
   def create
-    @board = Board.new(board_params)
+    @data = board_params
+    @data[:user_id] = @current_user.id 
+
+    @board = Board.new(@data)
 
     if @board.save
       render json: @board, status: :created, location: @board
-    else
+    else 
+      @board = Board.findBy(@current_user.id, @data[:forum_post_id])
+      if @board.nil?
+
       render json: @board.errors, status: :unprocessable_entity
+      else
+       if @board.update(@data)
+        render json: @board
+        else
+          render json: @board.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -38,6 +51,8 @@ class BoardsController < ApplicationController
     @board.destroy
   end
 
+ 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
@@ -46,6 +61,6 @@ class BoardsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def board_params
-      params.require(:board).permit(:like, :user_id, :forum_post_id)
+      params.require(:board).permit(:like, :forum_post_id)
     end
 end

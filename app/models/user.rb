@@ -44,7 +44,8 @@ class User < ApplicationRecord
 	has_many :forum_threads
   has_many :forum_posts
   has_many :boards
-	has_one :user_polymorphism
+  has_one :user_polymorphism
+  has_many :forum_posts, through: :boards
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true
