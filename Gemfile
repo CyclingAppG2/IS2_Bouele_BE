@@ -19,7 +19,7 @@ gem 'puma', '~> 3.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Gema poblar base de datos
-gem 'faker'
+gem 'faker', github: 'stympy/faker'
 # gema paginacion
 gem 'will_paginate', '~> 3.1.0'
 # Gema para imagenes y archivos
@@ -45,9 +45,21 @@ gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 # gem 'rack-cors'
 
 #gem reporte pdf
-#gem 'prawn'
+gem 'prawn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem "wkhtmltopdf-binary-edge"
+
+# Gema para graficos en el pdf 
+gem "chartkick"
+# Gema para agrupar por fechas
+gem 'groupdate'
+
+# gema para graficos
+gem 'squid', '~> 1.2'
+
+# Gema para scheduling 
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -8,7 +8,7 @@
 #  mainaddress              :string
 #  branches                 :string
 #  firm                     :string
-#  organization_score       :integer
+#  organization_score       :float
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  organization_category_id :integer

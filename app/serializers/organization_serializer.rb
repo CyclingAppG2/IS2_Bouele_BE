@@ -8,7 +8,7 @@
 #  mainaddress              :string
 #  branches                 :string
 #  firm                     :string
-#  organization_score       :integer
+#  organization_score       :float
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  organization_category_id :integer
@@ -21,10 +21,14 @@
 #
 
 class OrganizationSerializer < ActiveModel::Serializer
-  attributes :id, :category, :NIT, :mainaddress, :branches, :firm, :organization_score
+  attributes :id, :category, :NIT, :mainaddress, :branches, :firm, :organization_score, :user
 
   belongs_to :organization_category
   belongs_to :minicipality
   has_many :events
   has_one :user_polymorphism
+
+  def user
+    object.user_polymorphism.user
+  end
 end

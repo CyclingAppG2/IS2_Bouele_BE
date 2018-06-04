@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512072844) do
+ActiveRecord::Schema.define(version: 20180601033720) do
 
   create_table "admins", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.index ["user_id"], name: "index_bans_on_user_id"
   end
 
+  create_table "boards", force: :cascade do |t|
+    t.integer "like"
+    t.integer "user_id"
+    t.integer "forum_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_post_id"], name: "index_boards_on_forum_post_id"
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
   create_table "contact_data", force: :cascade do |t|
     t.string "email"
     t.text "body"
@@ -95,9 +105,9 @@ ActiveRecord::Schema.define(version: 20180512072844) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.bigint "duration"
+    t.integer "duration", limit: 8
     t.integer "organization_id"
-    t.datetime "start_datetime"
+    t.bigint "start_datetime"
     t.integer "max_voluntaries", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,12 +126,15 @@ ActiveRecord::Schema.define(version: 20180512072844) do
   end
 
   create_table "forum_threads", force: :cascade do |t|
-    t.string "text"
+    t.text "body"
     t.integer "user_id"
-    t.integer "subforum_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subforum_id"], name: "index_forum_threads_on_subforum_id"
+    t.integer "event_id"
+    t.bigint "points", default: 0, null: false
+    t.string "img_prev"
+    t.string "title"
+    t.index ["event_id"], name: "index_forum_threads_on_event_id"
     t.index ["user_id"], name: "index_forum_threads_on_user_id"
   end
 
@@ -164,7 +177,7 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.string "mainaddress"
     t.string "branches"
     t.string "firm"
-    t.integer "organization_score"
+    t.float "organization_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "organization_category_id"
@@ -196,6 +209,14 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.index ["admin_id"], name: "index_subforums_on_admin_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.integer "forum_thread_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_thread_id"], name: "index_tags_on_forum_thread_id"
+  end
+
   create_table "theme_interests", force: :cascade do |t|
     t.string "themesinterest"
     t.datetime "created_at", null: false
@@ -223,6 +244,7 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.string "user_data_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_data_type", "user_data_id"], name: "index_user_polymorphisms_on_user_data_type_and_user_data_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -245,15 +267,16 @@ ActiveRecord::Schema.define(version: 20180512072844) do
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_day", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "voluntaries", force: :cascade do |t|
-    t.integer "voluntary_score"
+    t.float "voluntary_score"
     t.date "birthday"
-    t.bigint "cellphone"
+    t.integer "cellphone", limit: 8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "minicipality_id"

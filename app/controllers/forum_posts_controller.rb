@@ -15,7 +15,9 @@ class ForumPostsController < ApplicationController
 
   # POST /forum_posts
   def create
-    @forum_post = ForumPost.new(forum_post_params)
+    @data = forum_post_params
+    @data[:user_id] = @current_user.id
+    @forum_post = ForumPost.new(@data)
 
     if @forum_post.save
       render json: @forum_post, status: :created, location: @forum_post
@@ -26,16 +28,30 @@ class ForumPostsController < ApplicationController
 
   # PATCH/PUT /forum_posts/1
   def update
-    if @forum_post.update(forum_post_params)
-      render json: @forum_post
+    if @forum_post.user_id == @current_user.id
+      if @forum_post.update(forum_post_params)
+        render json: @forum_post
+      else
+        render json: @forum_post.errors, status: :unprocessable_entity
+      end
     else
-      render json: @forum_post.errors, status: :unprocessable_entity
+      render json: "Esta respuesta no le pertenece".json
     end
+    
   end
 
   # DELETE /forum_posts/1
   def destroy
     @forum_post.destroy
+  end
+
+  def show_by_forum_thread
+    if params[:id].nil?
+      render json: nil.to_json, status: :not_found
+    else
+      render json: ForumPost.getAllForumPostByForumThread(params[:id])
+    end
+   
   end
 
   private
@@ -46,6 +62,6 @@ class ForumPostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def forum_post_params
-      params.require(:forum_post).permit(:text, :createdat, :updatedat)
+      params.require(:forum_post).permit(:text, :forum_thread_id)
     end
 end

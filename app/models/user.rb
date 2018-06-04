@@ -22,6 +22,7 @@
 #  tokens                 :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  points_day             :integer          default(0), not null
 #
 # Indexes
 #
@@ -38,16 +39,23 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
 
-	has_many :bans
-	has_many :admins, through: :bans
-	has_many :forum_threads
-	has_many :forum_posts
-	has_one :user_polymorphism
+	# has_many :bans
+	# has_many :admins, through: :bans
+	has_many :forum_threads,  dependent: :destroy
+  has_many :forum_posts,  dependent: :destroy
+  has_many :boards,  dependent: :destroy
+  has_one :user_polymorphism,   dependent: :destroy
+  has_many :forum_posts, through: :boards,  dependent: :destroy
     validates :email, presence: true, length: {minimum: 3}, uniqueness: true
     validates :name, presence: true
     validates :username, presence: true, length: {minimum: 3}, uniqueness: true
+    validates :points_day, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
     mount_uploader :image, AvatarUploader
     #serialize :image, JSON 
 
-    
+  def self.updatePointsDay
+    User.all.each do |u|
+      u.update(points_day: 10)
+    end
+  end
 end

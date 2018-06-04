@@ -7,5 +7,6 @@ class CreateUserPolymorphisms < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :user_polymorphisms, [:user_data_type, :user_data_id]
   end
 end

@@ -3,9 +3,9 @@
 # Table name: voluntaries
 #
 #  id              :integer          not null, primary key
-#  voluntary_score :integer
+#  voluntary_score :float
 #  birthday        :date
-#  cellphone       :bigint(8)
+#  cellphone       :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  minicipality_id :integer
@@ -30,6 +30,12 @@ class Voluntary < ApplicationRecord
 	def self.voluntariesInEvents
 		Voluntaries.joins(:EventVoluntary, :UserPolymorphism)
 	end
+
+	def self.calculateScore(voluntary_id)
+        @voluntary = Voluntary.find(voluntary_id)
+        @voluntary.voluntary_score = @voluntary.events.where('event_voluntaries.scorevoluntary IS NOT ?', nil).average('event_voluntaries.scorevoluntary').to_f
+        @voluntary.save
+    end
 end
 
 

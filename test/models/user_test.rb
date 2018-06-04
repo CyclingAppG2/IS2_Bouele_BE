@@ -22,6 +22,7 @@
 #  tokens                 :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  points_day             :integer          default(0), not null
 #
 # Indexes
 #

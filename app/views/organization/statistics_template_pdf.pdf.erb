@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PDF</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1>Estadisticas de 
+                <%= @organization.name%>
+            </h1>
+        </div>
+
+        <br>
+        <br>
+        <br>
+    <div class="col-4">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <h4>Fecha y hora:</h4>
+                <h5><%= Time.at((@event.start_datetime/1000).to_i).localtime%></h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+            <div class="card bg-success">
+                <div class="card-body">
+                    <h4>Descripcion:</h4>
+                    <h5><%= @event.description%></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+                <div class="card bg-secondary">
+                    <div class="card-body">
+                        <h4>Fecha de creacion:</h4>
+                        <h5><%= @event.created_at.localtime%></h5>
+                    </div>
+                </div>
+            </div>
+   
+        
+        
+    </div>
+
+
+
+    
+</body>
+
+</html>

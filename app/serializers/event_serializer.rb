@@ -5,9 +5,9 @@
 #  id              :integer          not null, primary key
 #  name            :string
 #  description     :string
-#  duration        :bigint(8)
+#  duration        :integer
 #  organization_id :integer
-#  start_datetime  :datetime
+#  start_datetime  :bigint(8)
 #  max_voluntaries :integer          default(100)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -26,4 +26,5 @@ class EventSerializer < ActiveModel::Serializer
   has_many :plus
   has_many :locations
   belongs_to :organization
+  has_many :forum_threads
 end
