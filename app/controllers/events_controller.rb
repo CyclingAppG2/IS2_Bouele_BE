@@ -53,7 +53,7 @@ class EventsController < ApplicationController
         end
       end
       time = Time.at((@event.start_datetime/1000).to_i).localtime - 7.days
-      NofifyEventJob.set(wait: time).perform_later(@event)
+      # NofifyEventJob.set(wait: time).perform_later(@event)
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
