@@ -35,6 +35,10 @@ class EventVoluntary < ApplicationRecord
         EventVoluntary.where(voluntary_id: voluntary_id, event_id: event_id)       
     end
 
+    def self.attended(voluntary_id, event_id)
+        e = EventVoluntary.voluntaryInEvent(voluntary_id, event_id).first
+        e.nil? ? false : e.scorevoluntary.nil? ? false : true
+    end
     
     
 end

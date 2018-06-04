@@ -21,10 +21,14 @@
 #
 
 class OrganizationSerializer < ActiveModel::Serializer
-  attributes :id, :category, :NIT, :mainaddress, :branches, :firm, :organization_score
+  attributes :id, :category, :NIT, :mainaddress, :branches, :firm, :organization_score, :user
 
   belongs_to :organization_category
   belongs_to :minicipality
   has_many :events
   has_one :user_polymorphism
+
+  def user
+    object.user_polymorphism.user
+  end
 end

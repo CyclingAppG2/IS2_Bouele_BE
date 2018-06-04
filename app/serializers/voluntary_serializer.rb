@@ -18,11 +18,15 @@
 #
 
 class VoluntarySerializer < ActiveModel::Serializer
-  attributes :id, :voluntary_score, :birthday, :cellphone
+  attributes :id, :voluntary_score, :birthday, :cellphone, :user
   has_many  :theme_interests_voluntaries
   has_many :theme_interests, :through => :theme_interests_voluntaries
   has_many :event_voluntaries
   has_many :events
   has_one :user_polymorphism
   has_one :gender
+
+  def user
+    object.user_polymorphism.user
+  end
 end

@@ -131,6 +131,33 @@ end
     end
   end
 
+  def attendanceCertificate
+    if params[:event].nil?
+      render json: "El evento es invalido o faltante".to_json, status: :failed_dependency
+    elsif @current_user.user_polymorphism.user_data_type != "Voluntary"
+      render json: "Solo pueden acceder voluntarios".to_json, status: :failed_dependency
+    else
+      @event = Event.find(params[:event])
+      @organization = @event.organization
+      if EventVoluntary.attended(@current_user.user_polymorphism.user_data.id, @event.id)
+        respond_to do |format|
+          format.pdf do
+            pdf = CertificateAttendancePdf.new(@event, @organization, @current_user.user_polymorphism.user_data, @current_user, @organization.user_polymorphism.user )
+            send_data pdf.render, filename: "Certificate #{@current_user.email}.pdf ",
+                                  type: "application/pdf",
+                                  disposition: "inline" 
+                                  
+          end
+        end
+      else
+        render json: "No pertenece al evento o no asistio".to_json, status: :failed_dependency
+      end
+      
+    end
+    
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event_voluntary

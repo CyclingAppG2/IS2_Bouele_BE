@@ -181,6 +181,7 @@ Rails.application.routes.draw do
   get 'forums/size_paginate' => 'forum_threads#index'
   patch 'forums/points/:id' => 'forum_threads#update_points'
   get 'forum_post/forum/:id' => 'forum_posts#show_by_forum_thread'
+  get 'events/certificate/:event' => 'event_voluntaries#attendanceCertificate'
 
   require "devise_token_auth"
   resources :contact_data

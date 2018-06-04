@@ -32,7 +32,7 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id,  :email, :name, :username, :points_day, :image
+  attributes :id,  :email, :name, :username, :points_day, :image, :user_data
 
   # has_many :bans
   # has_many :admins
@@ -40,4 +40,8 @@ class UserSerializer < ActiveModel::Serializer
   has_many :forum_threads
   has_many :forum_posts	
   has_one :user_polymorphism
+
+  def user_data
+    object.user_polymorphism.user_data
+  end
 end
