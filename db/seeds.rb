@@ -64,7 +64,9 @@ end
                         birthday: Faker::Date.birthday(18, 65),
                         gender_id: x%2==0 ? 1 : 2,
                         cellphone: Faker::Number.number(10))
-                    ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: 1)
+                    3.times do    
+                        ThemeInterestsVoluntary.create(voluntary_id: o.id, theme_interest_id: Random.new.rand(1..20))
+                    end
                     s = Faker::LoremFlickr.image("200x200", ['man', 'women'])
                     uri = URI.parse(s)
                     tries = 3
@@ -187,8 +189,12 @@ end
                         created_at: Faker::Date.between(2.years.ago, 2.days.ago)
                         )
     f.update(remote_img_prev_url: im.to_s)
+    3.times do
+         Tag.create(title: Faker::Book.title,
+                forum_thread_id: f.id)
+    end
     Random.new.rand(0..12).times do
-       fp= ForumPost.create(
+       fp = ForumPost.create(
             forum_thread_id: f.id,
             user_id: Random.new.rand(1..50),
             text: Faker::VForVendetta.quote,
@@ -202,6 +208,7 @@ end
                 forum_post_id: fp.id
             )
         end
+
     end       
 end
 
