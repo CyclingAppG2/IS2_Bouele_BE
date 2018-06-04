@@ -9,7 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -20,7 +20,7 @@ module Bouele
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-
+   
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -29,5 +29,35 @@ module Bouele
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.to_prepare do
+       DeviseTokenAuth::SessionsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::RegistrationsController.skip_before_action :authenticate_user!
+       DeviseTokenAuth::TokenValidationsController.skip_before_action :authenticate_user!
+
+    end
+
+    config.i18n.default_locale = 'es'
+    I18n.l Time.now
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', 
+        :headers => :any, 
+        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        :methods => [:get, :post, :options, :delete, :put, :patch]
+      end
+    end
+
+    
+    
   end
+  def default_url_options
+    { locale: I18n.locale }
+  end
+  
 end

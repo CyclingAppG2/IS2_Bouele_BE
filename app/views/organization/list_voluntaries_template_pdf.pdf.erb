@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PDF</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+        <meta charset="UTF-8">
+        <%# <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script> %>
+<%= wicked_pdf_javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+  <%# <%= wicked_pdf_javascript_include_tag "application", "chartkick" %> %>
+
+<body>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h2>Lista de voluntarios inscritos en el evento
+                <%= @event.name%>
+            </h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>% de calificacions positivas</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <%@voluntaries.each do |voluntary|%>
+                    <tr>
+                        <th><%= voluntary.name%> </th>
+                        <th><%= voluntary.email%> </th>
+                        <th>
+                        <% n = voluntary.user_polymorphism.user_data.voluntary_score.nil?  ?  -1 : (voluntary.user_polymorphism.user_data.voluntary_score * 100) / 5 %>
+                        <% if n != -1 %>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width:<%='%.2f'%n%>%">
+                                <%='%.2f'%n%>
+                                </div>
+                            </div>
+                        <% else %>
+                            Es primera vez :)
+                        <% end %> 
+                        </th>
+                    </tr>
+                    <%end%>
+
+            </tbody>
+
+        </table>
+        <br>
+        <br>
+        <br>
+    <div class="row">
+        <div class="col">
+            <div class="card bg-warning">
+                <div class="card-body">
+                    <h4>Fecha y hora:</h4>
+                    <h5><%= Time.at((@event.start_datetime/1000).to_i).localtime%></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+                <div class="card bg-success">
+                    <div class="card-body">
+                        <h4>Descripcion:</h4>
+                        <h5><%= @event.description%></h5>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <div class="row">
+        	<div class="col">
+        	        <div class="card bg-secondary">
+        	            <div class="card-body">
+        	                <h4>Fecha de creacion:</h4>
+        	                <h5><%= @event.created_at.localtime%></h5>
+        	            </div>
+        	        </div>
+        	    </div>
+        </div>
+   
+        
+        
+    </div>
+    <div class="col">
+    <%= line_chart @event.event_voluntaries.group_by_day('event_voluntaries.created_at').count %>
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: voluntaries
+#
+#  id              :integer          not null, primary key
+#  voluntary_score :float
+#  birthday        :date
+#  cellphone       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  minicipality_id :integer
+#  gender_id       :integer
+#
+# Indexes
+#
+#  index_voluntaries_on_gender_id        (gender_id)
+#  index_voluntaries_on_minicipality_id  (minicipality_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  themesinterest: MyString
+  score: 
+  birthday: MyString
+  photo: 
+  gender: MyString
+  cellphone: 
+  city: MyString
+
+two:
+  themesinterest: MyString
+  score: 
+  birthday: MyString
+  photo: 
+  gender: MyString
+  cellphone: 
+  city: MyString

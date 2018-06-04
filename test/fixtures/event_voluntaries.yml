@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: event_voluntaries
+#
+#  id                   :integer          not null, primary key
+#  scorevoluntary       :integer
+#  scoreorganization    :integer
+#  commentsvoluntary    :string
+#  commentsorganization :string
+#  event_id             :integer
+#  voluntary_id         :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scorevoluntary: 
+  scoreorganization: 
+  commentsvoluntary: MyString
+  commentsorganization: MyString
+
+two:
+  scorevoluntary: 
+  scoreorganization: 
+  commentsvoluntary: MyString
+  commentsorganization: MyString
